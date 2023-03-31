@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f216b1f7d663447809f955c14143e3, type: 3}
+  m_Name: Pyromancer
+  m_EditorClassIdentifier: 
+  name: Pyromancer
+  description: Fire Magic
+  startingPrimaryAD: 500
+  color: {r: 1, g: 0.29612744, b: 0, a: 1}
+  projectile:
+  - {fileID: 4134896726430301044, guid: df2f5980409313543b28583d4ff53b56, type: 3}
+  wandMesh: {fileID: 4300112, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
+  upgrades:
+  - {fileID: 11400000, guid: efadde5124c3c0345a50f5513449bef4, type: 2}
+  - {fileID: 11400000, guid: ad785576ef1944842a3a4b6335b71138, type: 2}
+  - {fileID: 11400000, guid: b7cfc1d388564a34fb2707c5492285d1, type: 2}
+  - {fileID: 11400000, guid: de8ca2278ada55547bbe2379e313d390, type: 2}
+  - {fileID: 11400000, guid: 8e1ac7c345bb972418c3c06180833de9, type: 2}
+  - {fileID: 11400000, guid: 10183730c17d41741a67eae073436833, type: 2}
