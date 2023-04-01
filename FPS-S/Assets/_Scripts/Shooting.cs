@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    #region variables
     [Header("Refrences")]
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private ClassHandler classHandler;
     [SerializeField] private Transform firePos;
     [SerializeField] private Image cursorImage;
     [SerializeField] private Sprite hitSprite, noHitSprite;
     [SerializeField] private Mana manaManager;
     [SerializeField] Animator staffAnimator;
+
     [Header("Variables")]
     [SerializeField] private float hitRange;
     [SerializeField] private Color hitColor, noHitColor;
@@ -26,7 +26,17 @@ public class Shooting : MonoBehaviour
     private Vector3 destination;
     private Ray ray;
     private RaycastHit hit;
-    private float timeToFire;
+    private float nextFireTime;
+    private Camera camera;
+    private GameObject projectilePrefab;
+
+    #endregion
+
+    private void Start()
+    {
+        camera = Camera.main;
+        projectilePrefab = MagicManager.Instance.currentPrefab;
+    }
 
     private void Update()
     {
@@ -35,9 +45,10 @@ public class Shooting : MonoBehaviour
         ShootSecondaryFire();
     }
 
+
     private void RayCastCheckForHit()
     {
-        ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         if (Physics.Raycast(ray, out hit, hitRange, enemyLayer))
         {
@@ -61,10 +72,10 @@ public class Shooting : MonoBehaviour
 
     private void ShootPrimaryFire()
     {
-        if (Input.GetMouseButton(0) && Time.time >= timeToFire && manaManager.mana >= primaryFireManaCost)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && manaManager.mana >= primaryFireManaCost)
         {
             manaManager.mana -= primaryFireManaCost;
-            timeToFire = Time.time + 1 / playerStats.fireRate;
+            nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
             InstantiateProjectile();
         }
@@ -72,11 +83,12 @@ public class Shooting : MonoBehaviour
 
     private void ShootSecondaryFire()
     {
-        if (Input.GetMouseButton(1) && Time.time >= timeToFire && manaManager.mana >= secondaryFireManaCost)
+        if (Input.GetMouseButton(1) && Time.time >= nextFireTime && manaManager.mana >= secondaryFireManaCost)
         {
             manaManager.mana -= secondaryFireManaCost;
-            timeToFire = Time.time + 1 / playerStats.fireRate;
+            nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
+
             for (int i = 0; i < projectileCount; i++)
             {
                 InstantiateProjectile();
@@ -86,8 +98,8 @@ public class Shooting : MonoBehaviour
 
     private void InstantiateProjectile()
     {
-        var projectile = Instantiate(classHandler.chosenClass.projectile[0], firePos.position, Quaternion.identity) as GameObject;
-        projectile.GetComponent<Rigidbody>().velocity = ((destination - firePos.position).normalized * playerStats.projectileSpeed);
+        var projectile = Instantiate(projectilePrefab, firePos.position, Quaternion.identity) as GameObject;
+        projectile.GetComponent<Rigidbody>().velocity = ((destination - firePos.position).normalized * PlayerStats.Instance.projectileSpeed);
 
         if (hit.distance < minimumDistanceToArc && hit.distance != 0)
         {

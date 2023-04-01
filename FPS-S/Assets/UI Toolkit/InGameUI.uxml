@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Bar.uss?fileID=7433441132597879392&amp;guid=0c4209fbf0a0d1b44bdc0f6fe01be6ca&amp;type=3#Bar" />
+    <ui:VisualElement name="MinimapBackground" style="background-image: url(&apos;project://database/Assets/Sprites/UI/PNG/panelInset_brown.png?fileID=2800000&amp;guid=8e3c9647cc6ec45459bf95b2624b16bd&amp;type=3#panelInset_brown&apos;); width: 256px; height: 256px; background-color: rgba(111, 60, 60, 0); -unity-background-image-tint-color: rgba(255, 255, 255, 0.76);">
+        <ui:VisualElement name="MinimapTexture" style="background-image: url(&apos;project://database/Assets/Materials/Minimap%20Render%20Texture.renderTexture?fileID=8400000&amp;guid=090cddeabc41b8b47b8c0a31b57ede96&amp;type=2#Minimap Render Texture&apos;); width: 256px; height: 256px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -88,5 +88,14 @@ public class EnemySpawner : MonoBehaviour
     {
         currentTier++;
     }
+
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(worldBounds.center, worldBounds.size);
+    }
 }
 

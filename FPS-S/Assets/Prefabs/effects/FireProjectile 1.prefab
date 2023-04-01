@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3029261209934360185}
   - component: {fileID: 1217191286203218995}
   - component: {fileID: 4591760736651245171}
+  - component: {fileID: -4729372040308602764}
   m_Layer: 0
   m_Name: FireProjectile 1
   m_TagString: Projectile
@@ -80,14 +81,24 @@ MonoBehaviour:
   particlesVFX: {fileID: 4753777116315210046, guid: d1e741ca428939441b8feda540bb4a44,
     type: 3}
   effects: {fileID: 5820645382781773990}
-  damagePopupPrefab: {fileID: 7396019480604182777, guid: a9dc5cfe482beb740b2019889329d8d1,
-    type: 3}
-  collisionLayersToIgnore:
-    serializedVersion: 2
-    m_Bits: 512
   timeToLive: 2.5
   timeToEnable: 0.01
+--- !u!114 &-4729372040308602764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134896726430301044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56417a3f0ce83054b82a19d0bf33f83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePopupPrefab: {fileID: 7396019480604182777, guid: a9dc5cfe482beb740b2019889329d8d1,
+    type: 3}
   randomness: 5
+  fireClassDamageAddition: -50
 --- !u!1 &5820645382781773990
 GameObject:
   m_ObjectHideFlags: 0

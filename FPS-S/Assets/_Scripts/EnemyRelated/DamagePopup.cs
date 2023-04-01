@@ -11,9 +11,11 @@ public class DamagePopup : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
 
     private float distance;
+    private Camera cam;
 
     void Start()
     {
+        cam = Camera.main;
         StartCoroutine(WaitToDisplay(0.1f));
         Destroy(gameObject, timeToLive);
         transform.localPosition += offset;
@@ -25,7 +27,7 @@ public class DamagePopup : MonoBehaviour
 
     private void Update()
     {
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position) * multiplier;
+        distance = Vector3.Distance(transform.position, cam.transform.position) * multiplier;
         if (distance < 2f)
         {
             gameObject.transform.localScale = new Vector3(distance * 2f, distance * 2f, distance * 2f);
