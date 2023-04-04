@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyAnimation : MonoBehaviour
+{
+    private Animator animator;
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("ChangeAnimation"))
+        {
+            animator.SetBool("isCloseToPlayer", true);
+        }
+        if (other.CompareTag("LookDirectlyAtPlayer"))
+        {
+            transform.LookAt(playerTransform.position);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ChangeAnimation"))
+        {
+            animator.SetBool("isCloseToPlayer", false);
+        }
+    }
+
+    [SerializeField] private float damping = 1f;
+
+    private void LateUpdate()
+    {
+        Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
+        Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+    }
+}

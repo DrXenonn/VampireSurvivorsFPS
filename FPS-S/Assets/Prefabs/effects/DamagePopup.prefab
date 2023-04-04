@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 1.5
-  offset: {x: 0, y: 100, z: 0}
-  randomizePositionIntensity: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 150, z: 0}
+  randomizePositionIntensity: {x: 150, y: 100, z: 150}
   multiplier: 0.15
   meshRenderer: {fileID: 2176175073479422228}
 --- !u!1 &7396019480604182777

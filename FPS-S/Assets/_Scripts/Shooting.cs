@@ -7,7 +7,6 @@ public class Shooting : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] private Transform firePos;
     [SerializeField] private Image cursorImage;
-    [SerializeField] private Sprite hitSprite, noHitSprite;
     [SerializeField] private Mana manaManager;
     [SerializeField] Animator staffAnimator;
 
@@ -52,29 +51,27 @@ public class Shooting : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, hitRange, enemyLayer))
         {
-            cursorImage.sprite = hitSprite;
             cursorImage.color = hitColor;
             destination = hit.point;
+
         }
         else if (Physics.Raycast(ray, out hit, hitRange, notEnemyLayer))
         {
             destination = hit.point;
-            cursorImage.sprite = noHitSprite;
             cursorImage.color = noHitColor;
         }
         else 
         {
             destination = ray.GetPoint(1000f);
-            cursorImage.sprite = noHitSprite;
             cursorImage.color = noHitColor;
         }
     }
 
     private void ShootPrimaryFire()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && manaManager.mana >= primaryFireManaCost)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && manaManager.currentMana >= primaryFireManaCost)
         {
-            manaManager.mana -= primaryFireManaCost;
+            manaManager.currentMana -= primaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
             InstantiateProjectile();
@@ -83,9 +80,9 @@ public class Shooting : MonoBehaviour
 
     private void ShootSecondaryFire()
     {
-        if (Input.GetMouseButton(1) && Time.time >= nextFireTime && manaManager.mana >= secondaryFireManaCost)
+        if (Input.GetMouseButton(1) && Time.time >= nextFireTime && manaManager.currentMana >= secondaryFireManaCost)
         {
-            manaManager.mana -= secondaryFireManaCost;
+            manaManager.currentMana -= secondaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
 

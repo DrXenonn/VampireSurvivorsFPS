@@ -8,14 +8,15 @@ public class Mana : MonoBehaviour
     [SerializeField] private float manaToRegenerate;
 
     private PlayerStats playerStats;
-    private float maxMana;
-    public float mana = 0;
+    public float maxMana;
+    public float currentMana;
     private float timeSinceLastRegen = 0f;
 
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
         maxMana = playerStats.maxMana;
+        currentMana = maxMana;
     }
 
     void Update()
@@ -30,10 +31,10 @@ public class Mana : MonoBehaviour
 
     void RegenerateMana()
     {
-        if (mana < maxMana)
+        if (currentMana < maxMana)
         {
-            mana += manaToRegenerate;
-            mana = Mathf.Min(mana, maxMana);
+            currentMana += manaToRegenerate;
+            currentMana = Mathf.Min(currentMana, maxMana);
         }
     }
 }

@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
         get { return straffe; }
     }
 
-    private float currentMovementSpeed;
+    public float currentMovementSpeed;
+
 
     private void Start()
     {

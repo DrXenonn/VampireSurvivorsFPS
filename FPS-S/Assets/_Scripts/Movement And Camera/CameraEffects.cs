@@ -4,19 +4,19 @@ using UnityEngine;
 public class CameraEffects : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    private PlayerMovement playerMovement;
+    private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private PlayerMovement playerMovement;
 
     [Header("Variables")]
     [SerializeField] private float startFOV = 60f;
     [SerializeField] private float maxFOV = 70f;
     [SerializeField] private float timeFOV = 0.2f;
-    [SerializeField] private float timeDutch = 0.2f;
+    [SerializeField] private float timeDutchIn,timeDutchOut;
     [SerializeField] private float dutch = 10f;
 
     private void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
@@ -35,15 +35,15 @@ public class CameraEffects : MonoBehaviour
     {
         if (playerMovement.Straffe > 0)
         {
-            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, -dutch, timeDutch);
+            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, -dutch, timeDutchIn);
         }
         else if (playerMovement.Straffe < 0)
         {
-            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, dutch, timeDutch);
+            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, dutch, timeDutchIn);
         }
         else
         {
-            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, 0, timeDutch);
+            virtualCamera.m_Lens.Dutch = Mathf.Lerp(virtualCamera.m_Lens.Dutch, 0, timeDutchOut);
         }
     }
 

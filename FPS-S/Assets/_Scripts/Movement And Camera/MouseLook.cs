@@ -5,7 +5,6 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float mouseSens = 100f;
     [SerializeField] private Transform playerBody;
     private float xRotation = 0f;
-    private float MouseX, MouseY;
 
     void Start()
     {

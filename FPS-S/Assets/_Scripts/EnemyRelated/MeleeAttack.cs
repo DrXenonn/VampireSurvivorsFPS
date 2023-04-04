@@ -3,20 +3,19 @@ using UnityEngine;
 public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] private EnemyScriptableObject enemyStats;
+    [SerializeField] private CheckForCollision enemyHand;
     private PlayerHealth playerHealth;
-    private float timeToAttack;
 
     private void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
-    private void OnTriggerStay(Collider other)
+    public void DoMeleeAttack()
     {
-        if (other.CompareTag("MeleeAttack") && Time.time >= timeToAttack)
+        if (enemyHand.hasEntered)
         {
             playerHealth.currentHealth -= enemyStats.enemyDamage;
-            timeToAttack = Time.time + 1 / enemyStats.meleeAttackRate;
         }
     }
 }

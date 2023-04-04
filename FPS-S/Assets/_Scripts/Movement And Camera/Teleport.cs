@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    [Header("Refrences")]
+    [Header("References")]
     [SerializeField] private Transform playerCam;
+    private PlayerMovement playerMovement;
 
     [Header("Teleport")]
     [SerializeField] private float tpDistance;
@@ -15,16 +16,40 @@ public class Teleport : MonoBehaviour
     [Header("Input")]
     [SerializeField] private KeyCode tpKey = KeyCode.E;
 
+    [Header("Bonus Movement Speed")]
+    [SerializeField] private float bonusMovementSpeed;
+    [SerializeField] private float bonusDuration;
+    private float currentBonusDuration;
+
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(tpKey) && Time.time >= tpCdTimer)
         {
             TeleportFunc();
+
+            // Apply bonus movement speed and reset duration
+            currentBonusDuration = bonusDuration;
+            playerMovement.currentMovementSpeed = PlayerStats.Instance.movementSpeed + bonusMovementSpeed;
+
             tpCdTimer = Time.time + tpCd;
+        }
+
+        // Decaying movement speed
+        if (currentBonusDuration > 0)
+        {
+            playerMovement.currentMovementSpeed = Mathf.Lerp(PlayerStats.Instance.movementSpeed + bonusMovementSpeed,
+                                                             PlayerStats.Instance.movementSpeed,
+                                                             1 - (currentBonusDuration / bonusDuration));
+            currentBonusDuration -= Time.deltaTime;
         }
     }
 
-    void TeleportFunc()
+    private void TeleportFunc()
     {
         var verticalInput = Input.GetAxisRaw("Vertical");
         var horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -39,4 +64,3 @@ public class Teleport : MonoBehaviour
         transform.Translate(Vector3.forward * verticalInput * tpDistance);
     }
 }
-

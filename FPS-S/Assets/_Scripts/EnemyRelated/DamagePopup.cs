@@ -21,7 +21,7 @@ public class DamagePopup : MonoBehaviour
         transform.localPosition += offset;
         transform.localPosition += new Vector3(
             RandomizePosition(randomizePositionIntensity.x),
-            RandomizePosition(randomizePositionIntensity.y),
+            Random.Range(0, randomizePositionIntensity.y),
             RandomizePosition(randomizePositionIntensity.z));
     }
 

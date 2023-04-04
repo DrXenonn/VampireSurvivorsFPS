@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AIUnit : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     public EnemyScriptableObject enemyManager;
     private AIManager manager;
 

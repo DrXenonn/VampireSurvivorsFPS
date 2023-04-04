@@ -1,20 +1,22 @@
 using UnityEngine;
-using System.Collections;
 
 public class XpSystem : MonoBehaviour
 {
 
-    [SerializeField]
-    private int currentXP;
+    [HideInInspector]
+    public int currentXP;
 
     [HideInInspector]
     public int currentLevel;
 
-    [SerializeField]
-    private int xpToNextLevel;
+    [HideInInspector]
+    public int xpToNextLevel;
 
     [SerializeField]
     private float xpMultiplier;
+
+    [SerializeField]
+    private GameObject upgradePanel;
 
     void Update()
     {
@@ -24,9 +26,10 @@ public class XpSystem : MonoBehaviour
             currentLevel++;
 
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
+            upgradePanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+
         }
-        Debug.Log("Xp: " + currentXP + " / " + xpToNextLevel);
-        Debug.Log("Level: " + currentLevel);
     }
 
     private void OnTriggerEnter(Collider other)
