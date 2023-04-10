@@ -24,13 +24,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int maxEnemies = 10;
     [SerializeField] private List<Tier> tiers;
     [SerializeField] private float timeToIncreaseTier = 60.0f;
-    [SerializeField] private Bounds worldBounds;
+    [SerializeField] private BoxCollider spawnArea;
 
+    private Bounds spawnBounds;
     private float timeSinceLastSpawn = 0.0f;
     private int currentEnemies = 0;
     [HideInInspector] public int currentTier = 1;
     private float timeSinceLastTierIncrease = 0.0f;
-
 
     void Update()
     {
@@ -57,8 +57,8 @@ public class EnemySpawner : MonoBehaviour
     {
         // Get the enemies for the current tier
         List<EnemyType> enemies = tiers[currentTier - 1].enemyTypes;
-
-        Vector3 spawnPos = new Vector3(Random.Range(worldBounds.min.x, worldBounds.max.x), 0, Random.Range(worldBounds.min.z, worldBounds.max.z));
+        spawnBounds = spawnArea.bounds;
+        Vector3 spawnPos = new Vector3(Random.Range(spawnBounds.min.x, spawnBounds.max.x), 0, Random.Range(spawnBounds.min.z, spawnBounds.max.z));
 
         foreach (EnemyType enemy in enemies)
         {
@@ -95,7 +95,7 @@ public class EnemySpawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(worldBounds.center, worldBounds.size);
+        Gizmos.DrawWireCube(spawnBounds.center, spawnBounds.size);
     }
 }
 

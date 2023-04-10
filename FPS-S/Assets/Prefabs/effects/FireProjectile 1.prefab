@@ -98,7 +98,7 @@ MonoBehaviour:
   damagePopupPrefab: {fileID: 7396019480604182777, guid: a9dc5cfe482beb740b2019889329d8d1,
     type: 3}
   randomness: 5
-  fireClassDamageAddition: -50
+  fireClassDamageAddition: 1
 --- !u!1 &5820645382781773990
 GameObject:
   m_ObjectHideFlags: 0

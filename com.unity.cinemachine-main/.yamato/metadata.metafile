@@ -1,0 +1,63 @@
+all_platforms:
+  - name: windows
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  - name: macOS
+    type: Unity::VM::osx
+    image: package-ci/mac:stable
+    flavor: m1.mac
+  - name: ubuntu
+    type: Unity::VM
+    image: package-ci/ubuntu:stable
+    flavor: b1.large
+
+all_tests:
+  - name: isolation_tests
+    editors: [2022.2, trunk]
+    args: --type isolation-tests --enable-load-and-test-isolation
+    variables:
+  - name: vetting_tests
+    editors: [2022.2, trunk]
+    args: --type vetting-tests --platform editmode
+    variables:
+     - "UPMCI_PROMOTION: 0"
+  - name: promotion_tests
+    editors: [2022.2, trunk]
+    args: --type promotion-audit --platform editmode
+    variables:
+      - "UPMCI_PROMOTION: 1"
+
+all_testprojects:
+    - name: URP
+      path: Projects/URP
+      editors: [2022.2, trunk]
+    - name: Standalone
+      path: Projects/Standalone
+      editors: [2022.2, trunk]
+    - name: HDRP
+      path: Projects/HDRP
+      editors: [2022.2, trunk]
+    - name: URPInputSystem
+      path: Projects/URPInputSystem
+      editors: [2022.2, trunk]
+    - name: StandaloneInputSystem
+      path: Projects/StandaloneInputSystem
+      editors: [2022.2, trunk]
+    - name: HDRPInputSystem
+      path: Projects/HDRPInputSystem
+      editors: [2022.2, trunk]
+
+all_configurations:
+  ci:
+    test_names: [isolation_tests]
+    platform_names: [ubuntu]
+  nightly:
+    test_names: [isolation_tests, promotion_tests]
+    platform_names: [windows, ubuntu, macos]
+  publish:
+    test_names: [vetting_tests]
+    platform_names: [windows]
+  promote:
+    test_names: [promotion_tests, vetting_tests]
+    platform_names: [windows]

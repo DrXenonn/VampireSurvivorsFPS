@@ -7,14 +7,13 @@ public class FireProjectile : MonoBehaviour
 
     [Header("Variables")]
     [SerializeField] private int randomness;
-    [SerializeField] private int fireClassDamageAddition;
 
     private int currentAttackDamage;
 
 
     private void Start()
     {
-        currentAttackDamage = PlayerStats.Instance.primaryDamage + fireClassDamageAddition;
+        currentAttackDamage = PlayerStats.Instance.primaryDamage;
     }
 
     private void OnCollisionEnter(Collision collision)

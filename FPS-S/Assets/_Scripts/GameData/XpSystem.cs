@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class XpSystem : MonoBehaviour
@@ -16,21 +18,37 @@ public class XpSystem : MonoBehaviour
     private float xpMultiplier;
 
     [SerializeField]
-    private GameObject upgradePanel;
+    private UpgradePanelManager upgradePanelManager;
+
+    [SerializeField]
+    private UpgradeManager upgradeManager;
 
     void Update()
     {
+        CheckLevelUp();
+    }
+
+    private void CheckLevelUp()
+    {
         if (currentXP >= xpToNextLevel)
         {
-            currentXP -= xpToNextLevel;
-            currentLevel++;
-
-            xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
-            upgradePanel.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-
+            LevelUp();
         }
+
     }
+
+    private void LevelUp()
+    {
+        upgradeManager.ShowUpgrades();
+
+        currentXP -= xpToNextLevel;
+        currentLevel++;
+
+        xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
+        upgradePanelManager.OpenPanel(upgradeManager.shownUpgrades);
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,6 +60,6 @@ public class XpSystem : MonoBehaviour
 
     public void EarnXP(int xpAmount)
     {
-        currentXP += xpAmount;
+        currentXP += xpAmount; 
     }
 }

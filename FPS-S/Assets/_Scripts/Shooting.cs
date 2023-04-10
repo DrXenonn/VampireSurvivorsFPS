@@ -21,20 +21,19 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float minimumDistanceToArc;
     [SerializeField] private int primaryFireManaCost;
     [SerializeField] private int secondaryFireManaCost;
+    [SerializeField] private GameObject projectilePrefab;
 
     private Vector3 destination;
     private Ray ray;
     private RaycastHit hit;
     private float nextFireTime;
     private Camera camera;
-    private GameObject projectilePrefab;
 
     #endregion
 
     private void Start()
     {
         camera = Camera.main;
-        projectilePrefab = MagicManager.Instance.currentPrefab;
     }
 
     private void Update()

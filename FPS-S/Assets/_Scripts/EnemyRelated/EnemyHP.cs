@@ -17,7 +17,6 @@ public class EnemyHP : MonoBehaviour
     private GameObject xpPrefab;
     private bool hasXpPrefabSpawned = false;
     [HideInInspector] public int currentEnemyHP;
-    private int lastEnemyHP;
 
 
     private void Start()
@@ -26,7 +25,6 @@ public class EnemyHP : MonoBehaviour
         currentEnemyHP = enemyManager.enemyHealth;
         aiUnit = GetComponent<AIUnit>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-        lastEnemyHP = currentEnemyHP;
         animator = GetComponent<Animator>();
         aiManager = GetComponentInParent<AIManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -35,11 +33,9 @@ public class EnemyHP : MonoBehaviour
 
     private void Update()
     {
-        if (lastEnemyHP != currentEnemyHP)
+        if (enemyManager.enemyHealth != currentEnemyHP)
         {
-            lastEnemyHP = currentEnemyHP;
             healthBarGameObejct.SetActive(true);
-            Invoke("DisableHealthBar", showHPBarTime);
         }
 
         healthBar.UpdateHealthbar(enemyManager.enemyHealth, currentEnemyHP);
@@ -53,7 +49,7 @@ public class EnemyHP : MonoBehaviour
     void Death()
     {
         DisableWhenDie();
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 0.4f);
 
         if (!hasXpPrefabSpawned)
         {
@@ -67,7 +63,6 @@ public class EnemyHP : MonoBehaviour
         aiManager.units.Remove(aiUnit);
         navMeshAgent.enabled = false;
         capsuleCollider.enabled = false;
-        DisableHealthBar();
         minimapSprite.enabled = false;
         enemyAnimation.enabled = false;
     }
@@ -75,11 +70,6 @@ public class EnemyHP : MonoBehaviour
     void SpawnXpPrefab()
     {
         Instantiate(xpPrefab, transform.position, Quaternion.identity);
-    }
-
-    void DisableHealthBar()
-    {
-        healthBarGameObejct.SetActive(false);
     }
 
 }

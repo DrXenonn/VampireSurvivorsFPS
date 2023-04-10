@@ -65,7 +65,6 @@ public class UIManager : MonoBehaviour
 
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeManager.GetTimeToWin());
         timerText.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
-
     }
     void FillBar(Image bar, float current, float max)
     {

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
+  m_Name: Quickstep
+  m_EditorClassIdentifier: 
+  upgradeName: Quickstep
+  upgradeIcon: {fileID: 0}
+  upgradeColor: {r: 0, g: 0, b: 0, a: 0}
+  upgradeEffect: {fileID: 4414569783313180114, guid: ddb984439d1e93144a1a762e969d9bfb,
+    type: 3}
+  upgradeUI: {fileID: 4883967808233509058, guid: 97e73116030244040841881282fc6223,
+    type: 3}
+  upgradesToAdd: []
+  upgradesToRemove: []
+  requiredLevel: 0

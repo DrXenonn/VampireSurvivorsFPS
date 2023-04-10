@@ -13,7 +13,7 @@ public class MeleeAttack : MonoBehaviour
 
     public void DoMeleeAttack()
     {
-        if (enemyHand.hasEntered)
+        if (enemyHand.hasEntered && !playerHealth.isInvincible)
         {
             playerHealth.currentHealth -= enemyStats.enemyDamage;
         }

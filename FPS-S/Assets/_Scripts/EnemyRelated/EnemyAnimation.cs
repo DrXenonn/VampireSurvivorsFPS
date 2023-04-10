@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAnimation : MonoBehaviour
 {
     private Animator animator;
     private Transform playerTransform;
+    private NavMeshAgent agent;
+    [SerializeField] private float speedWhenCloseToPlayer;
+    [SerializeField] private float damping = 1f;
+    private float startingSpeed;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        startingSpeed = agent.speed;
     }
 
     private void OnTriggerStay(Collider other)
@@ -18,6 +25,7 @@ public class EnemyAnimation : MonoBehaviour
         if (other.CompareTag("ChangeAnimation"))
         {
             animator.SetBool("isCloseToPlayer", true);
+            agent.speed = speedWhenCloseToPlayer;
         }
         if (other.CompareTag("LookDirectlyAtPlayer"))
         {
@@ -30,10 +38,10 @@ public class EnemyAnimation : MonoBehaviour
         if (other.CompareTag("ChangeAnimation"))
         {
             animator.SetBool("isCloseToPlayer", false);
+            agent.speed = startingSpeed;
         }
     }
 
-    [SerializeField] private float damping = 1f;
 
     private void LateUpdate()
     {
