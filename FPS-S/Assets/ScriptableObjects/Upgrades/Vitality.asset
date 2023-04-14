@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Vitality
   upgradeIcon: {fileID: 21300000, guid: 4704c382eb9c4ae4394c838f7e138387, type: 3}
-  upgradeColor: {r: 0.27325213, g: 0.49056602, b: 0.17817727, a: 1}
+  upgradeColor: {r: 0.3254902, g: 0.61960787, b: 0.21960784, a: 1}
   upgradeEffect: {fileID: 4414569783313180114, guid: 6db7927a790e91742ac81cc85a7580c1,
     type: 3}
   upgradeUI: {fileID: 4883967808233509058, guid: bd0568c864aa3414097130e8506980c8,

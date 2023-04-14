@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7811590c38e3a4bbf2a8bc6f19facc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusMaxHealth: 20
+  bonusMaxHealth: 10

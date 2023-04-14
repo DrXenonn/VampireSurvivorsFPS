@@ -4,7 +4,6 @@ public class Teleport : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform playerCam;
-    private PlayerMovement playerMovement;
 
     [Header("Teleport")]
     [SerializeField] private float tpDistance;
@@ -21,11 +20,6 @@ public class Teleport : MonoBehaviour
     [SerializeField] private float bonusDuration;
     private float currentBonusDuration;
 
-    private void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(tpKey) && Time.time >= tpCdTimer)
@@ -34,7 +28,7 @@ public class Teleport : MonoBehaviour
 
             // Apply bonus movement speed and reset duration
             currentBonusDuration = bonusDuration;
-            playerMovement.currentMovementSpeed = PlayerStats.Instance.movementSpeed + bonusMovementSpeed;
+            PlayerStats.Instance.movementSpeed += bonusMovementSpeed;
 
             tpCdTimer = Time.time + tpCd;
         }
@@ -42,7 +36,7 @@ public class Teleport : MonoBehaviour
         // Decaying movement speed
         if (currentBonusDuration > 0)
         {
-            playerMovement.currentMovementSpeed = Mathf.Lerp(PlayerStats.Instance.movementSpeed + bonusMovementSpeed,
+            PlayerStats.Instance.movementSpeed = Mathf.Lerp(PlayerStats.Instance.movementSpeed + bonusMovementSpeed,
                                                              PlayerStats.Instance.movementSpeed,
                                                              1 - (currentBonusDuration / bonusDuration));
             currentBonusDuration -= Time.deltaTime;

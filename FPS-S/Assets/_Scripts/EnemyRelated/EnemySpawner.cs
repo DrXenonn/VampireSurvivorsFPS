@@ -62,7 +62,6 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (EnemyType enemy in enemies)
         {
-
             float distance = Vector3.Distance(playerTransform.position, spawnPos);
             if (distance < minDistance)
             {
@@ -71,8 +70,6 @@ public class EnemySpawner : MonoBehaviour
                 dir.Normalize();
                 spawnPos = playerTransform.position + dir * minDistance;
             }
-
-
 
             Instantiate(enemy.enemyPrefab, spawnPos, Quaternion.identity, enemy.spawnParent);
 
@@ -84,13 +81,11 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
     public void IncreaseTier()
     {
         currentTier++;
     }
-
-
-
 
     private void OnDrawGizmos()
     {

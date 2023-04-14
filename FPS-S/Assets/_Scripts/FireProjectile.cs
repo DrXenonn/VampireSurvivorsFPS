@@ -8,13 +8,6 @@ public class FireProjectile : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private int randomness;
 
-    private int currentAttackDamage;
-
-
-    private void Start()
-    {
-        currentAttackDamage = PlayerStats.Instance.primaryDamage;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -27,7 +20,7 @@ public class FireProjectile : MonoBehaviour
 
     private void Damage(Collision collision)
     {
-        int calculatedDamage = CalculateDamage(currentAttackDamage, randomness);
+        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness);
         collision.gameObject.GetComponent<EnemyHP>().currentEnemyHP -= calculatedDamage;
         ShowDamagePopup(collision, calculatedDamage);
     }

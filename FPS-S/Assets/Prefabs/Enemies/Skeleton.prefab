@@ -129,7 +129,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 9184574335478674445, guid: 371b5ea045923894bbfe69cfa1389d62, type: 3}
+  - {fileID: 2100000, guid: 08a3ad7940579dd4e867a72851fad3bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc70e41ead2fe544cae9eed9370368ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedWhenCloseToPlayer: 10
+  speedWhenCloseToPlayer: 7
   damping: 3
 --- !u!136 &18391366301339620
 CapsuleCollider:

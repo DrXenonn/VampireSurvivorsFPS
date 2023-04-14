@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Sacrificial Strength
   upgradeIcon: {fileID: 21300000, guid: e1b717d4b2698b345b4eb14024bfa87f, type: 3}
-  upgradeColor: {r: 0.27325213, g: 0.49056602, b: 0.17817727, a: 1}
+  upgradeColor: {r: 0.3254902, g: 0.61960787, b: 0.21960784, a: 1}
   upgradeEffect: {fileID: 4414569783313180114, guid: a2695ecc08daea9489b0c2bbe337e0f2,
     type: 3}
-  upgradeUI: {fileID: 4883967808233509058, guid: 97e73116030244040841881282fc6223,
+  upgradeUI: {fileID: 4883967808233509058, guid: 57d19c435ad4c584a9736166c48a75d5,
     type: 3}
   upgradesToAdd:
   - {fileID: 11400000, guid: 69809e1dd6d124e4bbb9eb9813e0b874, type: 2}

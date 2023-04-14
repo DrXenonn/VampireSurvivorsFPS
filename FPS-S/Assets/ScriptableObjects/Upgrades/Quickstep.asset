@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Quickstep
   m_EditorClassIdentifier: 
   upgradeName: Quickstep
-  upgradeIcon: {fileID: 0}
-  upgradeColor: {r: 0, g: 0, b: 0, a: 0}
+  upgradeIcon: {fileID: 21300000, guid: cab3a7258a201c042bfc38e4f3276801, type: 3}
+  upgradeColor: {r: 1, g: 0.5411765, b: 0.39607844, a: 1}
   upgradeEffect: {fileID: 4414569783313180114, guid: ddb984439d1e93144a1a762e969d9bfb,
     type: 3}
-  upgradeUI: {fileID: 4883967808233509058, guid: 97e73116030244040841881282fc6223,
+  upgradeUI: {fileID: 4883967808233509058, guid: 38572a6a1aefb97448dd353fa91221a7,
     type: 3}
   upgradesToAdd: []
   upgradesToRemove: []

@@ -34,7 +34,6 @@ public class XpSystem : MonoBehaviour
         {
             LevelUp();
         }
-
     }
 
     private void LevelUp()

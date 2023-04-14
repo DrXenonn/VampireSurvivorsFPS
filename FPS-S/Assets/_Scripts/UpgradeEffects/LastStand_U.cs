@@ -3,39 +3,41 @@ using UnityEngine;
 public class LastStand_U : MonoBehaviour
 {
     private PlayerHealth playerHealth;
-    [SerializeField] private float bonusMaxHealth = 10f;
     [SerializeField] private float invincibilityTime = 5f;
-    [SerializeField] private float cooldownTime = 300f;
+    [SerializeField] private int lastChanceHealth = 20;
+    [SerializeField] private int bonusDamagePercent = 5;
+    [SerializeField] private float bonusFireRatePercent = 15f;
+    [SerializeField] private float bonusMovementSpeedPercent = 5f;
 
-    private float remainingCooldownTime = 0f;
+    [SerializeField] GameObject aoeEffect;
+
 
     void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealth.maxHealth += bonusMaxHealth;
-        playerHealth.currentHealth += bonusMaxHealth;
         playerHealth.canDie = false;
     }
 
     private void Update()
     {
-        if (playerHealth.currentHealth <= 0 && remainingCooldownTime <= 0)
+        if (playerHealth.currentHealth <= 0)
         {
-            playerHealth.currentHealth = Mathf.RoundToInt(playerHealth.maxHealth / 2);
             playerHealth.BecomeInvincible(invincibilityTime);
-            Invoke("DisableInvincibility", invincibilityTime + 0.01f);
-
-            remainingCooldownTime = cooldownTime;
-        }
-
-        if (remainingCooldownTime > 0f)
-        {
-            remainingCooldownTime -= Time.deltaTime;
+            playerHealth.currentHealth = lastChanceHealth;
+            Instantiate(aoeEffect, playerHealth.gameObject.transform);
+            Destroy(gameObject, invincibilityTime + 0.1f);
+            GainBonuses();
         }
     }
 
+    private void GainBonuses()
+    {
+        PlayerStats.Instance.GainBonus("primaryDamage", bonusMovementSpeedPercent);
+        PlayerStats.Instance.GainBonus("movementSpead", bonusMovementSpeedPercent);
+        PlayerStats.Instance.GainBonus("fireRate", bonusFireRatePercent);
+    }
 
-    private void DisableInvincibility()
+    private void OnDestroy()
     {
         playerHealth.canDie = true;
     }

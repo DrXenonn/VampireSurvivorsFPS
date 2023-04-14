@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
   m_Name: UltimateUpgrade_LastStand
   m_EditorClassIdentifier: 
-  upgradeName: 
+  upgradeName: Last Stand
   upgradeIcon: {fileID: 21300000, guid: d926c679b58487649b3b6d43c0c749ed, type: 3}
-  upgradeColor: {r: 0.7830189, g: 0.6858559, b: 0, a: 1}
+  upgradeColor: {r: 0.7882353, g: 0.6509804, b: 0.27450982, a: 1}
   upgradeEffect: {fileID: 4414569783313180114, guid: bd309593f1e5258479696045e4e09066,
     type: 3}
   upgradeUI: {fileID: 4883967808233509058, guid: 97e73116030244040841881282fc6223,

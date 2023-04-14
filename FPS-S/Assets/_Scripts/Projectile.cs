@@ -12,7 +12,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float timeToEnable;
     private bool collided;
 
-
     private void Start()
     {
         Invoke("EnableObject", timeToEnable);
@@ -57,5 +56,4 @@ public class Projectile : MonoBehaviour
         var impact = Instantiate(particlesVFX, collision.contacts[0].point, Quaternion.identity);
         Destroy(impact, 2f);
     }
-
 }

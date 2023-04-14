@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusMaxHealth: 10
-  hpThresholdPercent: 35
+  hpThreshold: 20
   bonusDamagePercent: 25
-  bonusMovementSpeedPercent: 20
+  bonusMovementSpeedPercent: 10

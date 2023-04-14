@@ -3,55 +3,46 @@ using UnityEngine;
 public class SacrificialStrength_U : MonoBehaviour
 {
     private PlayerHealth playerHealth;
-    private PlayerMovement playerMovement;
     [SerializeField] private float bonusMaxHealth = 10;
-    [SerializeField] private float hpThresholdPercent = 20;
+    [SerializeField] private float hpThreshold = 20;
     [SerializeField] private float bonusDamagePercent = 25;
     [SerializeField] private float bonusMovementSpeedPercent = 25;
     private int originalPrimaryDamage;
     private float originalMovementSpeed;
+    private bool buffsApplied = false;
 
     private void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerHealth.maxHealth += bonusMaxHealth;
         playerHealth.currentHealth += bonusMaxHealth;
         originalPrimaryDamage = PlayerStats.Instance.primaryDamage;
-        originalMovementSpeed = playerMovement.currentMovementSpeed;
+        originalMovementSpeed = PlayerStats.Instance.movementSpeed;
     }
+
     private void Update()
     {
-        if (playerHealth.GetPlayerHealthInPercent() <= hpThresholdPercent)
+        if (playerHealth.currentHealth <= hpThreshold && !buffsApplied)
         {
             SetBuffs();
+            buffsApplied = true;
         }
-        else
+        else if (playerHealth.currentHealth > hpThreshold && buffsApplied)
         {
             ResetBuffs();
+            buffsApplied = false;
         }
     }
 
     private void ResetBuffs()
     {
         PlayerStats.Instance.primaryDamage = originalPrimaryDamage;
-        playerMovement.currentMovementSpeed = originalMovementSpeed;
+        PlayerStats.Instance.movementSpeed = originalMovementSpeed;
     }
+
     private void SetBuffs()
     {
-        PlayerStats.Instance.primaryDamage = GetCalculatedDamage();
-        playerMovement.currentMovementSpeed = GetCalculatedMovementSpeed();
-    }
-    private int GetCalculatedDamage()
-    {
-        int calculatedDamage = 1;
-        calculatedDamage = originalPrimaryDamage * Mathf.RoundToInt(100 + bonusDamagePercent) / 100;
-        return calculatedDamage;
-    }
-    private float GetCalculatedMovementSpeed()
-    {
-        float calculatedMovementSpeed = 0;
-        calculatedMovementSpeed = originalMovementSpeed * (100 + bonusMovementSpeedPercent) / 100;
-        return calculatedMovementSpeed;
+        PlayerStats.Instance.GainBonus("movementSpeed", bonusMovementSpeedPercent);
+        PlayerStats.Instance.GainBonus("primaryDamage", bonusDamagePercent);
     }
 }

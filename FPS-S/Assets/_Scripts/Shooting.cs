@@ -1,4 +1,3 @@
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -6,15 +5,11 @@ public class Shooting : MonoBehaviour
     #region variables
     [Header("Refrences")]
     [SerializeField] private Transform firePos;
-    [SerializeField] private Image cursorImage;
     [SerializeField] private Mana manaManager;
-    [SerializeField] Animator staffAnimator;
+    [SerializeField] private Animator staffAnimator;
+    [SerializeField] private Crosshair crosshair;
 
     [Header("Variables")]
-    [SerializeField] private float hitRange;
-    [SerializeField] private Color hitColor, noHitColor;
-    [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private LayerMask notEnemyLayer;
     [SerializeField] private float arcRange;
     [SerializeField] private float projectileCount;
     [SerializeField] private float minArcTime, maxArcTime;
@@ -22,53 +17,26 @@ public class Shooting : MonoBehaviour
     [SerializeField] private int primaryFireManaCost;
     [SerializeField] private int secondaryFireManaCost;
     [SerializeField] private GameObject projectilePrefab;
-
-    private Vector3 destination;
-    private Ray ray;
-    private RaycastHit hit;
     private float nextFireTime;
-    private Camera camera;
-
     #endregion
 
-    private void Start()
-    {
-        camera = Camera.main;
-    }
 
     private void Update()
     {
-        RayCastCheckForHit();
-        ShootPrimaryFire();
-        ShootSecondaryFire();
-    }
-
-
-    private void RayCastCheckForHit()
-    {
-        ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-        if (Physics.Raycast(ray, out hit, hitRange, enemyLayer))
+        if (Input.GetMouseButton(0))
         {
-            cursorImage.color = hitColor;
-            destination = hit.point;
-
+            ShootPrimaryFire();
         }
-        else if (Physics.Raycast(ray, out hit, hitRange, notEnemyLayer))
+
+        if (Input.GetMouseButton(1))
         {
-            destination = hit.point;
-            cursorImage.color = noHitColor;
-        }
-        else 
-        {
-            destination = ray.GetPoint(1000f);
-            cursorImage.color = noHitColor;
+            ShootSecondaryFire();
         }
     }
 
     private void ShootPrimaryFire()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && manaManager.currentMana >= primaryFireManaCost)
+        if (Time.time >= nextFireTime && manaManager.currentMana >= primaryFireManaCost)
         {
             manaManager.currentMana -= primaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
@@ -79,12 +47,11 @@ public class Shooting : MonoBehaviour
 
     private void ShootSecondaryFire()
     {
-        if (Input.GetMouseButton(1) && Time.time >= nextFireTime && manaManager.currentMana >= secondaryFireManaCost)
+        if (Time.time >= nextFireTime && manaManager.currentMana >= secondaryFireManaCost)
         {
             manaManager.currentMana -= secondaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
-
             for (int i = 0; i < projectileCount; i++)
             {
                 InstantiateProjectile();
@@ -95,9 +62,9 @@ public class Shooting : MonoBehaviour
     private void InstantiateProjectile()
     {
         var projectile = Instantiate(projectilePrefab, firePos.position, Quaternion.identity) as GameObject;
-        projectile.GetComponent<Rigidbody>().velocity = ((destination - firePos.position).normalized * PlayerStats.Instance.projectileSpeed);
+        projectile.GetComponent<Rigidbody>().velocity = ((crosshair.destination - firePos.position).normalized * PlayerStats.Instance.projectileSpeed);
 
-        if (hit.distance < minimumDistanceToArc && hit.distance != 0)
+        if (crosshair.hit.distance < minimumDistanceToArc && crosshair.hit.distance != 0)
         {
             return;
         }

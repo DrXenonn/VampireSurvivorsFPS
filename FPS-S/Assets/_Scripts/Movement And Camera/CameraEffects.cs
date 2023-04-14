@@ -9,7 +9,7 @@ public class CameraEffects : MonoBehaviour
 
     [Header("Variables")]
     [SerializeField] private float startFOV = 60f;
-    [SerializeField] private float maxFOV = 70f;
+    public float maxFOV = 70f;
     [SerializeField] private float timeFOV = 0.2f;
     [SerializeField] private float timeDutchIn,timeDutchOut;
     [SerializeField] private float dutch = 10f;
