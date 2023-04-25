@@ -30,7 +30,7 @@ public class DamagePopup : MonoBehaviour
         distance = Vector3.Distance(transform.position, cam.transform.position) * multiplier;
         if (distance < 2f)
         {
-            gameObject.transform.localScale = new Vector3(distance * 2f, distance * 2f, distance * 2f);
+            gameObject.transform.localScale = new Vector3(distance * 3f, distance * 3f, distance * 3f);
         }
         else 
         {

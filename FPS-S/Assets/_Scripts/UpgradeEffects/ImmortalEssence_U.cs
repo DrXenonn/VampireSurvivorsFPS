@@ -5,7 +5,7 @@ using UnityEngine;
 public class ImmortalEssence_U : MonoBehaviour
 {
     private PlayerHealth playerHealth;
-    [SerializeField] private float bonusMaxHealth = 20f;
+    [SerializeField] private int bonusMaxHealth = 20;
     [SerializeField] private float regenThresholdPercent = 50;
     [SerializeField] private float timeToRegen;
     private float timeSinceLastRegen = 0f;

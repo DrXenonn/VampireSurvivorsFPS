@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float slowWhileShooting = 0.5f;
+    [HideInInspector] public int fovWhileShooting = 60;
     [SerializeField] private CameraEffects cameraEffects;
-    [SerializeField] private float slowWhileShooting = 0.5f;
     [SerializeField] private float fovDelay = 0.2f;
+    private int fovWhileRunning = 67;
     private float translation;
     private float straffe;
     private float shootSlowdownFactor = 1f;
     private bool isShooting;
     private float timer;
-
     public float Translation
     {
         get { return translation; }
@@ -30,10 +31,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        translation = Input.GetAxis("Vertical") * PlayerStats.Instance.movementSpeed * shootSlowdownFactor * Time.deltaTime;
-        straffe = Input.GetAxis("Horizontal") * PlayerStats.Instance.movementSpeed * shootSlowdownFactor * Time.deltaTime;
+        Vector3 inputVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        inputVector = Vector3.ClampMagnitude(inputVector, 1f);
+
+        translation = inputVector.z * PlayerStats.Instance.movementSpeed * shootSlowdownFactor * Time.deltaTime;
+        straffe = inputVector.x * PlayerStats.Instance.movementSpeed * shootSlowdownFactor * Time.deltaTime;
         transform.Translate(straffe, 0, translation);
     }
+
 
     private void CheckIfShooting()
     {
@@ -54,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isShooting && timer >= fovDelay)
         {
-            cameraEffects.maxFOV = 60f;
+            cameraEffects.maxFOV = fovWhileShooting;
         }
         else
         {
@@ -70,6 +75,6 @@ public class PlayerMovement : MonoBehaviour
     private void SetToNormalSpeed()
     {
         shootSlowdownFactor = 1f;
-        cameraEffects.maxFOV = 67f;
+        cameraEffects.maxFOV = fovWhileRunning;
     }
 }

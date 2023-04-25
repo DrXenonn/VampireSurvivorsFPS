@@ -6,19 +6,16 @@ public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] Image icon;
     [SerializeField] Image border;
-    [SerializeField] TextMeshProUGUI upgradeName;
 
     public void Set(UpgradeData upgradeData)
     {
         icon.sprite = upgradeData.upgradeIcon;
         icon.color = upgradeData.upgradeColor;
-        //upgradeName.text = upgradeData.upgradeName;
     }
 
     public void Clean()
     {
         icon.sprite = null;
-        //upgradeName.text = null;
 
         RemoveSelectEffect();
     }

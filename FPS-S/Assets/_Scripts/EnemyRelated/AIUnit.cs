@@ -9,7 +9,6 @@ public class AIUnit : MonoBehaviour
     [HideInInspector] public NavMeshAgent agent;
     public EnemyScriptableObject enemyManager;
     private AIManager manager;
-    private bool isPathfindingFailed = false;
 
     private void Awake()
     {
@@ -21,31 +20,20 @@ public class AIUnit : MonoBehaviour
 
     public void MoveTo(Vector3 position)
     {
-        NavMeshPath path = new NavMeshPath();
-        if (NavMesh.CalculatePath(transform.position, position, NavMesh.AllAreas, path))
-        {
-            agent.SetPath(path);
-            isPathfindingFailed = false;
-        }
-        else
-        {
-            isPathfindingFailed = true;
-        }
+        agent.SetDestination(position);
     }
 
     private void Update()
     {
-        if (isPathfindingFailed && agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (transform.position.y < 0)
         {
-            // If the pathfinding failed previously and the agent has stopped moving, try again
-            MoveTo(agent.destination);
+            Destroy(gameObject);
         }
     }
 
     private void OnDestroy()
     {
         manager.units.Remove(this);
-        // Delay destroying the agent to give it a chance to try and find a path again
         Destroy(gameObject, 1f);
     }
 }

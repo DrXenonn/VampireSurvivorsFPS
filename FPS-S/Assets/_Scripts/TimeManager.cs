@@ -3,7 +3,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     private float timeElapsed = 0.0f;
-    private float timeToWin = 1200.0f;
+    private float timeToWin = 600.0f;
 
 
     void Update()

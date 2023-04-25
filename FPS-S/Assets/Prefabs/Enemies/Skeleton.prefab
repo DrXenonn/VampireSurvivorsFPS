@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc70e41ead2fe544cae9eed9370368ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedWhenCloseToPlayer: 7
+  speedWhenCloseToPlayer: 3
   damping: 3
 --- !u!136 &18391366301339620
 CapsuleCollider:
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   healthBarGameObejct: {fileID: 5260639779378893352}
   minimapSprite: {fileID: 9127769630260506253}
   showHPBarTime: 10
+  onDeath: {fileID: 11400000, guid: 5084f7a5ca8e8634c80066879d8a3a49, type: 2}
   currentEnemyHP: 0
 --- !u!114 &9175386733260056867
 MonoBehaviour:
@@ -1088,6 +1089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 56a0e092e380cdf42955f541bb0227b0, type: 2}
   enemyHand: {fileID: 873586135}
+  onDealDamage: {fileID: 11400000, guid: 09d4b64dfed59d748b7015c0b63c0c3a, type: 2}
 --- !u!1 &8689655779012742259
 GameObject:
   m_ObjectHideFlags: 0

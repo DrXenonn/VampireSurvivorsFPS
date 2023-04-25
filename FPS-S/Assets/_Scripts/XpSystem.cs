@@ -47,8 +47,6 @@ public class XpSystem : MonoBehaviour
         upgradePanelManager.OpenPanel(upgradeManager.shownUpgrades);
     }
 
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("XP"))

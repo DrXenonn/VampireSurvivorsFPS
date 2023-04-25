@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class XpOrb : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private GameEvent onCollectXP;
     public int xpValue;
 
 
@@ -17,7 +16,7 @@ public class XpOrb : MonoBehaviour
 
         if (other.CompareTag("Collect"))
         {
-            Destroy(gameObject);
+            onCollectXP.Raise(this, gameObject);
         }
     }
 }

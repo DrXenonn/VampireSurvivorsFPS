@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
+    public static Crosshair Instance { get; private set; }
+
     [SerializeField] private Image cursorImage;
     [SerializeField] private float hitRange;
     [SerializeField] private Color hitColor, noHitColor;
@@ -10,17 +12,33 @@ public class Crosshair : MonoBehaviour
     [SerializeField] private LayerMask notEnemyLayer;
     [HideInInspector] public Vector3 destination;
     [HideInInspector] public RaycastHit hit;
+
     private Ray ray;
     private Camera camera;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         camera = Camera.main;
     }
+
     private void Update()
     {
         RayCastCheckForHit();
     }
+
     private void RayCastCheckForHit()
     {
         ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

@@ -4,11 +4,11 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
-    [HideInInspector] public float currentHealth;
-    [HideInInspector] public float maxHealth;
+    [SerializeField] private GameEvent updateHealthBar;
+    [HideInInspector] public int currentHealth;
+    [HideInInspector] public int maxHealth;
     [HideInInspector] public bool canDie = true;
-    [HideInInspector] public bool isInvincible = false;
-
+    private bool isInvincible = false;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (GetPlayerHealthInPercent() < regenThreshold)
         {
-            currentHealth += 1f;
+            currentHealth += 1;
             currentHealth = Mathf.Min(currentHealth, maxHealth);
         }
     }
@@ -51,5 +51,30 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isInvincible = false;
+    }
+
+    public void TakeDamage(Component sender, object data)
+    {
+        if (!isInvincible)
+        {
+            var damage = (int)data;
+            currentHealth -= damage;
+            updateHealthBar.Raise();
+        }
+    }
+
+    public void OnHeal(Component sender, object data) 
+    {
+        var amount = (int)data;
+        currentHealth += amount;
+        updateHealthBar.Raise();
+    }
+
+    public void OnMaxHealthIncrease(Component sender, object data) 
+    {
+        var amount = (int)data;
+        maxHealth += amount;
+        currentHealth += amount;
+        updateHealthBar.Raise();
     }
 }

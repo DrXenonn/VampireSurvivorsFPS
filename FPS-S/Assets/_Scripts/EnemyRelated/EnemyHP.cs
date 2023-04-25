@@ -7,7 +7,7 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private GameObject healthBarGameObejct;
     [SerializeField] private SpriteRenderer minimapSprite;
-    [SerializeField] private float showHPBarTime;
+    [SerializeField] private GameEvent onDeath;
     private AIManager aiManager;
     private EnemyAnimation enemyAnimation;
     private Animator animator;
@@ -15,7 +15,7 @@ public class EnemyHP : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private CapsuleCollider capsuleCollider;
     private GameObject xpPrefab;
-    private bool hasXpPrefabSpawned = false;
+    private bool hasDied = false;
     [HideInInspector] public int currentEnemyHP;
 
 
@@ -48,13 +48,13 @@ public class EnemyHP : MonoBehaviour
 
     void Death()
     {
+        Destroy(gameObject, 0.65f);
         DisableWhenDie();
-        Destroy(gameObject, 0.4f);
 
-        if (!hasXpPrefabSpawned)
+        if (!hasDied)
         {
-            SpawnXpPrefab();
-            hasXpPrefabSpawned = true;
+            onDeath.Raise(gameObject.transform, xpPrefab);
+            hasDied = true;
         }
     }
     void DisableWhenDie()
@@ -66,10 +66,4 @@ public class EnemyHP : MonoBehaviour
         minimapSprite.enabled = false;
         enemyAnimation.enabled = false;
     }
-
-    void SpawnXpPrefab()
-    {
-        Instantiate(xpPrefab, transform.position, Quaternion.identity);
-    }
-
 }

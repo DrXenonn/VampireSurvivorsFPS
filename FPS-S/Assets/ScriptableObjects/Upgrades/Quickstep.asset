@@ -19,6 +19,7 @@ MonoBehaviour:
     type: 3}
   upgradeUI: {fileID: 4883967808233509058, guid: 38572a6a1aefb97448dd353fa91221a7,
     type: 3}
-  upgradesToAdd: []
+  upgradesToAdd:
+  - {fileID: 11400000, guid: 028a871dcfb8b4a48bf1d5f538d85b04, type: 2}
   upgradesToRemove: []
   requiredLevel: 0
