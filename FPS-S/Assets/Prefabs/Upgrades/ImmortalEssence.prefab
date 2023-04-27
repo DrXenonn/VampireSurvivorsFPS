@@ -47,3 +47,5 @@ MonoBehaviour:
   bonusMaxHealth: 20
   regenThresholdPercent: 50
   timeToRegen: 10
+  onMaxHPIncrease: {fileID: 11400000, guid: 4e6ec71de1c378a40a3423c49e9a0275, type: 2}
+  onHeal: {fileID: 11400000, guid: ba2a278a548c6b74388f66ebdab08dd3, type: 2}

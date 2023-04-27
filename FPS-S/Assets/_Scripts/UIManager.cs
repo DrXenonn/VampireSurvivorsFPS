@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+[DefaultExecutionOrder(2)]
 public class UIManager : MonoBehaviour
 {
     private Mana mana;
@@ -33,41 +34,39 @@ public class UIManager : MonoBehaviour
         mana = FindObjectOfType<Mana>();
         xp = FindObjectOfType<XpSystem>();
         enemyCounter = FindObjectOfType<EnemyCounter>();
+        OnUIChange(null, null);
     }
 
     private void Update()
     {
-        UpdateText();
-        UpdateHealthBarColor();
-
         FillBar(manaBar, mana.currentMana, mana.maxMana);
-        FillBar(healthBar, health.currentHealth, health.maxHealth);
-        FillBar(xpBar, xp.currentXP, xp.xpToNextLevel);
+        manaText.text = $"{mana.currentMana} | {mana.maxMana}";
+
+        UpdateTimer();
     }
 
     void UpdateHealthBarColor()
     {
-        if (health.currentHealth / health.maxHealth * 100 < 35)
+        float percent = ((float)health.currentHealth / (float)health.maxHealth) * 100f;
+        if (percent >= 66.666f)
         {
-            healthBar.color = lowHPColor;
+            healthBar.color = healthyColor;
         }
-        else if (health.currentHealth / health.maxHealth * 100 < 68)
+        else if (percent >= 33.333f)
         {
             healthBar.color = halfHPColor;
         }
         else
         {
-            healthBar.color = healthyColor;
+            healthBar.color = lowHPColor;
         }
     }
+
+
     private void UpdateText()
     {
         healthText.text = $"{health.currentHealth} | {health.maxHealth}";
-        manaText.text = $"{mana.currentMana} | {mana.maxMana}";
         levelText.text = $"{xp.currentLevel}";
-
-        TimeSpan timeSpan = TimeSpan.FromSeconds(timeManager.GetTimeToWin());
-        timerText.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
         killCount.text = enemyCounter.killedEnemies.ToString();
     }
     void FillBar(Image bar, float current, float max)
@@ -75,8 +74,17 @@ public class UIManager : MonoBehaviour
         bar.fillAmount = current / max;
     }
 
-    public void OnUIChange() 
+    public void OnUIChange(Component sender, object data)
     {
+        UpdateText();
+        FillBar(healthBar, health.currentHealth, health.maxHealth);
+        FillBar(xpBar, xp.currentXP, xp.xpToNextLevel);
+        UpdateHealthBarColor();
+    }
 
+    private void UpdateTimer()
+    {
+        TimeSpan timeSpan = TimeSpan.FromSeconds(timeManager.GetTimeToWin());
+        timerText.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
     }
 }

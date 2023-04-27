@@ -1223,8 +1223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "While below <b>50% Health</b>, Regenerate <b>1 Health</b> every 10 seconds.\n\n\u2022
-    Max Health <b>+20</b>\n\n"
+  m_text: "Regenerate <b>1 Health</b> every 10 seconds.\n\n\u2022 Max Health <b>+20</b>\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

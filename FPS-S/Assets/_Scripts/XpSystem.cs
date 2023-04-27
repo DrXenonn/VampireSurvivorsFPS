@@ -23,6 +23,9 @@ public class XpSystem : MonoBehaviour
     [SerializeField]
     private UpgradeManager upgradeManager;
 
+    [SerializeField]
+    private GameEvent updateUI;
+
     void Update()
     {
         CheckLevelUp();
@@ -42,6 +45,7 @@ public class XpSystem : MonoBehaviour
 
         currentXP -= xpToNextLevel;
         currentLevel++;
+        updateUI.Raise();
 
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
         upgradePanelManager.OpenPanel(upgradeManager.shownUpgrades);
@@ -57,6 +61,7 @@ public class XpSystem : MonoBehaviour
 
     public void EarnXP(int xpAmount)
     {
-        currentXP += xpAmount; 
+        currentXP += xpAmount;
+        updateUI.Raise();
     }
 }

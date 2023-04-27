@@ -5,6 +5,8 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
 
+
+    //Player's stats; changable anytime except mana and HP.
     public int maxHealth;
     public float movementSpeed;
     public float projectileSpeed;
@@ -24,16 +26,8 @@ public class PlayerStats : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /* 
-    Crtl + MM --> Close Methods and...;
-    Crtl + ,  --> Open File Explorer;
-    Crtl + F4 --> Close Tab;
-    Crtl + TAB --> Navigate among scripts;
-    propfull + TAB --> Create a variable with properties;
-    Shift + ArrowUp and Down --> to select a section of code;
-    */
 
-
+    //Fucntion to apply buff and debuff, Also returning the value in order to subtract it later. 
     public float GainBonus<T>(string fieldName, T bonusPercentage) where T : struct, IConvertible
     {
         var field = typeof(PlayerStats).GetField(fieldName);

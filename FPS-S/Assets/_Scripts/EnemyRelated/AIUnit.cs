@@ -30,10 +30,4 @@ public class AIUnit : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnDestroy()
-    {
-        manager.units.Remove(this);
-        Destroy(gameObject, 1f);
-    }
 }

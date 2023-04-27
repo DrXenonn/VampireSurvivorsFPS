@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusMaxHealth: 10
+  onMaxHPIncrease: {fileID: 11400000, guid: 4e6ec71de1c378a40a3423c49e9a0275, type: 2}

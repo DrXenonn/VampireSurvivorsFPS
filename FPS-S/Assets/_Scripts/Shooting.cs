@@ -17,7 +17,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float secondaryFireProjectileCount;
     [SerializeField] private float secondaryFireRate;
     [SerializeField] private float arcRange;
-    [SerializeField] private float minArcTime, maxArcTime;
+    [SerializeField] private float arcTime;
     [SerializeField] private float minimumDistanceToArc;
     [SerializeField] private int primaryFireManaCost;
     [SerializeField] private int secondaryFireManaCost;
@@ -116,13 +116,14 @@ public class Shooting : MonoBehaviour
             iTween.PunchPosition(gameObject, new Vector3(
                 Random.Range(-arcRange - 3f, arcRange + 3f),
                 Random.Range(0.25f, arcRange + 0.25f), 0),
-                Random.Range(minArcTime, maxArcTime));
+                arcTime);
         }
     }
 
     private void ResetProjectile(GameObject projectile)
     {
-        iTween.Stop(projectile);
+        //iTween.Stop(projectile);
+        iTween.PunchPosition(gameObject, Vector3.zero,0);
         projectile.transform.position = firePos.position;
     }
 

@@ -7,15 +7,13 @@ public class Mana : MonoBehaviour
     [SerializeField] private float timeToRegen;
     [SerializeField] private float manaToRegenerate;
 
-    private PlayerStats playerStats;
     public float maxMana;
     public float currentMana;
     private float timeSinceLastRegen = 0f;
 
     void Start()
     {
-        playerStats = GetComponent<PlayerStats>();
-        maxMana = playerStats.maxMana;
+        maxMana = PlayerStats.Instance.maxMana;
         currentMana = maxMana;
     }
 

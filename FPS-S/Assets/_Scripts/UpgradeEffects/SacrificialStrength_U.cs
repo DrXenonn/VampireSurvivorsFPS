@@ -7,6 +7,7 @@ public class SacrificialStrength_U : MonoBehaviour
     [SerializeField] private float hpThreshold = 20;
     [SerializeField] private float bonusDamagePercent = 25;
     [SerializeField] private float bonusMovementSpeedPercent = 25;
+    [SerializeField] private GameEvent onMaxHPIncrease;
     private bool buffsApplied = false;
     private float bonusMovementSpeed;
     private int bonusDamage;
@@ -14,8 +15,7 @@ public class SacrificialStrength_U : MonoBehaviour
     private void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealth.maxHealth += bonusMaxHealth;
-        playerHealth.currentHealth += bonusMaxHealth;
+        onMaxHPIncrease.Raise(bonusMaxHealth);
     }
 
     private void Update()

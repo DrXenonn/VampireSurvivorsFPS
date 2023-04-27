@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b61ca239d1f54498e5b588925b5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusMaxHealth: 0
   invincibilityTime: 5
   lastChanceHealth: 10
   bonusDamagePercent: 5
   bonusFireRatePercent: 15
   bonusMovementSpeedPercent: 5
+  onHeal: {fileID: 11400000, guid: ba2a278a548c6b74388f66ebdab08dd3, type: 2}
   aoeEffect: {fileID: 6883764601967933209, guid: 2dd4a00d82d0aa242a81c43cfdb2462d,
     type: 3}

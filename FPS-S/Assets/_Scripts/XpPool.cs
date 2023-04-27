@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class XpPool : MonoBehaviour
 {
-    public static ObjectPool<GameObject> xpPool;
+    private ObjectPool<GameObject> xpPool;
     private GameObject xpPrefab;
     private Transform parent;
 
@@ -17,8 +17,8 @@ public class XpPool : MonoBehaviour
             actionOnRelease: (obj) => obj.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
             collectionCheck: false,
-            defaultCapacity: 60,
-            maxSize: 500);
+            defaultCapacity: 70,
+            maxSize: 300);
 
     }
 
@@ -27,7 +27,6 @@ public class XpPool : MonoBehaviour
         xpPrefab = (GameObject)obj;
         parent = component.transform;
         xpPool.Get();
-        Debug.Log($"InActive: {xpPool.CountInactive} Active: {xpPool.CountActive}");
     }
 
     private GameObject CreateXP()
@@ -43,7 +42,7 @@ public class XpPool : MonoBehaviour
     }
 
 
-    public static void ReleaseXP(Component sender, object data)
+    public void ReleaseXP(Component sender, object data)
     {
         xpPool.Release(sender.gameObject);
     }

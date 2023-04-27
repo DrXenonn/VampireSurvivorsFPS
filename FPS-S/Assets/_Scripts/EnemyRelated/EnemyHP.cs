@@ -1,11 +1,10 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
 public class EnemyHP : MonoBehaviour
 {
     [SerializeField] private EnemyScriptableObject enemyManager;
-    [SerializeField] private HealthBar healthBar;
-    [SerializeField] private GameObject healthBarGameObejct;
     [SerializeField] private SpriteRenderer minimapSprite;
     [SerializeField] private GameEvent onDeath;
     private AIManager aiManager;
@@ -17,7 +16,7 @@ public class EnemyHP : MonoBehaviour
     private GameObject xpPrefab;
     private bool hasDied = false;
     [HideInInspector] public int currentEnemyHP;
-
+    private bool hasInitialized = true;
 
     private void Start()
     {
@@ -31,32 +30,37 @@ public class EnemyHP : MonoBehaviour
         enemyAnimation = GetComponent<EnemyAnimation>();
     }
 
+    private void OnEnable()
+    {
+        if (!hasInitialized)
+        {
+            currentEnemyHP = enemyManager.enemyHealth;
+            aiManager.units.Add(aiUnit);
+            navMeshAgent.enabled = true;
+            capsuleCollider.enabled = true;
+            enemyAnimation.enabled = true;
+            minimapSprite.enabled = true;
+            hasDied = false;
+        }
+        hasInitialized = false;
+    }
+
     private void Update()
     {
-        if (enemyManager.enemyHealth != currentEnemyHP)
-        {
-            healthBarGameObejct.SetActive(true);
-        }
-
-        healthBar.UpdateHealthbar(enemyManager.enemyHealth, currentEnemyHP);
-
-        if (currentEnemyHP <= 0)
+        if (!hasDied && currentEnemyHP <= 0 )
         {
             Death();
         }
     }
 
-    void Death()
+    private void Death() 
     {
-        Destroy(gameObject, 0.65f);
+        StartCoroutine("DisableDelayed");
         DisableWhenDie();
-
-        if (!hasDied)
-        {
-            onDeath.Raise(gameObject.transform, xpPrefab);
-            hasDied = true;
-        }
+        onDeath.Raise(gameObject.transform, xpPrefab);
+        hasDied = true;
     }
+
     void DisableWhenDie()
     {
         animator.SetTrigger("deathTrigger");
@@ -65,5 +69,12 @@ public class EnemyHP : MonoBehaviour
         capsuleCollider.enabled = false;
         minimapSprite.enabled = false;
         enemyAnimation.enabled = false;
+    }
+
+    private IEnumerator DisableDelayed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        EnemySpawner.pool.Release(gameObject);
     }
 }

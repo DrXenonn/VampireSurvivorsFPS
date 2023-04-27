@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameEvent updateHealthBar;
+    [SerializeField] private GameEvent updateUI;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public int maxHealth;
     [HideInInspector] public bool canDie = true;
@@ -12,8 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = playerStats.maxHealth;
-        maxHealth = playerStats.maxHealth;
+        maxHealth = PlayerStats.Instance.maxHealth;
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -59,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
         {
             var damage = (int)data;
             currentHealth -= damage;
-            updateHealthBar.Raise();
+            updateUI.Raise();
         }
     }
 
@@ -67,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
     {
         var amount = (int)data;
         currentHealth += amount;
-        updateHealthBar.Raise();
+        updateUI.Raise();
     }
 
     public void OnMaxHealthIncrease(Component sender, object data) 
@@ -75,6 +74,6 @@ public class PlayerHealth : MonoBehaviour
         var amount = (int)data;
         maxHealth += amount;
         currentHealth += amount;
-        updateHealthBar.Raise();
+        updateUI.Raise();
     }
 }
