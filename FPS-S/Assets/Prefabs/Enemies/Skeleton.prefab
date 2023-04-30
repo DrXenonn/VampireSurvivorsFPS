@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 9175386733260056871}
   - component: {fileID: 9175386733260056893}
   - component: {fileID: 7386111839209105965}
-  - component: {fileID: 18391366301339620}
+  - component: {fileID: 6512883785957239877}
   - component: {fileID: 9175386733260056865}
   - component: {fileID: 9175386733260056892}
   - component: {fileID: 9175386733260056864}
@@ -776,7 +776,7 @@ Transform:
   - {fileID: 2692296709313993757}
   - {fileID: 8034278114611783475}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &9175386733260056893
 Animator:
@@ -812,8 +812,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedWhenCloseToPlayer: 4
   damping: 3
---- !u!136 &18391366301339620
-CapsuleCollider:
+--- !u!65 &6512883785957239877
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -822,10 +822,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.5894048
-  m_Height: 4.9500003
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.7399998, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.75, y: 5.15, z: 2}
+  m_Center: {x: 0, y: 2.62, z: 0}
 --- !u!195 &9175386733260056865
 NavMeshAgent:
   m_ObjectHideFlags: 0

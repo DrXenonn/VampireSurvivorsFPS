@@ -8,5 +8,6 @@ public class Vitality_U : MonoBehaviour
     void Start()
     {
         onMaxHPIncrease.Raise(bonusMaxHealth);
+        Destroy(gameObject);
     }
 }

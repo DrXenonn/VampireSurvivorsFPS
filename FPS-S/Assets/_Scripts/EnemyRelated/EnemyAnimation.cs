@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +16,14 @@ public class EnemyAnimation : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         startingSpeed = agent.speed;
+    }
+
+    private void OnEnable()
+    {
+        if (agent != null)
+        {
+            agent.speed = startingSpeed;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -41,7 +47,6 @@ public class EnemyAnimation : MonoBehaviour
             agent.speed = startingSpeed;
         }
     }
-
 
     private void LateUpdate()
     {

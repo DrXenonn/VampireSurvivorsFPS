@@ -19,16 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0 && canDie)
         {
-            // Handle player death
-        }
-    }
-
-    public void RegenerateHealth(float regenThreshold)
-    {
-        if (GetPlayerHealthInPercent() < regenThreshold)
-        {
-            currentHealth += 1;
-            currentHealth = Mathf.Min(currentHealth, maxHealth);
+            // Handle player death, probably not here in update method
         }
     }
 
@@ -66,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
     {
         var amount = (int)data;
         currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
         updateUI.Raise();
     }
 

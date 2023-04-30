@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     public float movementSpeed;
     public float projectileSpeed;
     public float fireRate;
-    public uint maxMana;
+    public int maxMana;
     public int primaryDamage;
 
     private void Awake()

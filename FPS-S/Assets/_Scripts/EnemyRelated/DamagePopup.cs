@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamagePopup : MonoBehaviour
@@ -15,14 +14,19 @@ public class DamagePopup : MonoBehaviour
 
     void Start()
     {
+        Destroy(gameObject.transform.parent.gameObject, timeToLive);
         cam = Camera.main;
         StartCoroutine(WaitToDisplay(0.1f));
-        Destroy(gameObject, timeToLive);
         transform.localPosition += offset;
         transform.localPosition += new Vector3(
             RandomizePosition(randomizePositionIntensity.x),
             Random.Range(0, randomizePositionIntensity.y),
             RandomizePosition(randomizePositionIntensity.z));
+    }
+
+    private void OnEnable()
+    {
+        meshRenderer.enabled = false;
     }
 
     private void Update()

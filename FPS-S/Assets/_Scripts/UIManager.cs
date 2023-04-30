@@ -48,11 +48,11 @@ public class UIManager : MonoBehaviour
     void UpdateHealthBarColor()
     {
         float percent = ((float)health.currentHealth / (float)health.maxHealth) * 100f;
-        if (percent >= 66.666f)
+        if (percent > 67f)
         {
             healthBar.color = healthyColor;
         }
-        else if (percent >= 33.333f)
+        else if (percent > 34f)
         {
             healthBar.color = halfHPColor;
         }

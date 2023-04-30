@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
+  m_Name: Rejuvenating Orbs
+  m_EditorClassIdentifier: 
+  upgradeName: Rejuvenating Orbs
+  upgradeIcon: {fileID: 21300000, guid: b15e71d45bc6ec2489e3827b56dcbf6c, type: 3}
+  upgradeColor: {r: 0.49016875, g: 0.49056602, b: 0.09487361, a: 1}
+  upgradeEffect: {fileID: 484314980259987871, guid: 3e97d28a175f76a43b85b40ade3c7c2e,
+    type: 3}
+  upgradeUI: {fileID: 4883967808233509058, guid: 19aa6c9a8ffbafd49ad8347a2934b9f9,
+    type: 3}
+  upgradesToAdd:
+  - {fileID: 11400000, guid: f9cf483191819884ab1ddaa246cd82f1, type: 2}
+  upgradesToRemove:
+  - {fileID: 11400000, guid: ff6801b75ec77ef4c9e7dd915b3c7b10, type: 2}
+  requiredLevel: 0

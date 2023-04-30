@@ -7,5 +7,6 @@ public class Quickstep_U : MonoBehaviour
     void Start()
     {
         PlayerStats.Instance.GainBonus("movementSpeed",bonusMovementSpeedPercent);
+        Destroy(gameObject);
     }
 }

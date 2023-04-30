@@ -18,16 +18,16 @@ public class AIUnit : MonoBehaviour
         agent.speed = enemyManager.enemyMovementSpeed;
     }
 
-    public void MoveTo(Vector3 position)
+    private void OnEnable()
     {
-        agent.SetDestination(position);
-    }
-
-    private void Update()
-    {
-        if (transform.position.y < 0)
+        if (!agent.isOnNavMesh)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void MoveTo(Vector3 position)
+    {
+        agent.SetDestination(position);
     }
 }

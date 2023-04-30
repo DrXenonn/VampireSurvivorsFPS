@@ -12,7 +12,7 @@ public class EnemyHP : MonoBehaviour
     private Animator animator;
     private AIUnit aiUnit;
     private NavMeshAgent navMeshAgent;
-    private CapsuleCollider capsuleCollider;
+    private BoxCollider boxCollider;
     private GameObject xpPrefab;
     private bool hasDied = false;
     [HideInInspector] public int currentEnemyHP;
@@ -23,7 +23,7 @@ public class EnemyHP : MonoBehaviour
         xpPrefab = enemyManager.xpDropPrefab;
         currentEnemyHP = enemyManager.enemyHealth;
         aiUnit = GetComponent<AIUnit>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        boxCollider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         aiManager = GetComponentInParent<AIManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -37,7 +37,7 @@ public class EnemyHP : MonoBehaviour
             currentEnemyHP = enemyManager.enemyHealth;
             aiManager.units.Add(aiUnit);
             navMeshAgent.enabled = true;
-            capsuleCollider.enabled = true;
+            boxCollider.enabled = true;
             enemyAnimation.enabled = true;
             minimapSprite.enabled = true;
             hasDied = false;
@@ -66,7 +66,7 @@ public class EnemyHP : MonoBehaviour
         animator.SetTrigger("deathTrigger");
         aiManager.units.Remove(aiUnit);
         navMeshAgent.enabled = false;
-        capsuleCollider.enabled = false;
+        boxCollider.enabled = false;
         minimapSprite.enabled = false;
         enemyAnimation.enabled = false;
     }

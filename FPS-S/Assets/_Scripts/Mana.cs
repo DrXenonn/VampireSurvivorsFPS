@@ -1,30 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
     [SerializeField] private float timeToRegen;
-    [SerializeField] private float manaToRegenerate;
+    [SerializeField] private int manaToRegenerate;
 
-    public float maxMana;
-    public float currentMana;
-    private float timeSinceLastRegen = 0f;
+    public int maxMana;
+    public int currentMana;
 
     void Start()
     {
         maxMana = PlayerStats.Instance.maxMana;
         currentMana = maxMana;
-    }
-
-    void Update()
-    {
-        timeSinceLastRegen += Time.deltaTime;
-        if (timeSinceLastRegen >= timeToRegen)
-        {
-            timeSinceLastRegen -= timeToRegen;
-            RegenerateMana();
-        }
+        InvokeRepeating("RegenerateMana", 0, timeToRegen);
     }
 
     void RegenerateMana()
@@ -34,6 +22,12 @@ public class Mana : MonoBehaviour
             currentMana += manaToRegenerate;
             currentMana = Mathf.Min(currentMana, maxMana);
         }
+    }
+
+    public void RestoreMana(Component sender, object data)
+    {
+        currentMana += (int)data;
+        currentMana = Mathf.Min(currentMana, maxMana);
     }
 }
 

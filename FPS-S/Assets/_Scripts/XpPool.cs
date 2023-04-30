@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,6 +6,7 @@ public class XpPool : MonoBehaviour
     private ObjectPool<GameObject> xpPool;
     private GameObject xpPrefab;
     private Transform parent;
+    [HideInInspector] public float twinOrbsChance = 0;
 
     private void Start()
     {
@@ -27,6 +26,11 @@ public class XpPool : MonoBehaviour
         xpPrefab = (GameObject)obj;
         parent = component.transform;
         xpPool.Get();
+
+        if (Random.value < twinOrbsChance)
+        {
+            xpPool.Get();
+        }
     }
 
     private GameObject CreateXP()

@@ -6,7 +6,6 @@ public class XpOrb : MonoBehaviour
     [SerializeField] private GameEvent onCollectXP;
     public int xpValue;
 
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Magnet"))

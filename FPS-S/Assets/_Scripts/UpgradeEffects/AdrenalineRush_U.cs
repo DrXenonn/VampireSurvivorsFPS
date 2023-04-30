@@ -7,7 +7,7 @@ public class AdrenalineRush_U : MonoBehaviour
     [SerializeField] private float bonusFireRatePercent = 10;
     [SerializeField] private float bonusProjectileSpeedPercent = 10;
 
-    private int stacks = 0;
+    private uint stacks = 0;
     private bool maxStacksReached = false;
     private float bonusMovementSpeed;
     private float bonusProjectileSpeed;

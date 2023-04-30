@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
+  m_Name: AdvancedLearning
+  m_EditorClassIdentifier: 
+  upgradeName: Advanced Learning
+  upgradeIcon: {fileID: 21300000, guid: 0ea246f823b13cc468d5f919f2361adb, type: 3}
+  upgradeColor: {r: 0.49016875, g: 0.49056602, b: 0.09487361, a: 1}
+  upgradeEffect: {fileID: 484314980259987871, guid: ca99e391496c2a443b42dd335f275501,
+    type: 3}
+  upgradeUI: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+    type: 3}
+  upgradesToAdd:
+  - {fileID: 11400000, guid: 9b7514af756eec240863ffba84f6438c, type: 2}
+  upgradesToRemove: []
+  requiredLevel: 0

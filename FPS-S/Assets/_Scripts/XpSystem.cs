@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class XpSystem : MonoBehaviour
@@ -26,9 +24,20 @@ public class XpSystem : MonoBehaviour
     [SerializeField]
     private GameEvent updateUI;
 
+    [HideInInspector]
+    public float xpValueMultiplier;
+
+    private void Start()
+    {
+        xpValueMultiplier = 1f;
+    }
+
     void Update()
     {
-        CheckLevelUp();
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            EarnXP(1000);
+        }
     }
 
     private void CheckLevelUp()
@@ -55,13 +64,14 @@ public class XpSystem : MonoBehaviour
     {
         if (other.CompareTag("XP"))
         {
-            EarnXP(other.GetComponent<XpOrb>().xpValue);
+            EarnXP((int)(other.GetComponent<XpOrb>().xpValue * xpValueMultiplier));
         }
     }
 
     public void EarnXP(int xpAmount)
     {
         currentXP += xpAmount;
+        CheckLevelUp();
         updateUI.Raise();
     }
 }

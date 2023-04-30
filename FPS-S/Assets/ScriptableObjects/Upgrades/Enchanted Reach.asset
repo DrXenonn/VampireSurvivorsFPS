@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
+  m_Name: Enchanted Reach
+  m_EditorClassIdentifier: 
+  upgradeName: Enchanted Reach
+  upgradeIcon: {fileID: 21300000, guid: d8e7cb8bed649aa44ba5f7e65a4354c1, type: 3}
+  upgradeColor: {r: 0.49016875, g: 0.49056602, b: 0.09487361, a: 1}
+  upgradeEffect: {fileID: 3947688088468189336, guid: 5290fbface3993646b87797047119771,
+    type: 3}
+  upgradeUI: {fileID: 4883967808233509058, guid: 0338101cc9f182f4bbd06ba9efab9818,
+    type: 3}
+  upgradesToAdd:
+  - {fileID: 11400000, guid: ff6801b75ec77ef4c9e7dd915b3c7b10, type: 2}
+  - {fileID: 11400000, guid: ea9b8efeae60e9d45880380ef32327e6, type: 2}
+  upgradesToRemove: []
+  requiredLevel: 0
