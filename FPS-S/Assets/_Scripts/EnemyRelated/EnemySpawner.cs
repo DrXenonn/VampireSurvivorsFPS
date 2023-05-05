@@ -62,30 +62,29 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
+
     private GameObject SpawnEnemy(int currentTier)
     {
-        GameObject obj = null;
         List<EnemyType> enemies = tiers[currentTier - 1].enemyTypes;
         spawnBounds = spawnArea.bounds;
 
         foreach (EnemyType enemy in enemies)
         {
             Vector3 spawnPos = GenerateRandomSpawnPosition();
-            obj = Instantiate(enemy.enemyPrefab, spawnPos, Quaternion.identity, enemy.spawnParent) as GameObject;
+            GameObject obj = Instantiate(enemy.enemyPrefab, spawnPos, Quaternion.identity, enemy.spawnParent) as GameObject;
+            spawnedEnemies.Add(obj);
         }
-        return obj;
-    }
 
+        return spawnedEnemies[spawnedEnemies.Count - 1];
+    }
 
     void EnableEnemy(GameObject obj)
     {
-        List<EnemyType> enemies = tiers[currentTier - 1].enemyTypes;
-        spawnBounds = spawnArea.bounds;
-
-        foreach (EnemyType enemy in enemies)
+        int index = spawnedEnemies.IndexOf(obj);
+        if (index != -1)
         {
             Vector3 spawnPos = GenerateRandomSpawnPosition();
-
             obj.SetActive(true);
             obj.transform.position = spawnPos;
         }

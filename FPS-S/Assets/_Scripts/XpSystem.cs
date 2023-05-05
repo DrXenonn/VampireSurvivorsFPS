@@ -27,6 +27,9 @@ public class XpSystem : MonoBehaviour
     [HideInInspector]
     public float xpValueMultiplier;
 
+    [SerializeField]
+    private AudioSource levelupSoundEffect;
+
     private void Start()
     {
         xpValueMultiplier = 1f;
@@ -50,6 +53,7 @@ public class XpSystem : MonoBehaviour
 
     private void LevelUp()
     {
+        levelupSoundEffect.Play();
         upgradeManager.ShowUpgrades();
 
         currentXP -= xpToNextLevel;

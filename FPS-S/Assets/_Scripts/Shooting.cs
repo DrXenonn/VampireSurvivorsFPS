@@ -12,6 +12,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Mana manaManager;
     [SerializeField] private Animator staffAnimator;
     [SerializeField] private Crosshair crosshair;
+    [SerializeField] private AudioSource shootingSound;
 
     [Header("Variables")]
     [SerializeField] private float secondaryFireProjectileCount;
@@ -68,6 +69,8 @@ public class Shooting : MonoBehaviour
     {
         if (Time.time >= nextFireTime && manaManager.currentMana >= primaryFireManaCost)
         {
+            shootingSound.pitch = Random.Range(0.9f, 1.35f);
+            shootingSound.PlayOneShot(shootingSound.clip);
             manaManager.currentMana -= primaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             staffAnimator.SetTrigger("Shoot");
@@ -122,7 +125,6 @@ public class Shooting : MonoBehaviour
 
     private void ResetProjectile(GameObject projectile)
     {
-        //iTween.Stop(projectile);
         iTween.PunchPosition(gameObject, Vector3.zero,0);
         projectile.transform.position = firePos.position;
     }
@@ -137,6 +139,8 @@ public class Shooting : MonoBehaviour
     {
         for (int i = 0; i < secondaryFireProjectileCount; i++)
         {
+            shootingSound.pitch = Random.Range(0.9f, 1.35f);
+            shootingSound.PlayOneShot(shootingSound.clip);
             pool.Get();
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
             yield return new WaitForSeconds(time);

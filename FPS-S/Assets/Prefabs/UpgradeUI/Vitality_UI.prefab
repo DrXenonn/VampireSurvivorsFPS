@@ -489,7 +489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newUI: {fileID: 0}
 --- !u!114 &2249091670115716159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newUI: {fileID: 0}
 --- !u!114 &6016369726950379565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,7 +755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newUI: {fileID: 4883967808233509058, guid: 57d19c435ad4c584a9736166c48a75d5, type: 3}
 --- !u!114 &7827808809435652544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,7 +1390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Increases your maximum health, allowing you to unlock other upgrades.\n\n\u2022
+  m_text: "Increases your <b>Maximum Health</b>, allowing you to unlock other upgrades.\n\n\u2022
     Max Health <b>+10</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
