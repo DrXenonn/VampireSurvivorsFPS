@@ -789,8 +789,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Each enemy you kill increases your <b>Movement Speed</b>
 
-    by <b>1%</b>,
-    up to <b>20 stacks</b>. Upon reaching the maximum stacks, your <b>Fire rate</b>
+    by <b>2%</b>,
+    up to <b>10 stacks</b>. Upon reaching the maximum stacks, your <b>Fire rate</b>
     and <b>Projectile Speed</b> are increased by <b>10%</b>.
 
     Getting hit will

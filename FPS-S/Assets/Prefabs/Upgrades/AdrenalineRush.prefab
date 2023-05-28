@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92fbe88aad34114ab956bcaee68ddf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStacks: 20
-  bonusMovementSpeedPercent: 1
+  maxStacks: 10
+  bonusMovementSpeedPercent: 2
   bonusFireRatePercent: 10
   bonusProjectileSpeedPercent: 10
+  onBuffGain: {fileID: 11400000, guid: 4a0a9f3126a4c81458d35e3a307600b4, type: 2}
 --- !u!114 &-869726521730493167
 MonoBehaviour:
   m_ObjectHideFlags: 0

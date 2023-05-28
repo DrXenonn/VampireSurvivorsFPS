@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Billboarding : MonoBehaviour
 {
-    Vector3 lookDirection;
-    Transform cameraTransform;
-
-    private void Start()
+    private Camera mainCamera;
+    [HideInInspector]public float distanceToCamera;
+    
+    private void Awake()
     {
-        cameraTransform = Camera.main.transform;
+        mainCamera = Camera.main;
+        distanceToCamera = Vector3.Distance(mainCamera.transform.position, transform.position);
     }
-    void Update()
+
+    private void Update()
     {
-        lookDirection = cameraTransform.forward;
-        transform.forward = lookDirection;
+        transform.forward = mainCamera.transform.forward;
     }
 }

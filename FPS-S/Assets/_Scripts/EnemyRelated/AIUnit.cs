@@ -13,18 +13,23 @@ public class AIUnit : MonoBehaviour
     private void Awake()
     {
         manager = GetComponentInParent<AIManager>();
-        manager.units.Add(this);
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = enemyManager.enemyMovementSpeed;
     }
 
     private void OnEnable()
     {
+        agent.speed = enemyManager.enemyMovementSpeed;
+        manager.units.Add(this);
         if (!agent.isOnNavMesh)
         {
             Destroy(gameObject);
             manager.units.Remove(this);
         }
+    }
+
+    private void OnDisable()
+    {
+        manager.units.Remove(this);
     }
 
     public void MoveTo(Vector3 position)

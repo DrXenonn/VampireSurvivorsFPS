@@ -9,6 +9,7 @@ public class LastStandAoE : MonoBehaviour
     [SerializeField] private int blastDamage = 1000;
     [SerializeField] private float finalRadius = 100f;
     [SerializeField] private string[] affectedTags;
+    [SerializeField] private float shakeAmplitude, shakeFrequency, shakeTime;
     private float currentRadius = 0f;
     private List<Collider> affectedColliders = new List<Collider>();
     private LineRenderer lineRenderer;
@@ -21,6 +22,7 @@ public class LastStandAoE : MonoBehaviour
         xpMagnet.enabled = false;
         lineRenderer.enabled = false;
         StartCoroutine(Expand());
+        CameraShaker.ShakeCamera(shakeAmplitude, shakeFrequency, shakeTime);
     }
 
     IEnumerator Expand()
@@ -39,7 +41,7 @@ public class LastStandAoE : MonoBehaviour
                     EnemyHP health = collider.gameObject.GetComponent<EnemyHP>();
                     if (health != null)
                     {
-                        health.currentEnemyHP -= blastDamage;
+                        health.TakeDamage(blastDamage);
                     }
                     affectedColliders.Add(collider);
                 }

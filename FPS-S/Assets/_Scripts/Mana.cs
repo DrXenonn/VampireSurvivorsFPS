@@ -15,13 +15,11 @@ public class Mana : MonoBehaviour
         InvokeRepeating("RegenerateMana", 0, timeToRegen);
     }
 
-    void RegenerateMana()
+    private void RegenerateMana()
     {
-        if (currentMana < maxMana)
-        {
-            currentMana += manaToRegenerate;
-            currentMana = Mathf.Min(currentMana, maxMana);
-        }
+        if (currentMana >= maxMana) return;
+        currentMana += manaToRegenerate;
+        currentMana = Mathf.Min(currentMana, maxMana);
     }
 
     public void RestoreMana(Component sender, object data)

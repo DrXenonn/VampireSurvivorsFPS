@@ -69,7 +69,7 @@ public class Shooting : MonoBehaviour
     {
         if (Time.time >= nextFireTime && manaManager.currentMana >= primaryFireManaCost)
         {
-            shootingSound.pitch = Random.Range(0.9f, 1.35f);
+            shootingSound.pitch = Random.Range(1.1f, 1.7f);
             shootingSound.PlayOneShot(shootingSound.clip);
             manaManager.currentMana -= primaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
@@ -108,6 +108,7 @@ public class Shooting : MonoBehaviour
 
         ResetProjectile(projectile);
         AddArcEffect(projectile);
+        CameraShaker.ShakeCamera();
         StartCoroutine(ReleaseProjectileDelayed(projectile, 2f));
     }
 
@@ -125,7 +126,6 @@ public class Shooting : MonoBehaviour
 
     private void ResetProjectile(GameObject projectile)
     {
-        iTween.PunchPosition(gameObject, Vector3.zero,0);
         projectile.transform.position = firePos.position;
     }
 
@@ -139,10 +139,10 @@ public class Shooting : MonoBehaviour
     {
         for (int i = 0; i < secondaryFireProjectileCount; i++)
         {
-            shootingSound.pitch = Random.Range(0.9f, 1.35f);
+            shootingSound.pitch = Random.Range(1.2f, 1.75f);
             shootingSound.PlayOneShot(shootingSound.clip);
             pool.Get();
-            nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
+            nextFireTime = Time.time + 1 / (PlayerStats.Instance.fireRate / 2);
             yield return new WaitForSeconds(time);
         }
     }

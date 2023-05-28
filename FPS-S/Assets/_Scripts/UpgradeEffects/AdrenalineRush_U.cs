@@ -6,6 +6,7 @@ public class AdrenalineRush_U : MonoBehaviour
     [SerializeField] private float bonusMovementSpeedPercent = 5;
     [SerializeField] private float bonusFireRatePercent = 10;
     [SerializeField] private float bonusProjectileSpeedPercent = 10;
+    [SerializeField] private GameEvent onBuffGain;
 
     private uint stacks = 0;
     private bool maxStacksReached = false;
@@ -56,6 +57,7 @@ public class AdrenalineRush_U : MonoBehaviour
     {
         if (stacks >= maxStacks && !maxStacksReached)
         {
+            onBuffGain.Raise();
             ApplyBuff();
             maxStacksReached = true;
         }

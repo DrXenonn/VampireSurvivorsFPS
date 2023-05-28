@@ -10,27 +10,14 @@ public class AIManager : MonoBehaviour
 
     private void Update()
     {
-        Invoke("MakeAgentsCircleTarget", 0.1f);
+        MoveTowardsPlayer();
     }
 
-    private void MakeAgentsCircleTarget()
+    private void MoveTowardsPlayer() 
     {
         for (int i = 0; i < units.Count; i++)
         {
-            units[i].MoveTo(new Vector3(
-                GetTargetPos().x + GetRadiusAroundTarget(i) * Mathf.Cos(2 * Mathf.PI * i / units.Count),
-                GetTargetPos().y,
-                GetTargetPos().z + GetRadiusAroundTarget(i) * Mathf.Sin(2 * Mathf.PI * i / units.Count)));
+            units[i].MoveTo(target.position);
         }
-    }
-
-    Vector3 GetTargetPos()
-    {
-        return target.transform.position;
-    }
-
-    float GetRadiusAroundTarget(int i)
-    {
-        return units[i].enemyManager.radiusAroundTarget;
     }
 }

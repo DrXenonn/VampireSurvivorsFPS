@@ -4,23 +4,16 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameEvent updateUI;
+    [SerializeField] private GameEvent death;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public int maxHealth;
-    [HideInInspector] public bool canDie = true;
+
     private bool isInvincible = false;
 
     private void Start()
     {
         maxHealth = PlayerStats.Instance.maxHealth;
         currentHealth = maxHealth;
-    }
-
-    private void Update()
-    {
-        if (currentHealth <= 0 && canDie)
-        {
-            // Handle player death, probably not here in update method
-        }
     }
 
     public float GetPlayerHealthInPercent()
@@ -49,7 +42,18 @@ public class PlayerHealth : MonoBehaviour
         {
             var damage = (int)data;
             currentHealth -= damage;
+            HandleDeath();
             updateUI.Raise();
+            CameraShaker.ShakeCamera(1f, 0.75f, 0.25f);
+        }
+    }
+
+    private void HandleDeath() 
+    {
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            death.Raise();
         }
     }
 

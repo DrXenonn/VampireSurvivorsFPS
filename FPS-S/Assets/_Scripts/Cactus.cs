@@ -6,16 +6,16 @@ public class Cactus : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float knockbackForce = 10f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (other.collider.CompareTag("Player"))
         {
             dealDamage.Raise(damage);
 
-            Rigidbody playerRigidbody = collision.collider.GetComponent<Rigidbody>();
+            Rigidbody playerRigidbody = other.collider.GetComponent<Rigidbody>();
             if (playerRigidbody != null)
             {
-                Vector3 direction = collision.contacts[0].point - transform.position;
+                Vector3 direction = other.contacts[0].point - transform.position;
                 direction = direction.normalized;
                 playerRigidbody.AddForce(direction * knockbackForce, ForceMode.Impulse);
             }

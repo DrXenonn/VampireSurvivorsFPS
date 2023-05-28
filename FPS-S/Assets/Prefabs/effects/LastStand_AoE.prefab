@@ -60,10 +60,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expansionDuration: 2.75
-  blastDamage: 2250
+  blastDamage: 5000
   finalRadius: 100
   affectedTags:
   - Enemy
+  shakeAmplitude: 3.5
+  shakeFrequency: 2
+  shakeTime: 1.75
 --- !u!120 &6883764601967933187
 LineRenderer:
   serializedVersion: 2

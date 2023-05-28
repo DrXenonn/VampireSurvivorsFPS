@@ -9,5 +9,5 @@ public class EnemyScriptableObject : ScriptableObject
     public int enemyDamage;
     public float radiusAroundTarget;
     public GameObject xpDropPrefab;
-    public float meleeAttackRate;
+    public float attackRange;
 }

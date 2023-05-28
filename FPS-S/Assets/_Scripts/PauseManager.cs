@@ -4,12 +4,16 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private Shooting shooting;
+    [SerializeField] private GameEvent onPause;
+    [SerializeField] private GameEvent onResume;
+
     public void PauseGame()
     {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         mouseLook.enabled = false;
         shooting.enabled = false;
+        onPause.Raise();
     }
 
     public void UnPauseGame()
@@ -18,13 +22,6 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         mouseLook.enabled = true;
         shooting.enabled = true;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Time.timeScale = 0.25f;
-        }
+        onResume.Raise();
     }
 }

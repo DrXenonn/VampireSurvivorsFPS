@@ -15,19 +15,6 @@ public class LastStand_U : MonoBehaviour
     void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealth.canDie = false;
-    }
-
-    private void Update()
-    {
-        if (playerHealth.currentHealth <= 0)
-        {
-            playerHealth.BecomeInvincible(invincibilityTime);
-            onHeal.Raise(lastChanceHealth);
-            Instantiate(aoeEffect, playerHealth.gameObject.transform);
-            Destroy(gameObject, invincibilityTime + 0.1f);
-            GainBonuses();
-        }
     }
 
     private void GainBonuses()
@@ -37,8 +24,12 @@ public class LastStand_U : MonoBehaviour
         PlayerStats.Instance.GainBonus("fireRate", bonusFireRatePercent);
     }
 
-    private void OnDestroy()
+    public void OnFirstDeath(Component sender, object data) 
     {
-        playerHealth.canDie = true;
+        playerHealth.BecomeInvincible(invincibilityTime);
+        onHeal.Raise(lastChanceHealth);
+        Instantiate(aoeEffect, playerHealth.gameObject.transform);
+        Destroy(gameObject, invincibilityTime + 0.1f);
+        GainBonuses();
     }
 }

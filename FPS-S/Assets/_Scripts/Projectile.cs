@@ -1,12 +1,8 @@
 using UnityEngine;
-using UnityEngine.Pool;
-
 public class Projectile : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private ParticleSystem boomVFX;
     [SerializeField] private ParticleSystem particlesVFX;
-    [SerializeField] private GameObject damagePopupPrefab;
     [SerializeField] private Rigidbody rb;
 
 
@@ -14,9 +10,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int randomness;
     private bool collided;
 
-
     private void OnEnable()
     {
+        particlesVFX.Stop();
         Shoot();
         collided = false;
     }
@@ -30,19 +26,10 @@ public class Projectile : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                ShowParticlesVfx(collision);
-                ShowBoomVfx(collision);
                 Damage(collision);
             }
             gameObject.SetActive(false);
         }
-    }
-
-    private void ShowBoomVfx(Collision collision)
-    {
-        boomVFX.transform.parent = null;
-        boomVFX.transform.position = gameObject.transform.position;
-        boomVFX.Play();
     }
 
     private void ShowParticlesVfx(Collision collision)
@@ -55,8 +42,7 @@ public class Projectile : MonoBehaviour
     private void Damage(Collision collision)
     {
         int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness);
-        collision.gameObject.GetComponent<EnemyHP>().currentEnemyHP -= calculatedDamage;
-        ShowDamagePopup(collision, calculatedDamage);
+        collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage);
     }
 
     int CalculateDamage(int damage, int random)
@@ -64,18 +50,11 @@ public class Projectile : MonoBehaviour
         return Random.Range(damage - Mathf.RoundToInt(random / 2f), damage + random);
     }
 
-    private void ShowDamagePopup(Collision collision, int damage)
-    {
-        var text = Instantiate(damagePopupPrefab, transform.position, Quaternion.identity, collision.transform);
-        text.GetComponentInChildren<TextMesh>().text = damage.ToString();
-    }
-
     private void Shoot() 
     {
         Vector3 target = Crosshair.Instance.destination;
         Vector3 startPos = Shooting.Instance.firePos.position;
         float speed = PlayerStats.Instance.projectileSpeed;
-
         rb.velocity = (target - startPos).normalized * speed;
     }
 }
