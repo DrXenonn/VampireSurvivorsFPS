@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-
 public class DamagePopupGenerator : MonoBehaviour
 {
     public static DamagePopupGenerator instance;
@@ -39,8 +38,7 @@ public class DamagePopupGenerator : MonoBehaviour
     private void CalculateFontSize(GameObject obj, TextMeshProUGUI tmp)
     {
         var distance = obj.GetComponent<Billboarding>().distanceToCamera;
-        Debug.Log(distance);
-    
+
         if (distance > 70)
         {
             tmp.fontSize *= 3f;
@@ -58,5 +56,4 @@ public class DamagePopupGenerator : MonoBehaviour
             tmp.fontSize *= 1.25f;
         }
     }
-
 }

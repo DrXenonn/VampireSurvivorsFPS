@@ -892,6 +892,7 @@ GameObject:
   - component: {fileID: -74862267772274662}
   - component: {fileID: -8951969506566084965}
   - component: {fileID: 796981379102722640}
+  - component: {fileID: 3629469468512489148}
   m_Layer: 6
   m_Name: Skeleton Level2
   m_TagString: Enemy
@@ -999,7 +1000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 11400000, guid: ab142660e7061254fb0a874370b41328, type: 2}
-  minimapSprite: {fileID: 9127769630260506253}
   onDeath: {fileID: 11400000, guid: 5084f7a5ca8e8634c80066879d8a3a49, type: 2}
 --- !u!114 &9175386733260056864
 MonoBehaviour:
@@ -1044,7 +1044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: ab142660e7061254fb0a874370b41328, type: 2}
   onDealDamage: {fileID: 11400000, guid: 09d4b64dfed59d748b7015c0b63c0c3a, type: 2}
-  meleeAttackRange: 5
   berserkMode: {fileID: 7865152075940039152}
 --- !u!114 &-2832279056748096310
 MonoBehaviour:
@@ -1229,6 +1228,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3629469468512489148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367218832992662429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee8946b59b9eac4aae4fa52e41d9747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyIndicatorPrefab: {fileID: 1399588947842546468, guid: 9cd7510b7bbd6b6409305255f9305440,
+    type: 3}
+  distanceThreshold: 60
+  angle: 115
 --- !u!1 &8689655779012742259
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public struct Tier
     {
         public string tierName;
-        public List<EnemyType> enemyTypes;
+        public EnemyType enemyType;
         public float spawnRate;
         public float timeToIncreaseTier;
     }
@@ -26,15 +26,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SphereCollider spawnArea;
 
     private float timeSinceLastSpawn = 0.0f;
-    [HideInInspector] public int currentTier = 1;
+    private int currentTier = 1;
     private float timeSinceLastTierIncrease = 0.0f;
     public static ObjectPool<GameObject> pool;
 
     private void Start()
     {
         pool = new ObjectPool<GameObject>(
-            createFunc: () => SpawnEnemy(currentTier),
-            actionOnGet: (obj) => EnableEnemy(obj),
+            createFunc: () => SpawnEnemy(),
+            actionOnGet: (obj) => EnableEnemy(),
             actionOnRelease: (obj) => obj.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
             collectionCheck: true,
@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         );
     }
 
-    void Update()
+    private void Update()
     {
         timeSinceLastSpawn += Time.deltaTime;
         timeSinceLastTierIncrease += Time.deltaTime;
@@ -67,61 +67,61 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private GameObject SpawnEnemy(int currentTier)
+    private GameObject SpawnEnemy()
     {
-        GameObject obj = null;
-        List<EnemyType> enemies = tiers[currentTier - 1].enemyTypes;
+        EnemyType enemyType = tiers[currentTier - 1].enemyType;
+        Vector3 spawnPos = GetARandomPosition();
+        GameObject enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
 
-        foreach (EnemyType enemy in enemies)
-        {
-            Vector3 spawnPos = GenerateRandomSpawnPosition();
-            obj = Instantiate(enemy.enemyPrefab, spawnPos, Quaternion.identity, enemy.spawnParent) as GameObject;
-        }
-
-        return obj;
+        return enemy;
     }
 
-    void EnableEnemy(GameObject obj)
+    private void EnableEnemy()
     {
-        List<EnemyType> enemies = tiers[currentTier - 1].enemyTypes;
+        EnemyType enemyType = tiers[currentTier - 1].enemyType;
+        List<GameObject> disabledChildren = new List<GameObject>();
 
-        foreach (EnemyType enemy in enemies)
+        // Find disabled children of the spawn parent with the matching enemy type
+        foreach (Transform child in enemyType.spawnParent)
         {
-            // Check if the game object's prefab belongs to the current tier
-            if (enemy.enemyPrefab == obj)
+            if (!child.gameObject.activeSelf)
             {
-                Vector3 spawnPos = GenerateRandomSpawnPosition();
-                obj.SetActive(true);
-                obj.transform.position = spawnPos;
-                return; // Exit the method once we've enabled the game object
+                disabledChildren.Add(child.gameObject);
             }
         }
+
+        // Enable the first disabled child with the matching enemy type
+        if (disabledChildren.Count > 0)
+        {
+            GameObject disabledEnemy = disabledChildren[0];
+            disabledEnemy.SetActive(true);
+            disabledEnemy.transform.position = GetARandomPosition();
+        }
     }
 
-    Vector3 GenerateRandomSpawnPosition()
+    private Vector3 GetARandomPosition()
     {
-        Vector3 spawnPos = Vector3.zero;
-        Vector3 randomDirection = Random.insideUnitSphere.normalized;
+        var spawnPos = Vector3.zero;
+        var randomDirection = Random.insideUnitSphere.normalized;
 
-        spawnPos.x = spawnArea.bounds.center.x + randomDirection.x * spawnArea.bounds.extents.x; // Calculate the x-coordinate within the spawn area bounds
-        spawnPos.z = spawnArea.bounds.center.z + randomDirection.z * spawnArea.bounds.extents.z; // Calculate the z-coordinate within the spawn area bounds
+        var bounds = spawnArea.bounds;
+        spawnPos.x = bounds.center.x + randomDirection.x * bounds.extents.x;
+        spawnPos.z = bounds.center.z + randomDirection.z * bounds.extents.z;
         spawnPos.y = 0;
 
-        float distanceToPlayer = Vector3.Distance(spawnPos, playerTransform.position);
+        var distanceToPlayer = Vector3.Distance(spawnPos, playerTransform.position);
 
         if (distanceToPlayer <= minDistance)
         {
-            Vector3 directionToCenter = (spawnArea.bounds.center - spawnPos).normalized;
-            float maxDistance = spawnArea.bounds.extents.magnitude - minDistance;
-            spawnPos = spawnArea.bounds.center + directionToCenter * maxDistance;
+            var directionToCenter = (bounds.center - spawnPos).normalized;
+            var maxDistance = bounds.extents.magnitude - minDistance;
+            spawnPos = bounds.center + directionToCenter * maxDistance;
         }
 
         return spawnPos;
     }
 
-
-
-    public void IncreaseTier()
+    private void IncreaseTier()
     {
         currentTier++;
     }

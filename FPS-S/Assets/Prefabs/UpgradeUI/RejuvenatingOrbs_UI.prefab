@@ -222,8 +222,6 @@ GameObject:
   - component: {fileID: 3687028355283286070}
   - component: {fileID: 5405094957341160357}
   - component: {fileID: 719272103063823723}
-  - component: {fileID: 7683617764163696975}
-  - component: {fileID: 5549189763016459910}
   m_Layer: 5
   m_Name: Branch
   m_TagString: Untagged
@@ -287,63 +285,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &7683617764163696975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3669059337178205232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5549189763016459910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3669059337178205232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7683617764163696975}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7683617764163696975}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &4069247270768366259
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,8 +700,6 @@ GameObject:
   - component: {fileID: 4883967807561977413}
   - component: {fileID: 4883967807561977415}
   - component: {fileID: 4883967807561977414}
-  - component: {fileID: 719196335628986236}
-  - component: {fileID: 2249091670115716159}
   m_Layer: 5
   m_Name: Branch2
   m_TagString: Untagged
@@ -824,63 +763,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &719196335628986236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807561977412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2249091670115716159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807561977412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 719196335628986236}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 719196335628986236}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &4883967807562241756
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,8 +774,6 @@ GameObject:
   - component: {fileID: 4883967807562241757}
   - component: {fileID: 4883967807562241759}
   - component: {fileID: 4883967807562241758}
-  - component: {fileID: 605965309252258844}
-  - component: {fileID: 6016369726950379565}
   m_Layer: 5
   m_Name: Ultimate
   m_TagString: Untagged
@@ -957,63 +837,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &605965309252258844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807562241756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6016369726950379565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807562241756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 605965309252258844}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 605965309252258844}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &4883967807564123102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,8 +848,6 @@ GameObject:
   - component: {fileID: 4883967807564123103}
   - component: {fileID: 4883967807564123105}
   - component: {fileID: 4883967807564123104}
-  - component: {fileID: 8766717433780392718}
-  - component: {fileID: 7827808809435652544}
   m_Layer: 5
   m_Name: Branch1
   m_TagString: Untagged
@@ -1090,63 +911,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &8766717433780392718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807564123102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7827808809435652544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807564123102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8766717433780392718}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8766717433780392718}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &4883967807772922172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,8 +963,6 @@ GameObject:
   - component: {fileID: 4883967807847446019}
   - component: {fileID: 4883967807847446021}
   - component: {fileID: 4883967807847446020}
-  - component: {fileID: 7393996896635992621}
-  - component: {fileID: 3941524507768697979}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -1264,63 +1026,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &7393996896635992621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807847446018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7468c58e4f64ec74da7cab27a1b1c3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3941524507768697979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883967807847446018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7393996896635992621}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7393996896635992621}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &4883967808115054181
 GameObject:
   m_ObjectHideFlags: 0

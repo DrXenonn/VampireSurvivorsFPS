@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Collect
-  - ClassHandler
   - Wall
   - ChangeAnimation
   - Magnet
@@ -14,9 +13,9 @@ TagManager:
   - MeleeAttack
   - XP
   - Ground
-  - CriticalArea
   - LookDirectlyAtPlayer
   - Cactus
+  - IndicatorRange
   layers:
   - Default
   - TransparentFX

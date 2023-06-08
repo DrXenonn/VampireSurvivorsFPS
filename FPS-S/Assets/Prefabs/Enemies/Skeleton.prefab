@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 9175386733260056864}
   - component: {fileID: 3717775495294898706}
   - component: {fileID: 4359860205322045667}
+  - component: {fileID: -4986190631289444196}
   - component: {fileID: 4207878009647481836}
   - component: {fileID: -5209531681215002690}
   - component: {fileID: 1987975303553670436}
@@ -999,9 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 11400000, guid: 56a0e092e380cdf42955f541bb0227b0, type: 2}
-  minimapSprite: {fileID: 9127769630260506253}
   onDeath: {fileID: 11400000, guid: 5084f7a5ca8e8634c80066879d8a3a49, type: 2}
-  damagePopup: {fileID: 0}
 --- !u!114 &9175386733260056864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,7 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 9175386733260056865}
-  berserkModeTime: 10
+  berserkModeTime: 60
   icon: {fileID: 7692427858035722954}
 --- !u!114 &4359860205322045667
 MonoBehaviour:
@@ -1046,6 +1045,22 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 56a0e092e380cdf42955f541bb0227b0, type: 2}
   onDealDamage: {fileID: 11400000, guid: 09d4b64dfed59d748b7015c0b63c0c3a, type: 2}
   berserkMode: {fileID: 3717775495294898706}
+--- !u!114 &-4986190631289444196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367218832992662429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee8946b59b9eac4aae4fa52e41d9747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyIndicatorPrefab: {fileID: 1399588947842546468, guid: 9cd7510b7bbd6b6409305255f9305440,
+    type: 3}
+  distanceThreshold: 60
+  angle: 115
 --- !u!114 &4207878009647481836
 MonoBehaviour:
   m_ObjectHideFlags: 0

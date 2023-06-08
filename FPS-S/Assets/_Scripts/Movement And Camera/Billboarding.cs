@@ -8,7 +8,7 @@ public class Billboarding : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        distanceToCamera = Vector3.Distance(mainCamera.transform.position, transform.position);
+        distanceToCamera = Vector3.Distance(mainCamera!.transform.position, transform.position);
     }
 
     private void Update()

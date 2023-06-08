@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyHP : MonoBehaviour
 {
@@ -29,7 +28,6 @@ public class EnemyHP : MonoBehaviour
     private Vector3 GetPosition()
     {
         var position = transform.position;
-        var yOffset = GetComponent<NavMeshAgent>().baseOffset;
         return new Vector3(position.x, transform.localScale.y, position.z);
     }
 
@@ -37,7 +35,7 @@ public class EnemyHP : MonoBehaviour
     {
         if (currentEnemyHp <= 0)
         {
-            gameObject.SetActive(false);
+            EnemySpawner.pool.Release(gameObject);
             onDeath.Raise(gameObject.transform, xpPrefab);
         }
     }
