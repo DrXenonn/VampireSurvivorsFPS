@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyIndicator : MonoBehaviour
@@ -30,9 +31,9 @@ public class EnemyIndicator : MonoBehaviour
             instantiatedIndicator.SetActive(false);
             return;
         }
-
         instantiatedIndicator.SetActive(true);
         instantiatedIndicator.transform.rotation = Quaternion.Euler(0f, 0f, -GetPlayerToEnemyAngle());
+
     }
 
     private bool IsEnemyCloseEnoughAndBehind()
@@ -59,5 +60,10 @@ public class EnemyIndicator : MonoBehaviour
     {
         var distance = GetDirection().magnitude;
         return distance <= distanceThreshold;
+    }
+
+    private void OnDisable()
+    {
+        instantiatedIndicator.SetActive(false);
     }
 }

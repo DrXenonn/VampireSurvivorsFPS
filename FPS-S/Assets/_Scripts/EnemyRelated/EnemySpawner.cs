@@ -24,7 +24,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private List<Tier> tiers;
     [SerializeField] private SphereCollider spawnArea;
-
+    [SerializeField] private GameEvent onSpawn;
+    
     private float timeSinceLastSpawn = 0.0f;
     private int currentTier = 1;
     private float timeSinceLastTierIncrease = 0.0f;
@@ -70,8 +71,9 @@ public class EnemySpawner : MonoBehaviour
     private GameObject SpawnEnemy()
     {
         EnemyType enemyType = tiers[currentTier - 1].enemyType;
-        Vector3 spawnPos = GetARandomPosition();
-        GameObject enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
+        var spawnPos = GetARandomPosition();
+        var enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
+        onSpawn.Raise(enemy.transform);
 
         return enemy;
     }
@@ -93,9 +95,11 @@ public class EnemySpawner : MonoBehaviour
         // Enable the first disabled child with the matching enemy type
         if (disabledChildren.Count > 0)
         {
+            var spawnPos = GetARandomPosition();
             GameObject disabledEnemy = disabledChildren[0];
             disabledEnemy.SetActive(true);
-            disabledEnemy.transform.position = GetARandomPosition();
+            disabledEnemy.transform.position = spawnPos;
+            onSpawn.Raise(disabledEnemy.transform);
         }
     }
 

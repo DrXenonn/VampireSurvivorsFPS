@@ -41,8 +41,8 @@ public class XpPool : MonoBehaviour
 
     private void OnGetFromPool(GameObject obj)
     {
-        obj.SetActive(true);
         obj.transform.position = parent.position;
+        obj.SetActive(true);
     }
 
 

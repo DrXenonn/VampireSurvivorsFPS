@@ -21,7 +21,7 @@ public class EnemyHP : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentEnemyHp -= damage;
-        DamagePopupGenerator.instance.CreatePopup(GetPosition(), damage, Color.yellow);
+        DamagePopupGenerator.instance.RequestDamagePopup(GetPosition(), damage);
         HandleDeath();
     }
 

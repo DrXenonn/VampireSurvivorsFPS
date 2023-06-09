@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     public float fireRate;
     public int maxMana;
     public int primaryDamage;
+    public float criticalChance;
 
     private void Awake()
     {

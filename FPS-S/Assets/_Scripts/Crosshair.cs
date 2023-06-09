@@ -14,7 +14,7 @@ public class Crosshair : MonoBehaviour
     [HideInInspector] public RaycastHit hit;
 
     private Ray ray;
-    private Camera camera;
+    private new Camera camera;
 
     private void Awake()
     {

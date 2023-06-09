@@ -47,9 +47,23 @@ public class Projectile : MonoBehaviour
 
     int CalculateDamage(int damage, int random)
     {
-        return Random.Range(damage - Mathf.RoundToInt(random / 2f), damage + random);
+        int step = 5;
+        int minDamage = Mathf.FloorToInt((damage - random) / (float)step) * step;
+        int maxDamage = Mathf.CeilToInt((damage + random) / (float)step) * step;
+
+        int randomSteps = Mathf.RoundToInt((maxDamage - minDamage) / (float)step);
+        int randomIndex = Random.Range(0, randomSteps + 1);
+
+        int calculatedDamage = minDamage + randomIndex * step;
+        if (Random.value < PlayerStats.Instance.criticalChance)
+        {
+            calculatedDamage *= 2;
+            calculatedDamage += 50;
+        }
+        return calculatedDamage;
     }
 
+    
     private void Shoot() 
     {
         Vector3 target = Crosshair.Instance.destination;

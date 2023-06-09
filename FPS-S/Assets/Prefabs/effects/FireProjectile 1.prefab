@@ -51,10 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlesVFX: {fileID: 6678208369185384098}
-  damagePopupPrefab: {fileID: 1235847207978153822, guid: 83ab5beedafc00641bc4919e9475f871,
-    type: 3}
   rb: {fileID: 68077297611359228}
-  randomness: 5
+  randomness: 10
 --- !u!135 &896801274513778204
 SphereCollider:
   m_ObjectHideFlags: 0
