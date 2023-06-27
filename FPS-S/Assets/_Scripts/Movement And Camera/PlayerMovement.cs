@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private CameraEffects cameraEffects;
     [SerializeField] private float fovDelay = 0.2f;
-    private int fovWhileRunning = 67;
+    private int fovWhileRunning = 65;
     private float shootSlowdownFactor = 1f;
     private float timer;
 
@@ -13,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float verticalMovement;
     [HideInInspector] public float horizontalMovement;
     [HideInInspector] public bool isShooting;
+
+    private void Awake()
+    {
+        fovWhileRunning = (int)cameraEffects.maxFOV;
+    }
 
     private void Update()
     {

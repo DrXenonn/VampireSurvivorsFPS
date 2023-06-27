@@ -40,14 +40,14 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         FillBar(manaBar, mana.currentMana, mana.maxMana);
-        manaText.text = $"{mana.currentMana} | {mana.maxMana}";
+        manaText.text = $"{mana.currentMana} / {mana.maxMana}";
 
         UpdateTimer();
     }
 
     void UpdateHealthBarColor()
     {
-        float percent = ((float)health.currentHealth / (float)health.maxHealth) * 100f;
+        var percent = ((float)health.currentHealth / (float)health.maxHealth) * 100f;
         if (percent > 67f)
         {
             healthBar.color = healthyColor;
@@ -65,11 +65,12 @@ public class UIManager : MonoBehaviour
 
     private void UpdateText()
     {
-        healthText.text = $"{health.currentHealth} | {health.maxHealth}";
+        healthText.text = $"{health.currentHealth} / {health.maxHealth}";
         levelText.text = $"{xp.currentLevel}";
         killCount.text = enemyCounter.killedEnemies.ToString();
     }
-    void FillBar(Image bar, float current, float max)
+
+    private void FillBar(Image bar, float current, float max)
     {
         bar.fillAmount = current / max;
     }
@@ -84,7 +85,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateTimer()
     {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(timeManager.GetTimeToWin());
-        timerText.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+        var timeSpan = TimeSpan.FromSeconds(timeManager.GetTimeToWin());
+        timerText.text = $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}";
     }
 }

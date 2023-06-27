@@ -41,7 +41,7 @@ public class LastStandAoE : MonoBehaviour
                     EnemyHP health = collider.gameObject.GetComponent<EnemyHP>();
                     if (health != null)
                     {
-                        health.TakeDamage(blastDamage);
+                        health.TakeDamage(blastDamage, false);
                     }
                     affectedColliders.Add(collider);
                 }

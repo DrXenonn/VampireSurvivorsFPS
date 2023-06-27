@@ -894,7 +894,7 @@ NavMeshAgent:
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 2
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -974,8 +974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyIndicatorPrefab: {fileID: 1399588947842546468, guid: 9cd7510b7bbd6b6409305255f9305440,
     type: 3}
-  distanceThreshold: 60
-  angle: 115
+  distanceThreshold: 50
+  angle: 105
 --- !u!114 &4207878009647481836
 MonoBehaviour:
   m_ObjectHideFlags: 0

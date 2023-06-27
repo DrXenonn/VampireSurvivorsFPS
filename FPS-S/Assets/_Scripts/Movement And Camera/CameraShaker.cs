@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 public static class CameraShaker
 {
-    public static void ShakeCamera(float amplitude = 0.5f, float frequency = 0.3f, float duration = 0.175f)
+    public static void ShakeCamera(float amplitude = 0.4f, float frequency = 0.1f, float duration = 0.175f)
     {
         // Get the main camera
         CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();

@@ -4,6 +4,7 @@ public class Projectile : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem particlesVFX;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private TrailRenderer trailRenderer;
 
 
     [Header("Variables")]
@@ -15,6 +16,10 @@ public class Projectile : MonoBehaviour
         particlesVFX.Stop();
         Shoot();
         collided = false;
+
+        trailRenderer.Clear();
+        trailRenderer.enabled = false;
+        trailRenderer.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,11 +46,11 @@ public class Projectile : MonoBehaviour
 
     private void Damage(Collision collision)
     {
-        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness);
-        collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage);
+        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var isCritical);
+        collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage, isCritical);
     }
 
-    int CalculateDamage(int damage, int random)
+    int CalculateDamage(int damage, int random, out bool isCritical)
     {
         int step = 5;
         int minDamage = Mathf.FloorToInt((damage - random) / (float)step) * step;
@@ -55,11 +60,14 @@ public class Projectile : MonoBehaviour
         int randomIndex = Random.Range(0, randomSteps + 1);
 
         int calculatedDamage = minDamage + randomIndex * step;
+
+        isCritical = false;
         if (Random.value < PlayerStats.Instance.criticalChance)
         {
-            calculatedDamage *= 2;
-            calculatedDamage += 50;
+            calculatedDamage *= PlayerStats.Instance.criticalMultiplier;
+            isCritical = true;
         }
+        
         return calculatedDamage;
     }
 

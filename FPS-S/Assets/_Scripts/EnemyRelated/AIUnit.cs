@@ -22,8 +22,8 @@ public class AIUnit : MonoBehaviour
         manager.units.Add(this);
         if (!agent.isOnNavMesh)
         {
-            Destroy(gameObject);
             manager.units.Remove(this);
+            Destroy(gameObject);
         }
     }
 

@@ -4,16 +4,18 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
-
-
-    //Player's stats; changable anytime except mana and HP.
+    
+    //Player's stats; changeable anytime except mana and HP.
     public int maxHealth;
     public float movementSpeed;
     public float projectileSpeed;
     public float fireRate;
     public int maxMana;
+    public float timeToRegenMana;
     public int primaryDamage;
     public float criticalChance;
+    public int criticalMultiplier;
+    public float executionThreshold;
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-    //Fucntion to apply buff and debuff, Also returning the value in order to subtract it later. 
+    //Function to apply buff and de-buff, Also returning the value in order to subtract it later. 
     public float GainBonus<T>(string fieldName, T bonusPercentage) where T : struct, IConvertible
     {
         var field = typeof(PlayerStats).GetField(fieldName);

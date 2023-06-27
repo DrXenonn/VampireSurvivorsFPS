@@ -31,9 +31,9 @@ public class EnemyIndicator : MonoBehaviour
             instantiatedIndicator.SetActive(false);
             return;
         }
+
         instantiatedIndicator.SetActive(true);
         instantiatedIndicator.transform.rotation = Quaternion.Euler(0f, 0f, -GetPlayerToEnemyAngle());
-
     }
 
     private bool IsEnemyCloseEnoughAndBehind()
@@ -64,6 +64,9 @@ public class EnemyIndicator : MonoBehaviour
 
     private void OnDisable()
     {
-        instantiatedIndicator.SetActive(false);
+        if (instantiatedIndicator != null)
+        {
+            instantiatedIndicator.SetActive(false);
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+[DefaultExecutionOrder(1)]
 public class EnemySpawner : MonoBehaviour
 {
     [System.Serializable]

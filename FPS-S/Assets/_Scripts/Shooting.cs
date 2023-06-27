@@ -104,7 +104,8 @@ public class Shooting : MonoBehaviour
 
     private void OnGetProjectile(GameObject projectile)
     {
-        StartCoroutine(ActivateProjectileDelayed(projectile, 0.02f));
+        //StartCoroutine(ActivateProjectileDelayed(projectile, 0.04f));
+        projectile.SetActive(true);
 
         ResetProjectile(projectile);
         AddArcEffect(projectile);
@@ -127,6 +128,7 @@ public class Shooting : MonoBehaviour
     private void ResetProjectile(GameObject projectile)
     {
         projectile.transform.position = firePos.position;
+        iTween.Stop(projectile);
     }
 
     private IEnumerator ActivateProjectileDelayed(GameObject projectile, float delay)

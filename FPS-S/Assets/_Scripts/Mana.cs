@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
-    [SerializeField] private float timeToRegen;
     [SerializeField] private int manaToRegenerate;
 
-    public int maxMana;
-    public int currentMana;
+    [HideInInspector] public int maxMana;
+    [HideInInspector] public int currentMana;
 
-    void Start()
+    private float timeToRegen;
+
+    private void Start()
     {
         maxMana = PlayerStats.Instance.maxMana;
+        timeToRegen = PlayerStats.Instance.timeToRegenMana;
         currentMana = maxMana;
-        InvokeRepeating("RegenerateMana", 0, timeToRegen);
+        InvokeRepeating(nameof(RegenerateMana), 0, timeToRegen);
     }
 
     private void RegenerateMana()
@@ -27,5 +29,12 @@ public class Mana : MonoBehaviour
         currentMana += (int)data;
         currentMana = Mathf.Min(currentMana, maxMana);
     }
-}
 
+    public void ApplyManaBuff()
+    {
+        timeToRegen = PlayerStats.Instance.timeToRegenMana;
+        maxMana = PlayerStats.Instance.maxMana;
+        CancelInvoke(nameof(RegenerateMana));
+        InvokeRepeating(nameof(RegenerateMana), 0, timeToRegen);
+    }
+}

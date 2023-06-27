@@ -14,6 +14,7 @@ public class DamagePopupGenerator : MonoBehaviour
     public ObjectPool<GameObject> pool;
     private Vector3 posToSpawn;
     private int damageToShow;
+    private bool isCritical;
     
     private void Awake()
     {
@@ -29,10 +30,11 @@ public class DamagePopupGenerator : MonoBehaviour
     }
     
     
-    public void RequestDamagePopup(Vector3 position, int damage)
+    public void RequestDamagePopup(Vector3 position, int damage, bool isCrit)
     {
         posToSpawn = position;
         damageToShow = damage;
+        isCritical = isCrit;
         pool.Get();
     }
 
@@ -64,7 +66,7 @@ public class DamagePopupGenerator : MonoBehaviour
     {
         var damage = PlayerStats.Instance.primaryDamage;
         
-        if (damageToShow > damage * 2)
+        if (isCritical)
         {
             tmp.faceColor = criticalDamageColor;
         }
@@ -96,19 +98,23 @@ public class DamagePopupGenerator : MonoBehaviour
         
         if (distance > 70)
         {
-            tmp.fontSize = 36f;
+            tmp.fontSize = 42f;
         }
         else if (distance > 50)
         {
-            tmp.fontSize = 24f;
+            tmp.fontSize = 28f;
         }
         else if (distance > 35)
         {
-            tmp.fontSize = 18f;
+            tmp.fontSize = 20f;
         }
         else if (distance > 20)
         {
-            tmp.fontSize = 15f;
+            tmp.fontSize = 16f;
+        }
+        else if (distance > 13)
+        {
+            tmp.fontSize = 12f;
         }
     }
 }

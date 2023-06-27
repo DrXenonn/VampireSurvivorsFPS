@@ -15,8 +15,10 @@ TagManager:
   - Ground
   - LookDirectlyAtPlayer
   - Cactus
-  - IndicatorRange
   - IndicatorCanvas
+  - Upgrades
+  - Name
+  - Buffs
   layers:
   - Default
   - TransparentFX
@@ -32,7 +34,7 @@ TagManager:
   - DepthOfField
   - Projectile
   - MinimapAndCamera
-  - 
+  - XP
   - 
   - 
   - 
