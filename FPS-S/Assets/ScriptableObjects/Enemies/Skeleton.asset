@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   enemyName: Skeleton
-  enemyMovementSpeed: 9
+  enemyMovementSpeed: 7.5
   enemyHealth: 500
   enemyDamage: 10
   radiusAroundTarget: 2.5

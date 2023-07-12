@@ -9,12 +9,13 @@ public class DamagePopupGenerator : MonoBehaviour
     [SerializeField] private float randomness;
     [SerializeField] private float yOffset;
 
-    [SerializeField] private Color lowDamageColor, mediumDamageColor, highDamageColor, criticalDamageColor;
+    [SerializeField] private Color lowDamageColor, mediumDamageColor, highDamageColor, criticalDamageColor, burnDamageColor;
 
     public ObjectPool<GameObject> pool;
     private Vector3 posToSpawn;
     private int damageToShow;
     private bool isCritical;
+    private bool isBurn;
     
     private void Awake()
     {
@@ -30,11 +31,12 @@ public class DamagePopupGenerator : MonoBehaviour
     }
     
     
-    public void RequestDamagePopup(Vector3 position, int damage, bool isCrit)
+    public void RequestDamagePopup(Vector3 position, int damage, bool isCrit, bool isBurnDamage = false)
     {
         posToSpawn = position;
         damageToShow = damage;
         isCritical = isCrit;
+        isBurn = isBurnDamage;
         pool.Get();
     }
 
@@ -69,6 +71,10 @@ public class DamagePopupGenerator : MonoBehaviour
         if (isCritical)
         {
             tmp.faceColor = criticalDamageColor;
+        }
+        else if(isBurn)
+        {
+            tmp.faceColor = burnDamageColor;
         }
         else if (damageToShow > damage)
         {

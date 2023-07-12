@@ -1,10 +1,19 @@
+using System;
 using UnityEngine;
 
 public class XpOrb : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private GameEvent onCollectXP;
+    [SerializeField] private TrailRenderer trailRenderer;
     public int xpValue;
+
+    private void OnEnable()
+    {
+        trailRenderer.Clear();
+        trailRenderer.enabled = false;
+        trailRenderer.enabled = true;
+    }
 
     private void OnTriggerStay(Collider other)
     {

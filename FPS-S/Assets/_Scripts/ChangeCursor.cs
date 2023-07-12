@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,4 +18,8 @@ public class ChangeCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
+    private void OnDisable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
 }

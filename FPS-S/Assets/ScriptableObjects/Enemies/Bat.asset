@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   enemyName: Bat
-  enemyMovementSpeed: 8
+  enemyMovementSpeed: 7
   enemyHealth: 400
   enemyDamage: 10
   radiusAroundTarget: 2.5

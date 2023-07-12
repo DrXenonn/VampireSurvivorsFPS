@@ -53,6 +53,8 @@ MonoBehaviour:
   particlesVFX: {fileID: 6678208369185384098}
   rb: {fileID: 68077297611359228}
   trailRenderer: {fileID: 6282947371585053982}
+  onProjectileHitEnemy: {fileID: 11400000, guid: 4b364d84f3ad4c44f8088da4398e63ed,
+    type: 2}
   randomness: 10
 --- !u!135 &896801274513778204
 SphereCollider:

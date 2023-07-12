@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -16,20 +18,28 @@ public class BerserkMode : MonoBehaviour
 
     private void OnEnable()
     {
-        CancelInvoke(nameof(GoBerserk));
-        Invoke(nameof(GoBerserk), berserkModeTime);
+        StopAllCoroutines();
+        StartCoroutine(nameof(GoBerserk));
     }
-
-    private void GoBerserk()
-    {
-        agent.speed = PlayerStats.Instance.movementSpeed + 3f;
-        icon.enabled = true;
-    }
-
+    
     public void BecomeNormal() 
     {
         agent.speed = normalSpeed;
         icon.enabled = false;
-        Invoke(nameof(GoBerserk), berserkModeTime);
+        StopAllCoroutines();
+        StartCoroutine(nameof(GoBerserk));
+    }
+
+    private IEnumerator GoBerserk()
+    {
+        yield return new WaitForSeconds(berserkModeTime);
+        icon.enabled = true;
+        yield return new WaitForSeconds(15f);
+        agent.speed = PlayerStats.Instance.movementSpeed + 5f;
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

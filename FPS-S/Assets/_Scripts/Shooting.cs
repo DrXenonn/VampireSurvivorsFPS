@@ -7,24 +7,29 @@ public class Shooting : MonoBehaviour
     public static Shooting Instance { get; private set; }
 
     #region variables
-    [Header("Refrences")]
+    [Header("References")]
     [SerializeField] public Transform firePos;
-    [SerializeField] private Mana manaManager;
-    [SerializeField] private Animator staffAnimator;
-    [SerializeField] private Crosshair crosshair;
-    [SerializeField] private AudioSource shootingSound;
+    [SerializeField] protected Mana manaManager;
+    [SerializeField] protected Animator staffAnimator;
+    [SerializeField] protected Crosshair crosshair;
+    [SerializeField] protected AudioSource shootingSound;
 
     [Header("Variables")]
-    [SerializeField] private float secondaryFireProjectileCount;
-    [SerializeField] private float secondaryFireRate;
-    [SerializeField] private float arcRange;
-    [SerializeField] private float arcTime;
-    [SerializeField] private float minimumDistanceToArc;
-    [SerializeField] private int primaryFireManaCost;
-    [SerializeField] private int secondaryFireManaCost;
-    [SerializeField] private GameObject projectilePrefab;
-    private float nextFireTime;
-    private ObjectPool<GameObject> pool;
+    [SerializeField] protected float secondaryFireProjectileCount;
+    [SerializeField] protected float secondaryFireRate;
+    [SerializeField] protected float arcRange;
+    [SerializeField] protected float arcTime;
+    [SerializeField] protected float minimumDistanceToArc;
+    [SerializeField] protected int primaryFireManaCost;
+    [SerializeField] protected int secondaryFireManaCost;
+    [SerializeField] protected GameObject projectilePrefab;
+    protected float nextFireTime;
+    protected ObjectPool<GameObject> pool;
+
+    [Header("Camera Shake")] 
+    [SerializeField] protected float amplitude;
+    [SerializeField] protected float frequency;
+    [SerializeField] protected float duration;
     #endregion
 
     private void Awake()
@@ -32,7 +37,6 @@ public class Shooting : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -61,7 +65,7 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            ShootSecondaryFire();
+            //OnSecondaryFire.Raise();
         }
     }
 
@@ -78,7 +82,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    private void ShootSecondaryFire()
+    protected virtual void ShootSecondaryFire()
     {
         if (Time.time >= nextFireTime && manaManager.currentMana >= secondaryFireManaCost)
         {
@@ -104,12 +108,11 @@ public class Shooting : MonoBehaviour
 
     private void OnGetProjectile(GameObject projectile)
     {
-        //StartCoroutine(ActivateProjectileDelayed(projectile, 0.04f));
         projectile.SetActive(true);
 
         ResetProjectile(projectile);
         AddArcEffect(projectile);
-        CameraShaker.ShakeCamera();
+        CameraShaker.ShakeCamera(amplitude,frequency,duration);
         StartCoroutine(ReleaseProjectileDelayed(projectile, 2f));
     }
 
@@ -130,14 +133,9 @@ public class Shooting : MonoBehaviour
         projectile.transform.position = firePos.position;
         iTween.Stop(projectile);
     }
-
-    private IEnumerator ActivateProjectileDelayed(GameObject projectile, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        projectile.SetActive(true);
-    }
-
-    private IEnumerator SpawnProjectiles(float time)
+    
+    
+    protected IEnumerator SpawnProjectiles(float time)
     {
         for (int i = 0; i < secondaryFireProjectileCount; i++)
         {

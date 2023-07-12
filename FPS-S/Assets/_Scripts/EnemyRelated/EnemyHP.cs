@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,23 +10,26 @@ public class EnemyHP : MonoBehaviour
     private GameObject xpPrefab;
     private int currentEnemyHp;
     private bool isDead;
+    [HideInInspector] public int bonusHealth;
+    [HideInInspector] public bool isDeBuffApplied;
 
     private void Start()
     {
         xpPrefab = enemyManager.xpDropPrefab;
-        currentEnemyHp = enemyManager.enemyHealth;
+        currentEnemyHp = enemyManager.enemyHealth + bonusHealth;
     }
 
     private void OnEnable()
     {
         currentEnemyHp = enemyManager.enemyHealth;
         isDead = false;
+        isDeBuffApplied = false;
     }
 
-    public void TakeDamage(int damage, bool isCritical)
+    public void TakeDamage(int damage, bool isCritical, bool isBurn = false)
     {
         currentEnemyHp -= damage;
-        DamagePopupGenerator.instance.RequestDamagePopup(GetPosition(), damage, isCritical);
+        DamagePopupGenerator.instance.RequestDamagePopup(GetPosition(), damage, isCritical, isBurn);
         HandleDeath();
     }
 
@@ -53,6 +57,7 @@ public class EnemyHP : MonoBehaviour
         if (isDead)
         {
             Destroy(gameObject);
+            return;
         }
 
         isDead = true;
@@ -69,5 +74,10 @@ public class EnemyHP : MonoBehaviour
         gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
         EnemySpawner.pool.Release(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        isDeBuffApplied = false;
     }
 }

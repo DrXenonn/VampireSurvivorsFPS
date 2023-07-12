@@ -582,6 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 11400000, guid: e90542a20a6f9f64486c0103ecf13b14, type: 2}
   onDeath: {fileID: 11400000, guid: 5084f7a5ca8e8634c80066879d8a3a49, type: 2}
+  bonusHealth: 0
 --- !u!114 &3498598608367748450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3498598608367748381}
-  berserkModeTime: 60
+  berserkModeTime: 90
   icon: {fileID: 4432688056190237552}
 --- !u!114 &3498598608367748449
 MonoBehaviour:
@@ -649,7 +650,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9c4b5536f12014349a9c67e8b7fcb178, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 94276e9c84c68804c92f3eef39659d2b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

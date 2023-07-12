@@ -1,28 +1,33 @@
 using Cinemachine;
 using UnityEngine;
 using System.Collections;
+
 public static class CameraShaker
 {
-    public static void ShakeCamera(float amplitude = 0.4f, float frequency = 0.1f, float duration = 0.175f)
+    public static void ShakeCamera(float amplitude = 0.85f, float frequency = 99f, float duration = 0.175f)
     {
-        // Get the main camera
-        CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
-        if (brain != null)
+        if (PlayerPrefs.GetInt("CameraShake") != 0)
         {
-            // Get the virtual camera
-            CinemachineVirtualCamera vcam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-            if (vcam != null)
+            // Get the main camera
+            CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
+            if (brain != null)
             {
-                // Create a noise settings object and set its properties
-                CinemachineBasicMultiChannelPerlin noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                if (noise != null)
+                // Get the virtual camera
+                CinemachineVirtualCamera vcam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+                if (vcam != null)
                 {
-                    noise.m_AmplitudeGain = amplitude;
-                    noise.m_FrequencyGain = frequency;
+                    // Create a noise settings object and set its properties
+                    CinemachineBasicMultiChannelPerlin noise =
+                        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                    if (noise != null)
+                    {
+                        noise.m_AmplitudeGain = amplitude;
+                        noise.m_FrequencyGain = frequency;
 
-                    // Stop any previous shake coroutine and start a new one
-                    vcam.StopAllCoroutines();
-                    vcam.StartCoroutine(ShakeCoroutine(noise, duration));
+                        // Stop any previous shake coroutine and start a new one
+                        vcam.StopAllCoroutines();
+                        vcam.StartCoroutine(ShakeCoroutine(noise, duration));
+                    }
                 }
             }
         }

@@ -7,26 +7,36 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private Shooting shooting;
     [SerializeField] private GameEvent onPause;
     [SerializeField] private GameEvent onResume;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject upgradePanel;
     private bool isPaused;
+
+    private void OnEnable()
+    {
+        Time.timeScale = 1;
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !upgradePanel.activeSelf)
         {
             if (!isPaused)
             {
                 PauseGame();
+                ShowPauseMenu();
             }
             else
             {
                 UnPauseGame();
+                HidePauseMenu();
             }
         }
     }
 
     public void PauseGame()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         mouseLook.enabled = false;
         shooting.enabled = false;
@@ -36,7 +46,7 @@ public class PauseManager : MonoBehaviour
 
     public void UnPauseGame()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         mouseLook.enabled = true;
         shooting.enabled = true;
@@ -46,6 +56,28 @@ public class PauseManager : MonoBehaviour
 
     private void ShowPauseMenu()
     {
-        
+        pauseMenu.SetActive(true);
+    }
+
+    private void HidePauseMenu()
+    {
+        pauseMenu.SetActive(false);
+    }
+    
+    public void OnResume()
+    {
+        UnPauseGame();
+        pauseMenu.SetActive(false);
+    }
+
+    public void OnGiveUp()
+    {
+       SceneManager.Instance.LoadScene("Main Menu");
+       //SceneManager.Instance.UnloadScene("Game");
+    }
+
+    public void OnOpenSettings()
+    {
+        settingsMenu.SetActive(true);
     }
 }

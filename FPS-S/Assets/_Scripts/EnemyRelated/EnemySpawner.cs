@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
         public EnemyType enemyType;
         public float spawnRate;
         public float timeToIncreaseTier;
+        public int bonusEnemyHp;
     }
 
     [System.Serializable]
@@ -69,15 +70,26 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private GameObject SpawnEnemy()
-    {
-        EnemyType enemyType = tiers[currentTier - 1].enemyType;
-        var spawnPos = GetARandomPosition();
-        var enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
-        onSpawn.Raise(enemy.transform);
+private GameObject SpawnEnemy()
+{
+    Tier currentTierData = tiers[currentTier - 1];
+    EnemyType enemyType = currentTierData.enemyType;
+    var spawnPos = GetARandomPosition();
+    var enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
 
-        return enemy;
+    var enemyHp = enemy.GetComponent<EnemyHP>();
+    if (enemyHp != null)
+    {
+        var bonusHp = currentTierData.bonusEnemyHp;
+
+        enemyHp.bonusHealth = bonusHp;
     }
+
+    onSpawn.Raise(enemy.transform);
+
+    return enemy;
+}
+
 
     private void EnableEnemy()
     {

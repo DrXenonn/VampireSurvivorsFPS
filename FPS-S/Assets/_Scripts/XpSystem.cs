@@ -5,7 +5,7 @@ public class XpSystem : MonoBehaviour
 {
     [HideInInspector] public int currentXP;
     [HideInInspector] public int currentLevel;
-    [HideInInspector] public int xpToNextLevel;
+    public int xpToNextLevel;
     [SerializeField] private float xpMultiplier;
     [SerializeField] private UpgradePanelManager upgradePanelManager;
     [SerializeField] private UpgradeManager upgradeManager;

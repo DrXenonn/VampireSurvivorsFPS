@@ -1,10 +1,12 @@
 using UnityEngine;
+
 public class Projectile : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ParticleSystem particlesVFX;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private GameEvent onProjectileHitEnemy;
 
 
     [Header("Variables")]
@@ -32,6 +34,7 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Damage(collision);
+                onProjectileHitEnemy.Raise(collision.gameObject);
             }
             gameObject.SetActive(false);
         }
@@ -50,33 +53,34 @@ public class Projectile : MonoBehaviour
         collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage, isCritical);
     }
 
-    int CalculateDamage(int damage, int random, out bool isCritical)
+    private int CalculateDamage(int damage, int random, out bool isCritical)
     {
-        int step = 5;
-        int minDamage = Mathf.FloorToInt((damage - random) / (float)step) * step;
-        int maxDamage = Mathf.CeilToInt((damage + random) / (float)step) * step;
+        const int step = 5;
+        var minDamage = Mathf.FloorToInt((damage - random) / (float)step) * step;
+        var maxDamage = Mathf.CeilToInt((damage + random) / (float)step) * step;
 
-        int randomSteps = Mathf.RoundToInt((maxDamage - minDamage) / (float)step);
-        int randomIndex = Random.Range(0, randomSteps + 1);
+        var randomSteps = Mathf.RoundToInt((maxDamage - minDamage) / (float)step);
+        var randomIndex = Random.Range(0, randomSteps + 1);
 
-        int calculatedDamage = minDamage + randomIndex * step;
+        float calculatedDamage = minDamage + randomIndex * step;
 
         isCritical = false;
         if (Random.value < PlayerStats.Instance.criticalChance)
         {
             calculatedDamage *= PlayerStats.Instance.criticalMultiplier;
+            
             isCritical = true;
         }
         
-        return calculatedDamage;
+        return (int)calculatedDamage;
     }
 
     
     private void Shoot() 
     {
-        Vector3 target = Crosshair.Instance.destination;
-        Vector3 startPos = Shooting.Instance.firePos.position;
-        float speed = PlayerStats.Instance.projectileSpeed;
+        var target = Crosshair.Instance.destination;
+        var startPos = Shooting.Instance.firePos.position;
+        var speed = PlayerStats.Instance.projectileSpeed;
         rb.velocity = (target - startPos).normalized * speed;
     }
 }

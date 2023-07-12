@@ -5,18 +5,18 @@ using UnityEngine;
 public class UpgradePanelManager : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
-    PauseManager pauseManager;
+    [SerializeField] PauseManager pauseManager;
 
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] List<UpgradeButton> upgradeButtons;
     [SerializeField] private XpSystem xpSystem;
     [SerializeField] private Transform upgradeInfo;
     public int selectedID = 0;
+
     private void Start()
     {
         panel.SetActive(false);
         HideButtons();
-        pauseManager = GetComponent<PauseManager>();
     }
 
     public void OpenPanel(List<UpgradeData> upgradeData)

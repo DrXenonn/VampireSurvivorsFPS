@@ -792,7 +792,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Boosts your <b>Critical</b> hits for even greater impact.\n\n\n\u2022
-    Critical Multiplier <b><s>2</s> \u2192 3</b>"
+    Critical Multiplier  <b><s>1.5x</s> \u2192 2x</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
   m_sharedMaterial: {fileID: -4763589143147775824, guid: 57da2db92145c3242a36fcb03ed0865a,

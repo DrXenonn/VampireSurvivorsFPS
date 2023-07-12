@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705e4ef7269bfee4f93b9739457a5ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expansionDuration: 2.75
+  expansionDuration: 0.5
   blastDamage: 1000
-  finalRadius: 100
+  finalRadius: 50
   affectedTags:
   - Enemy
   shakeAmplitude: 3.5
