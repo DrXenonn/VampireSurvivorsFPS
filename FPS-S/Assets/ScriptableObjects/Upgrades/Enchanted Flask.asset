@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Enchanted Flask
   upgradeIcon: {fileID: 21300000, guid: ded04d64cd6a2fb48a84441e969c321a, type: 3}
-  upgradeColor: {r: 0.007843138, g: 0.53333336, b: 0.81960785, a: 1}
+  upgradeColor: {r: 0.09892311, g: 0.3948667, b: 0.5377358, a: 1}
   upgradeEffect: {fileID: 4414569783313180114, guid: 82d463699c5df554db172501cafb4dc2,
     type: 3}
   upgradeUI: {fileID: 4883967808233509058, guid: 51db7a380944db843b6dd3eb6ab395a1,

@@ -9,14 +9,19 @@ public class DamagePopupGenerator : MonoBehaviour
     [SerializeField] private float randomness;
     [SerializeField] private float yOffset;
 
-    [SerializeField] private Color lowDamageColor, mediumDamageColor, highDamageColor, criticalDamageColor, burnDamageColor;
+    [SerializeField] private Color lowDamageColor,
+        mediumDamageColor,
+        highDamageColor,
+        criticalDamageColor,
+        burnDamageColor,
+        frostDamageColor,
+        lightningDamageColor;
 
     public ObjectPool<GameObject> pool;
     private Vector3 posToSpawn;
     private int damageToShow;
-    private bool isCritical;
-    private bool isBurn;
-    
+    private string damageType;
+
     private void Awake()
     {
         instance = this;
@@ -29,14 +34,13 @@ public class DamagePopupGenerator : MonoBehaviour
             defaultCapacity: 50,
             maxSize: 100);
     }
-    
-    
-    public void RequestDamagePopup(Vector3 position, int damage, bool isCrit, bool isBurnDamage = false)
+
+
+    public void RequestDamagePopup(Vector3 position, int damage, string dmgType)
     {
         posToSpawn = position;
         damageToShow = damage;
-        isCritical = isCrit;
-        isBurn = isBurnDamage;
+        damageType = dmgType;
         pool.Get();
     }
 
@@ -52,7 +56,7 @@ public class DamagePopupGenerator : MonoBehaviour
     {
         obj.transform.position = posToSpawn + GetRandomPosition();
         InitTextMeshPro(obj);
-        
+
         obj.SetActive(true);
     }
 
@@ -67,20 +71,28 @@ public class DamagePopupGenerator : MonoBehaviour
     private void SetColor(TextMeshProUGUI tmp)
     {
         var damage = PlayerStats.Instance.primaryDamage;
-        
-        if (isCritical)
+
+        if (damageType == "Critical")
         {
             tmp.faceColor = criticalDamageColor;
         }
-        else if(isBurn)
+        else if (damageType == "Frost")
+        {
+            tmp.faceColor = frostDamageColor;
+        }
+        else if (damageType == "Burn")
         {
             tmp.faceColor = burnDamageColor;
+        }
+        else if (damageType == "Lightning")
+        {
+            tmp.faceColor = lightningDamageColor;
         }
         else if (damageToShow > damage)
         {
             tmp.faceColor = highDamageColor;
         }
-        else if(damageToShow == damage)
+        else if (damageToShow == damage)
         {
             tmp.faceColor = mediumDamageColor;
         }
@@ -94,14 +106,16 @@ public class DamagePopupGenerator : MonoBehaviour
     {
         return new Vector3(GetRandomNumber(), (GetRandomNumber() / 4) + yOffset, GetRandomNumber());
     }
+
     private float GetRandomNumber()
     {
         return Random.Range(-randomness, randomness);
     }
+
     private void CalculateFontSize(Vector3 pos, TextMeshProUGUI tmp)
     {
         var distance = Vector3.Distance(Camera.main!.transform.position, pos);
-        
+
         if (distance > 70)
         {
             tmp.fontSize = 42f;

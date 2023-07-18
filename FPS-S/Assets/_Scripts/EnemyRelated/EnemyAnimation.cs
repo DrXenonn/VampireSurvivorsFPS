@@ -1,15 +1,20 @@
+using System;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    private Animator animator;
+    [SerializeField] private Animator animator;
     private Transform playerTransform;
     [SerializeField] private float damping = 1f;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void OnEnable()
+    {
+        animator.speed = 1;
     }
 
     private void OnTriggerStay(Collider other)

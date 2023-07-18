@@ -26,10 +26,10 @@ public class EnemyHP : MonoBehaviour
         isDeBuffApplied = false;
     }
 
-    public void TakeDamage(int damage, bool isCritical, bool isBurn = false)
+    public void TakeDamage(int damage, string dmgType = "")
     {
         currentEnemyHp -= damage;
-        DamagePopupGenerator.instance.RequestDamagePopup(GetPosition(), damage, isCritical, isBurn);
+        DamagePopupGenerator.instance.RequestDamagePopup(GetPosition(), damage, dmgType);
         HandleDeath();
     }
 

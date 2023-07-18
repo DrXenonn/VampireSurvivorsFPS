@@ -49,11 +49,11 @@ public class Projectile : MonoBehaviour
 
     private void Damage(Collision collision)
     {
-        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var isCritical);
-        collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage, isCritical);
+        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var dmgType);
+        collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage, dmgType);
     }
 
-    private int CalculateDamage(int damage, int random, out bool isCritical)
+    private int CalculateDamage(int damage, int random, out string dmgType)
     {
         const int step = 5;
         var minDamage = Mathf.FloorToInt((damage - random) / (float)step) * step;
@@ -64,12 +64,12 @@ public class Projectile : MonoBehaviour
 
         float calculatedDamage = minDamage + randomIndex * step;
 
-        isCritical = false;
+        dmgType = "";
         if (Random.value < PlayerStats.Instance.criticalChance)
         {
             calculatedDamage *= PlayerStats.Instance.criticalMultiplier;
-            
-            isCritical = true;
+
+            dmgType = "Critical";
         }
         
         return (int)calculatedDamage;

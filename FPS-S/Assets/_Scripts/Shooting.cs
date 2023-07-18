@@ -17,6 +17,7 @@ public class Shooting : MonoBehaviour
     [Header("Variables")]
     [SerializeField] protected float secondaryFireProjectileCount;
     [SerializeField] protected float secondaryFireRate;
+    public bool arc; 
     [SerializeField] protected float arcRange;
     [SerializeField] protected float arcTime;
     [SerializeField] protected float minimumDistanceToArc;
@@ -66,6 +67,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             //OnSecondaryFire.Raise();
+            ShootSecondaryFire();
         }
     }
 
@@ -119,6 +121,8 @@ public class Shooting : MonoBehaviour
 
     private void AddArcEffect(GameObject gameObject)
     {
+        if (!arc) return;
+
         if (crosshair.hit.distance > minimumDistanceToArc || crosshair.hit.point == Vector3.zero)
         {
             iTween.PunchPosition(gameObject, new Vector3(
@@ -137,7 +141,7 @@ public class Shooting : MonoBehaviour
     
     protected IEnumerator SpawnProjectiles(float time)
     {
-        for (int i = 0; i < secondaryFireProjectileCount; i++)
+        for (var i = 0; i < secondaryFireProjectileCount; i++)
         {
             shootingSound.pitch = Random.Range(1.2f, 1.75f);
             shootingSound.PlayOneShot(shootingSound.clip);

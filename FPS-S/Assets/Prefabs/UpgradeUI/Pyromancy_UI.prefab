@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: 41e47b0440461fa48838a1926158b712,
     type: 3}
 --- !u!114 &1299351294939482394
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37f49c7899b0d674a803725a7d24022c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -264,8 +264,6 @@ GameObject:
   - component: {fileID: 7774129724053461165}
   - component: {fileID: 8823705168990725962}
   - component: {fileID: 1829744129978547046}
-  - component: {fileID: 6631803483949272539}
-  - component: {fileID: 7952055637664041587}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -329,65 +327,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &6631803483949272539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048253997476839410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
-    type: 3}
---- !u!114 &7952055637664041587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048253997476839410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6631803483949272539}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6631803483949272539}
-          m_TargetAssemblyTypeName: TreeInfo, Assembly-CSharp
-          m_MethodName: OnUnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2628016153230881556
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: 214e1b238d217b44e9063227509ac341,
     type: 3}
 --- !u!114 &8086361913242149820
 MonoBehaviour:
@@ -687,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: 8758ca2b5001c124e8d71639469eebae,
     type: 3}
 --- !u!114 &2846311009630252631
 MonoBehaviour:
@@ -800,7 +739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd8cefeae011a5149a0ab5bacf2171b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -876,7 +815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d975bfece7b8c774190e1d034731be58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -952,7 +891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41e62a539180c744a8a86507eca52d0a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1203,7 +1142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Choose <b>Fire</b> as your elemet, There is a 50% chance that your projectiles
+  m_text: 'Choose <b>Fire</b> as your elemet, There is a 75% chance that your projectiles
     <b>Burn</b> enemies for 5 seconds (20 DPS).
 
 '
@@ -1437,7 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: 2b93892743c9aac438818e85530d2d99,
     type: 3}
 --- !u!114 &4122106340003051572
 MonoBehaviour:
@@ -1616,7 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: d866e0d1cc30bc24da0515e561166341,
     type: 3}
 --- !u!114 &5256088737887347923
 MonoBehaviour:
@@ -1824,7 +1763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d6d7512b1b455482d55126df6902fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElement: {fileID: 4883967808233509058, guid: 9000d8d570995624e99b9e4b62d9fb79,
+  uiElement: {fileID: 4883967808233509058, guid: 4c80c23480956054e8c3840138bd4f45,
     type: 3}
 --- !u!114 &4176662441022743235
 MonoBehaviour:
@@ -2013,7 +1952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 956b19b4d494f1240a6ef34802fa69e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2162,7 +2101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4c43075ddf58ae4b8eadfd30b24b394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c31ff6b55b0d5f04a9baf7ea3659dd22, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f22046652b9424db3f2ac2fb96c9c9, type: 3}
+  m_Name: Cryomancy
+  m_EditorClassIdentifier: 
+  upgradeName: Cryomancy
+  upgradeIcon: {fileID: 21300000, guid: c31ff6b55b0d5f04a9baf7ea3659dd22, type: 3}
+  upgradeColor: {r: 0, g: 0.6473427, b: 1, a: 1}
+  upgradeEffect: {fileID: 8002512646456050864, guid: f4594506932e8054181d70c101dbe54b,
+    type: 3}
+  upgradeUI: {fileID: 4883967808233509058, guid: d866e0d1cc30bc24da0515e561166341,
+    type: 3}
+  upgradesToAdd:
+  - {fileID: 11400000, guid: f786337f5c87cdc41902d7c3eea9155e, type: 2}
+  upgradesToRemove:
+  - {fileID: 11400000, guid: d8eea92abb2f951449a4b8ae088529b4, type: 2}
+  - {fileID: 11400000, guid: 8dce364d20d8ba54286fbb8b0fc41cb3, type: 2}
+  requiredLevel: 0

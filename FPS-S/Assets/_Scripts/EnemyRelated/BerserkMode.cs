@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +8,7 @@ public class BerserkMode : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float berserkModeTime;
     [SerializeField] private RawImage icon;
+    [SerializeField] private Texture closeToBerserkTexture, berserkTexture;
     private float normalSpeed;
 
     private void Start()
@@ -21,7 +21,7 @@ public class BerserkMode : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(nameof(GoBerserk));
     }
-    
+
     public void BecomeNormal() 
     {
         agent.speed = normalSpeed;
@@ -32,9 +32,16 @@ public class BerserkMode : MonoBehaviour
 
     private IEnumerator GoBerserk()
     {
+        icon.enabled = false;
         yield return new WaitForSeconds(berserkModeTime);
+
+        icon.texture = closeToBerserkTexture;
         icon.enabled = true;
-        yield return new WaitForSeconds(15f);
+
+        yield return new WaitForSeconds(20f);
+
+        icon.texture = berserkTexture;
+        icon.enabled = true;
         agent.speed = PlayerStats.Instance.movementSpeed + 5f;
     }
 

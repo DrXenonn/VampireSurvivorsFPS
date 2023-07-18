@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6631633735999740794
 MonoBehaviour:
@@ -48,9 +48,12 @@ MonoBehaviour:
   ticks: 10
   tickRate: 0.5
   tickDamage: 10
-  burnChance: 1
+  burnChance: 0.75
   fireParticles: {fileID: 1053144852451064, guid: e04dea75bb0c7244391be733f5355ac4,
     type: 3}
+  fireWand: {fileID: 4300172, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
+  color: {r: 1, g: 0.75686276, b: 0.02745098, a: 0.7176471}
+  emissionColor: {r: 23.968628, g: 0.5019608, b: 0, a: 1}
 --- !u!114 &6631633735999740795
 MonoBehaviour:
   m_ObjectHideFlags: 0

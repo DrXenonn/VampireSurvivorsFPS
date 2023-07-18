@@ -16,8 +16,9 @@ public class PlayerStats : MonoBehaviour
     public float criticalChance;
     public float criticalMultiplier;
     public float executionThreshold;
+    public float elementalDamageMultiplier;
 
-    [HideInInspector]public int baseAttackDamage;
+    [HideInInspector] public int baseAttackDamage;
 
     private void Awake()
     {
@@ -26,8 +27,9 @@ public class PlayerStats : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
-        
+
         ApplyAugments();
         baseAttackDamage = primaryDamage;
     }
