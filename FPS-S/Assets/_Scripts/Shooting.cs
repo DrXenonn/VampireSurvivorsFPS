@@ -1,36 +1,52 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 public class Shooting : MonoBehaviour
 {
     public static Shooting Instance { get; private set; }
 
     #region variables
-    [Header("References")]
-    [SerializeField] public Transform firePos;
+
+    [Header("References")] [SerializeField]
+    public Transform firePos;
+
     [SerializeField] protected Mana manaManager;
     [SerializeField] protected Animator staffAnimator;
     [SerializeField] protected Crosshair crosshair;
     [SerializeField] protected AudioSource shootingSound;
 
-    [Header("Variables")]
-    [SerializeField] protected float secondaryFireProjectileCount;
+    [Header("Variables")] [SerializeField] protected int secondaryFireProjectileCount;
     [SerializeField] protected float secondaryFireRate;
-    public bool arc; 
+    public bool arc;
     [SerializeField] protected float arcRange;
     [SerializeField] protected float arcTime;
     [SerializeField] protected float minimumDistanceToArc;
     [SerializeField] protected int primaryFireManaCost;
     [SerializeField] protected int secondaryFireManaCost;
     [SerializeField] protected GameObject projectilePrefab;
-    protected float nextFireTime;
-    protected ObjectPool<GameObject> pool;
+    private static readonly int Shoot = Animator.StringToHash("Shoot");
 
-    [Header("Camera Shake")] 
-    [SerializeField] protected float amplitude;
+    public enum SecondaryMode
+    {
+        None,
+        Burst,
+        AllIn
+    }
+
+    public SecondaryMode secondaryMode;
+
+    private float nextFireTime;
+    private ObjectPool<GameObject> pool;
+
+    [Header("Camera Shake")] [SerializeField]
+    protected float amplitude;
+
     [SerializeField] protected float frequency;
     [SerializeField] protected float duration;
+
     #endregion
 
     private void Awake()
@@ -66,8 +82,22 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            //OnSecondaryFire.Raise();
             ShootSecondaryFire();
+        }
+    }
+
+    private void ShootSecondaryFire()
+    {
+        switch (secondaryMode)
+        {
+            case SecondaryMode.None:
+                return;
+            case SecondaryMode.Burst:
+                ShootBurst();
+                break;
+            case SecondaryMode.AllIn:
+                AllIn();
+                break;
         }
     }
 
@@ -79,18 +109,30 @@ public class Shooting : MonoBehaviour
             shootingSound.PlayOneShot(shootingSound.clip);
             manaManager.currentMana -= primaryFireManaCost;
             nextFireTime = Time.time + 1 / PlayerStats.Instance.fireRate;
-            staffAnimator.SetTrigger("Shoot");
+            staffAnimator.SetTrigger(Shoot);
             pool.Get();
         }
     }
 
-    protected virtual void ShootSecondaryFire()
+    private void ShootBurst()
     {
         if (Time.time >= nextFireTime && manaManager.currentMana >= secondaryFireManaCost)
         {
             manaManager.currentMana -= secondaryFireManaCost;
-            staffAnimator.SetTrigger("Shoot");
-            StartCoroutine(SpawnProjectiles(secondaryFireRate));
+            staffAnimator.SetTrigger(Shoot);
+            StartCoroutine(SpawnProjectiles(secondaryFireProjectileCount, secondaryFireRate));
+        }
+    }
+
+    private void AllIn()
+    {
+        // ReSharper disable once PossibleLossOfFraction
+        if (manaManager.currentMana >= primaryFireManaCost)
+        {
+            var numProjectiles = Mathf.FloorToInt(manaManager.currentMana / primaryFireManaCost);
+            manaManager.currentMana = 0;
+            staffAnimator.SetTrigger(Shoot);
+            StartCoroutine(SpawnProjectiles(numProjectiles, 0.05f));
         }
     }
 
@@ -114,7 +156,7 @@ public class Shooting : MonoBehaviour
 
         ResetProjectile(projectile);
         AddArcEffect(projectile);
-        CameraShaker.ShakeCamera(amplitude,frequency,duration);
+        CameraShaker.ShakeCamera(amplitude, frequency, duration);
         StartCoroutine(ReleaseProjectileDelayed(projectile, 2f));
     }
 
@@ -126,8 +168,8 @@ public class Shooting : MonoBehaviour
         if (crosshair.hit.distance > minimumDistanceToArc || crosshair.hit.point == Vector3.zero)
         {
             iTween.PunchPosition(gameObject, new Vector3(
-                Random.Range(-arcRange - 3f, arcRange + 3f),
-                Random.Range(0.25f, arcRange + 0.25f), 0),
+                    Random.Range(-arcRange - 3f, arcRange + 3f),
+                    Random.Range(0.25f, arcRange + 0.25f), 0),
                 arcTime);
         }
     }
@@ -137,11 +179,11 @@ public class Shooting : MonoBehaviour
         projectile.transform.position = firePos.position;
         iTween.Stop(projectile);
     }
-    
-    
-    protected IEnumerator SpawnProjectiles(float time)
+
+
+    private IEnumerator SpawnProjectiles(int num, float time)
     {
-        for (var i = 0; i < secondaryFireProjectileCount; i++)
+        for (var i = 0; i < num; i++)
         {
             shootingSound.pitch = Random.Range(1.2f, 1.75f);
             shootingSound.PlayOneShot(shootingSound.clip);
@@ -151,4 +193,3 @@ public class Shooting : MonoBehaviour
         }
     }
 }
-

@@ -15,7 +15,7 @@ public class AIManager : MonoBehaviour
 
     private void MoveTowardsPlayer() 
     {
-        for (int i = 0; i < units.Count; i++)
+        for (var i = 0; i < units.Count; i++)
         {
             units[i].MoveTo(target.position);
         }

@@ -33,6 +33,11 @@ public class Crosshair : MonoBehaviour
         camera = Camera.main;
     }
 
+    public Vector3 GetDirection()
+    {
+        return (destination - Shooting.Instance.firePos.position).normalized;
+    }
+
     private void Update()
     {
         RayCastCheckForHit();

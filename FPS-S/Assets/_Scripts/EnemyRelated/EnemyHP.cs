@@ -7,7 +7,6 @@ public class EnemyHP : MonoBehaviour
 {
     [SerializeField] private EnemyScriptableObject enemyManager;
     [SerializeField] private GameEvent onDeath;
-    private GameObject xpPrefab;
     private int currentEnemyHp;
     private bool isDead;
     [HideInInspector] public int bonusHealth;
@@ -15,7 +14,6 @@ public class EnemyHP : MonoBehaviour
 
     private void Start()
     {
-        xpPrefab = enemyManager.xpDropPrefab;
         currentEnemyHp = enemyManager.enemyHealth + bonusHealth;
     }
 
@@ -61,7 +59,7 @@ public class EnemyHP : MonoBehaviour
         }
 
         isDead = true;
-        onDeath.Raise(gameObject.transform, xpPrefab);
+        onDeath.Raise(gameObject.transform);
         
         if (isActiveAndEnabled)
         { 

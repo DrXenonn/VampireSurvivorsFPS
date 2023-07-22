@@ -11,6 +11,7 @@ public class Cryomancy_U : MonoBehaviour
     [SerializeField] private int frostDamage;
     [SerializeField] private GameObject stunEffect;
     [SerializeField] private Mesh iceWand;
+    [SerializeField] private AudioSource shatter;
     [ColorUsage(true,true)]
     [SerializeField] private Color color, emissionColor;
     [HideInInspector] public bool hasFrozenImpact;
@@ -122,6 +123,7 @@ public class Cryomancy_U : MonoBehaviour
             UnStun(enemy.GetComponent<NavMeshAgent>());
             ChangeDeBuffState(enemy, false);
             Destroy(stunEffectInstance);
+            shatter.Play();
             stunChance = 0;
         }
     }

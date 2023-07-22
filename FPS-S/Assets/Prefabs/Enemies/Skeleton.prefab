@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: -5209531681215002690}
   - component: {fileID: 1987975303553670436}
   - component: {fileID: -1257918785502316801}
+  - component: {fileID: 1709956887415781798}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
@@ -946,7 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 9175386733260056865}
-  berserkModeTime: 60
+  berserkModeTime: 90
   icon: {fileID: 7692427858035722954}
   closeToBerserkTexture: {fileID: 2800000, guid: 0361248e9e9ec46459ac56db60a506ae,
     type: 3}
@@ -1008,7 +1009,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 94276e9c84c68804c92f3eef39659d2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1.35
   Loop: 1
   Mute: 0
@@ -1166,6 +1167,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1709956887415781798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367218832992662429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c0f46c94e35fe468ca69da2e7431e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemyInside: 1
 --- !u!1 &8689655779012742259
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class BlazingAura_U : MonoBehaviour
     [SerializeField] private float tickRate;
     [SerializeField] private GameObject fireParticles;
     [SerializeField] private ParticleSystem burnAura;
+    [SerializeField] private AudioSource source;
     private GameObject player;
 
 
@@ -25,17 +26,17 @@ public class BlazingAura_U : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy"))
             {
-                var enemyPos = hitCollider.GetComponent<EnemyHP>().gameObject.transform.position;
+                var enemyHp = hitCollider.GetComponent<EnemyHP>();
+                var enemyPos = enemyHp.gameObject.transform.position;
                 enemyPos = new Vector3(enemyPos.x, enemyPos.y + 0.55f, enemyPos.z);
                 var fire = Instantiate(fireParticles, enemyPos, Quaternion.identity, hitCollider.transform);
                 Destroy(fire, 1);
                 
                 StartCoroutine(nameof(ShowBurnAura));
-
-                hitCollider.GetComponent<EnemyHP>().TakeDamage(Mathf.FloorToInt(tickDamage * PlayerStats.Instance.elementalDamageMultiplier), "Burn");
+                PlaySound();
+                enemyHp.TakeDamage(Mathf.FloorToInt(tickDamage * PlayerStats.Instance.elementalDamageMultiplier), "Burn");
             }
         }
-
     }
     
 
@@ -50,5 +51,10 @@ public class BlazingAura_U : MonoBehaviour
         burnAura.Play();
         yield return new WaitForSeconds(0f);
         burnAura.Stop();
+    }
+
+    private void PlaySound()
+    {
+        source.Play();
     }
 }

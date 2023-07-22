@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 public class XpPool : MonoBehaviour
 {
     private ObjectPool<GameObject> xpPool;
-    private GameObject xpPrefab;
+    [SerializeField] private GameObject xpPrefab;
     private Transform parent;
     [HideInInspector] public float twinOrbsChance = 0;
 
@@ -16,14 +16,13 @@ public class XpPool : MonoBehaviour
             actionOnRelease: (obj) => obj.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
             collectionCheck: false,
-            defaultCapacity: 70,
+            defaultCapacity: 80,
             maxSize: 300);
 
     }
 
     public void GetMessage(Component component, object obj)
     {
-        xpPrefab = (GameObject)obj;
         parent = component.transform;
         xpPool.Get();
 

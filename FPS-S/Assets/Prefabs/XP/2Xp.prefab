@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef312bc0f4d6d545872af8b1bcd68f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6.25
+  speed: 7
   onCollectXP: {fileID: 11400000, guid: d7305a3d023fb5547a1bdbbf2e6809ef, type: 2}
   trailRenderer: {fileID: 5423961527548461039}
-  xpValue: 500
+  xpValue: 1500

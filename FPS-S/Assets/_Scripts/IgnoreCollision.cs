@@ -22,10 +22,10 @@ public class IgnoreCollision : MonoBehaviour
 
         for (var i = 0; i < numPairs; i++)
         {
-            var collision = Physics.GetIgnoreLayerCollision(layerPairsToIgnore[i].layerA, layerPairsToIgnore[i].layerB) ? 0 : 1;
+            bool ignoreCollision = Physics.GetIgnoreLayerCollision(layerPairsToIgnore[i].layerA, layerPairsToIgnore[i].layerB);
 
-            Physics.IgnoreLayerCollision(layerPairsToIgnore[i].layerA, layerPairsToIgnore[i].layerB, collision == 0);
-            Physics.IgnoreLayerCollision(layerPairsToIgnore[i].layerB, layerPairsToIgnore[i].layerA, collision == 0);
+            Physics.IgnoreLayerCollision(layerPairsToIgnore[i].layerA, layerPairsToIgnore[i].layerB, !ignoreCollision);
+            Physics.IgnoreLayerCollision(layerPairsToIgnore[i].layerB, layerPairsToIgnore[i].layerA, !ignoreCollision);
         }
     }
 }

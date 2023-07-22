@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 4491963256816961587}
   - component: {fileID: 5967157257764796905}
   - component: {fileID: -4687007077758196148}
+  - component: {fileID: -6384450884142537716}
   m_Layer: 6
   m_Name: Bat
   m_TagString: Enemy
@@ -612,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3498598608367748381}
-  berserkModeTime: 60
+  berserkModeTime: 90
   icon: {fileID: 4432688056190237552}
   closeToBerserkTexture: {fileID: 2800000, guid: 0361248e9e9ec46459ac56db60a506ae,
     type: 3}
@@ -658,8 +659,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 94276e9c84c68804c92f3eef39659d2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.4
+  m_Pitch: 0.98
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -832,6 +833,19 @@ MonoBehaviour:
     type: 3}
   distanceThreshold: 50
   angle: 105
+--- !u!114 &-6384450884142537716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498598608367748376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c0f46c94e35fe468ca69da2e7431e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemyInside: 1
 --- !u!1 &3649418843852820244
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,13 @@ TagManager:
   - Upgrades
   - Name
   - Buffs
+  - Wand
+  - Cryomancy
+  - Electromancy
+  - FxTemporaire
+  - Knockback
+  - Boss
+  - RangeAttackArea
   layers:
   - Default
   - TransparentFX
@@ -27,7 +34,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Knockback
   - Wand
   - PlayerLayer
   - Boundray

@@ -29,18 +29,24 @@ public class Projectile : MonoBehaviour
         if (!collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("Player") && !collided)
         {
             collided = true;  
-            ShowParticlesVfx(collision);
+            ShowParticlesVfx();
 
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Damage(collision);
                 onProjectileHitEnemy.Raise(collision.gameObject);
             }
+
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                DamageBoss(collision);
+            }
+            
             gameObject.SetActive(false);
         }
     }
 
-    private void ShowParticlesVfx(Collision collision)
+    private void ShowParticlesVfx()
     {
         particlesVFX.transform.parent = null;
         particlesVFX.transform.position = gameObject.transform.position;
@@ -51,6 +57,12 @@ public class Projectile : MonoBehaviour
     {
         int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var dmgType);
         collision.gameObject.GetComponent<EnemyHP>().TakeDamage(calculatedDamage, dmgType);
+    }
+
+    private void DamageBoss(Collision collision)
+    {
+        int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var dmgType);
+        collision.gameObject.GetComponent<BossHP>().TakeDamage(calculatedDamage, dmgType);
     }
 
     private int CalculateDamage(int damage, int random, out string dmgType)
@@ -78,9 +90,7 @@ public class Projectile : MonoBehaviour
     
     private void Shoot() 
     {
-        var target = Crosshair.Instance.destination;
-        var startPos = Shooting.Instance.firePos.position;
         var speed = PlayerStats.Instance.projectileSpeed;
-        rb.velocity = (target - startPos).normalized * speed;
+        rb.velocity = Crosshair.Instance.GetDirection() * speed;
     }
 }
