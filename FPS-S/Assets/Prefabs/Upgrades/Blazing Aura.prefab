@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6367241583799449171}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6362664281076886123
 MonoBehaviour:
@@ -47,12 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 15
-  tickDamage: 25
+  tickDamage: 20
   tickRate: 1
   fireParticles: {fileID: 1511761380157052, guid: 41da8f6f38128024db42b12a0f75968c,
     type: 3}
   burnAura: {fileID: 6525075307604067913}
-  clip: {fileID: 8300000, guid: f10f507e4cd2e1b4f913be24641ac7f9, type: 3}
   source: {fileID: 6755624816879765425}
 --- !u!82 &6755624816879765425
 AudioSource:

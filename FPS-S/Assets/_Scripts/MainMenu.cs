@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject augmentsMenu;
-
+    
     private void OnEnable()
     {
         Time.timeScale = 1;

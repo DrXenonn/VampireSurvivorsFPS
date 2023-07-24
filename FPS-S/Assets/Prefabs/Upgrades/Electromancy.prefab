@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6979089428635860226
 MonoBehaviour:
@@ -48,11 +48,11 @@ MonoBehaviour:
   lightning: {fileID: 106988, guid: a9892f6a83fd8d4468ce0c8a3d09d3cd, type: 3}
   numberOfClosestEnemies: 2
   radius: 25
-  lightningTtl: 0.2
-  lightningDamage: 25
+  lightningTtl: 0.4
+  lightningDamage: 20
   electroWand: {fileID: 4300192, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
-  color: {r: 0.5764706, g: 0, b: 1, a: 1}
-  emissionColor: {r: 7.2784314, g: 0, b: 23.968628, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
+  emissionColor: {r: 0.87958086, g: 0, b: 7.999997, a: 1}
   projectileSpeed: 400
   abilityCooldownDuration: 0.5
 --- !u!114 &6979089428635860227

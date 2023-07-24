@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125a878f8f04810479f6e55d99766851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  twinOrbsPercentage: 0.2
+  twinOrbsPercentage: 0.25

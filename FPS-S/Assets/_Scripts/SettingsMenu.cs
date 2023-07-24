@@ -26,6 +26,13 @@ public class SettingsMenu : MonoBehaviour
     {
         LoadSettings();
         UpdateUI();
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        LoadSettings();
+        UpdateUI();
     }
 
     public void SetMusicVolume(float volume)
@@ -84,7 +91,7 @@ public class SettingsMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void LoadSettings()
+    public void LoadSettings()
     {
         isFullscreen = Convert.ToBoolean(PlayerPrefs.GetInt("Fullscreen", Convert.ToInt32(Screen.fullScreen)));
         SetFullScreen(isFullscreen);

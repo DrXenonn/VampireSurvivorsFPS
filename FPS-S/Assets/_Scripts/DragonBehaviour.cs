@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class DragonBehaviour : MonoBehaviour
     [SerializeField] private float meleeInterval, rangeInterval;
     [SerializeField] private float distanceThreshold;
     [SerializeField] private float meleeAttackDelay;
+    [SerializeField] private float spawnDelay;
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject meleeDamageArea;

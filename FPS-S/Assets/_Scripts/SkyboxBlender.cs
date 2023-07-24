@@ -1,20 +1,17 @@
-using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class SkyboxBlender : MonoBehaviour
 {
-    public Material dayMaterial; // Assign the Day material in the Inspector
-    public Material nightMaterial; // Assign the Night material in the Inspector
-    public Material blendMaterial; // Assign the Blend material in the Inspector
-    public float transitionDuration = 3f; // Adjust the duration of the transition
+    public float transitionTime;
+    public Material dayMaterial;
+    public Material nightMaterial;
+    public Material blendMaterial; 
+    public float transitionDuration = 3f;
     public Light globalLight;
     public float targetLightIntensity;
     public float targetTemperature;
     public Quaternion targetRotation;
     
-
-    // Property names
     private static readonly string TintColor = "_TintColor";
     private static readonly string Exposure = "_Exposure";
     private static readonly string FogIntensity = "_FogIntensity";
@@ -38,35 +35,32 @@ public class SkyboxBlender : MonoBehaviour
         startingLightIntensity = globalLight.intensity;
         startingTemperature = globalLight.colorTemperature;
         startingRotation = globalLight.transform.rotation;
-
-        // Create a new material instance for the target material
-        targetMaterial = new Material(blendMaterial);
-
-        // Set the initial properties of the target material to match the Day material
-        CopyMaterialProperties(dayMaterial, targetMaterial);
-
-        // Set the target material as the skybox material
-        RenderSettings.skybox = targetMaterial;
-
-        // Start the transition from Day to Blend
-        StartTransition(dayMaterial, blendMaterial, 0f);
         
-        InvokeRepeating(nameof(UpdateScript),1f,0.1f);
+        targetMaterial = new Material(blendMaterial);
+        
+        CopyMaterialProperties(dayMaterial, targetMaterial);
+        
+        RenderSettings.skybox = targetMaterial;
+        
+        Invoke(nameof(StartTransitionNoParam), transitionTime);
+        
+        InvokeRepeating(nameof(UpdateScript),transitionTime,0.1f);
+    }
+
+    private void StartTransitionNoParam()
+    {
+        StartTransition(dayMaterial, blendMaterial, 0f);
     }
 
 
     private void UpdateScript()
     {
-        // Check if a transition is in progress
         if (isTransitioning)
         {
-            // Update the transition timer
             transitionTimer += 0.1f;
-
-            // Calculate the transition progress (0 to 1)
+            
             float progress = Mathf.Clamp01(transitionTimer / transitionDuration);
-
-            // Interpolate the properties between the start and end materials based on the progress
+            
             LerpMaterialProperties(dayMaterial, nightMaterial, targetMaterial, progress);
             
             globalLight.intensity = Mathf.Lerp(startingLightIntensity, targetLightIntensity, progress);
@@ -78,10 +72,8 @@ public class SkyboxBlender : MonoBehaviour
             globalLight.shadowStrength = Mathf.Lerp(1, 0, progress);
             
             
-            // Check if the transition is complete
             if (progress >= 1f)
             {
-                // Stop transitioning
                 isTransitioning = false;
                 
             }
@@ -90,16 +82,12 @@ public class SkyboxBlender : MonoBehaviour
 
     public void StartTransition(Material startMaterial, Material endMaterial, float transitionValue)
     {
-        // Reset the transition timer
         transitionTimer = 0f;
-
-        // Set the Transition property of the target material
+        
         targetMaterial.SetFloat(CubemapTransition, transitionValue);
-
-        // Assign the start material properties to the target material
+        
         CopyMaterialProperties(startMaterial, targetMaterial);
-
-        // Start transitioning from the start material to the end material
+        
         isTransitioning = true;
     }
 
@@ -111,8 +99,7 @@ public class SkyboxBlender : MonoBehaviour
         targetMaterial.SetFloat(FogHeight, Mathf.Lerp(startMaterial.GetFloat(FogHeight), endMaterial.GetFloat(FogHeight), t));
         targetMaterial.SetFloat(FogSmoothness, Mathf.Lerp(startMaterial.GetFloat(FogSmoothness), endMaterial.GetFloat(FogSmoothness), t));
         targetMaterial.SetFloat(FogFill, Mathf.Lerp(startMaterial.GetFloat(FogFill), endMaterial.GetFloat(FogFill), t));
-
-        // Set the CubemapTransition property based on the progress value
+        
         targetMaterial.SetFloat(CubemapTransition, Mathf.Lerp(0f, 1f, t));
     }
 
@@ -125,13 +112,11 @@ public class SkyboxBlender : MonoBehaviour
 
     private void CopyMaterialProperties(Material sourceMaterial, Material targetMaterial)
     {
-        // Copy the properties from the source material to the target material
         targetMaterial.SetColor(TintColor, sourceMaterial.GetColor(TintColor));
         targetMaterial.SetFloat(Exposure, sourceMaterial.GetFloat(Exposure));
         targetMaterial.SetFloat(FogIntensity, sourceMaterial.GetFloat(FogIntensity));
         targetMaterial.SetFloat(FogHeight, sourceMaterial.GetFloat(FogHeight));
         targetMaterial.SetFloat(FogSmoothness, sourceMaterial.GetFloat(FogSmoothness));
         targetMaterial.SetFloat(FogFill, sourceMaterial.GetFloat(FogFill));
-        // Add more properties as needed
     }
 }

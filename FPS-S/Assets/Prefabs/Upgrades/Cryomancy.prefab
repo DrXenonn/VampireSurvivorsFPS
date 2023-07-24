@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3285582493bef498529fd229984991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunChance: 0.5
+  stunChance: 0.75
   stunTime: 2
-  frostDamage: 50
+  frostDamage: 75
   stunEffect: {fileID: 1393189310668026, guid: bc5d4e2faa655634ca1c822759f777d4, type: 3}
   iceWand: {fileID: 4300136, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
   shatter: {fileID: 446887062631609635}

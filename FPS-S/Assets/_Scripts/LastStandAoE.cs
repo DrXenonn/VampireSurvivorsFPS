@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class LastStandAoE : MonoBehaviour
 {
 
     [SerializeField] private float expansionDuration = 2f;
-    [SerializeField] private int blastDamage = 1000;
+    [SerializeField] private int pushDistance;
     [SerializeField] private float finalRadius = 100f;
     [SerializeField] private string[] affectedTags;
     [SerializeField] private float shakeAmplitude, shakeFrequency, shakeTime;
@@ -38,10 +39,13 @@ public class LastStandAoE : MonoBehaviour
             {
                 if (!affectedColliders.Contains(collider) && System.Array.IndexOf(affectedTags, collider.tag) >= 0)
                 {
-                    EnemyHP health = collider.gameObject.GetComponent<EnemyHP>();
-                    if (health != null)
+                    Vector3 pushDirection = collider.transform.position - transform.position;
+                    pushDirection.y = 0f;
+                    NavMeshAgent navMeshAgent = collider.GetComponent<NavMeshAgent>();
+                    if (navMeshAgent != null)
                     {
-                        health.TakeDamage(blastDamage);
+                        Vector3 targetPosition = collider.transform.position + pushDirection.normalized * pushDistance;
+                        navMeshAgent.Warp(targetPosition);
                     }
                     affectedColliders.Add(collider);
                 }

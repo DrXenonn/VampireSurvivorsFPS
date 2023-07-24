@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: By Shooting at <b>Stunned</b> enemies deal <b>50 Frost Damage</b> to shatter
+  m_text: By Shooting at <b>Stunned</b> enemies deal <b>75 Frost Damage</b> to shatter
     their freeze.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}

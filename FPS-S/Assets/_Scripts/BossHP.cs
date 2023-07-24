@@ -60,14 +60,11 @@ public class BossHP : MonoBehaviour
 
     private IEnumerator Death()
     {
-        animator.Play("DragonArmature|Dragon_Death");
         dragonBehaviour.enabled = false;
         bossMovement.enabled = false;
-        for (var i = 0; i < 5; i++)
-        {
-            deathEvent.Raise(transform);
-            yield return new WaitForSeconds(0.15f);
-        }
+        animator.Play("DragonArmature|Dragon_Death");
+        deathEvent.Raise(transform);
+        yield return new WaitForSeconds(0.6f);
         Destroy(transform.parent.gameObject);
     }
 }

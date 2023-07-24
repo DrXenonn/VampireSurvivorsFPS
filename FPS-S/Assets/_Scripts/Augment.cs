@@ -17,7 +17,6 @@ public class Augment : MonoBehaviour
     [SerializeField] private AugmentsMenu augmentManager;
     [SerializeField] private GameObject maxStacks;
     private int currentPoints;
-    [SerializeField] private AudioSource fillSound;
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource noCreditSound;
 
@@ -43,14 +42,12 @@ public class Augment : MonoBehaviour
     {
         OnNoCredits();
         progressBar.fillAmount = 0.05f;
-        fillSound.Play();
         isHolding = true;
     }
 
     public void OnPointerUp()
     {
         progressBar.fillAmount = 0;
-        fillSound.Stop();
         isHolding = false;
     }
 
@@ -112,8 +109,7 @@ public class Augment : MonoBehaviour
     private void OnMaxStacks()
     {
         if (!CheckMaxLevel()) return;
-
-        fillSound.Stop();
+        
         isHolding = false;
         maxStacks.SetActive(true);
         DisableRaycastTarget(transform);
@@ -124,7 +120,6 @@ public class Augment : MonoBehaviour
         if (!CheckCredits())
         {
             isHolding = false;
-            fillSound.Stop();
             animator.SetTrigger("NoCredit");
             noCreditSound.Play();
         }

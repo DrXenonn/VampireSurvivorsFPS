@@ -1430,11 +1430,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The first time your health drops to zero, Last Stand activates, making
-    you <b>Invincible</b> for 5 seconds and gain<b> 20 Health</b>, Also unleashing
-    a <b>Shock wave</b> that deals massive damage around you. Afterward, you gain
-    a permanent boost of <b>5% Damage</b>, <b>5% Movement Speed</b> and <b>15% Fire
-    Rate</b>.
+  m_text: "The first time your health drops to zero, Last Stand activates, making
+    you <b>Invincible</b> for 5 seconds and gain<b> 20 Health</b>. Afterward, you
+    gain a permanent boost of <b>5% Damage</b>, \n<b>5% Movement Speed</b> and <b>15%
+    Fire Rate</b>."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
   m_sharedMaterial: {fileID: -4763589143147775824, guid: 57da2db92145c3242a36fcb03ed0865a,
@@ -1498,7 +1497,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -234.83998, w: -61.397266}
+  m_margin: {x: 0, y: 0, z: -246.48499, w: -61.397266}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

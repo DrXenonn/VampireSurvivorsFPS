@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ticks: 10
   tickRate: 0.5
-  tickDamage: 10
+  tickDamage: 15
   burnChance: 0.75
   fireParticles: {fileID: 1053144852451064, guid: e04dea75bb0c7244391be733f5355ac4,
     type: 3}

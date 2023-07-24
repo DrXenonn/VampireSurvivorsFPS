@@ -11,7 +11,7 @@ public class ImmortalEssence_U : MonoBehaviour
     void Start()
     {
         onMaxHPIncrease.Raise(bonusMaxHealth);
-        InvokeRepeating("RegenerateHealth", 0, timeToRegen);
+        InvokeRepeating(nameof(RegenerateHealth), 0, timeToRegen);
     }
 
     private void RegenerateHealth()

@@ -38,38 +38,22 @@ public class Electromancy_U : MonoBehaviour
         var closestEnemies = FindClosestEnemies(numberOfClosestEnemies, radius, hitObject);
         var damage = Mathf.FloorToInt(lightningDamage * PlayerStats.Instance.elementalDamageMultiplier);
 
-        // If we have at least one closest enemy, create lightning effect between hit enemy and the closest one
-        if (closestEnemies.Count > 0)
+        // Loop through each pair of closest enemies and create a lightning effect between them
+        for (int i = 0; i < closestEnemies.Count; i++)
         {
-            var closestEnemy = closestEnemies[0];
             var lightningPrefab = Instantiate(lightning);
             lightningPrefab.transform.GetChild(0).position = hitObject.transform.position;
-            lightningPrefab.transform.GetChild(1).position = closestEnemy.transform.position;
+            lightningPrefab.transform.GetChild(1).position = closestEnemies[i].transform.position;
             Destroy(lightningPrefab, lightningTtl);
 
-            // Deal damage to the closest enemy hit by the lightning
-            closestEnemy.GetComponent<EnemyHP>().TakeDamage(damage, "Lightning");
+            // Deal damage to each enemy hit by the lightning effect
+            closestEnemies[i].GetComponent<EnemyHP>().TakeDamage(Mathf.FloorToInt(damage), "Lightning");
         }
-
-        // Loop through each pair of closest enemies (starting from index 1) and create a lightning effect between them
-        for (int i = 1; i < closestEnemies.Count; i++)
-        {
-            for (int j = i + 1; j < closestEnemies.Count; j++)
-            {
-                var lightningPrefab = Instantiate(lightning);
-                lightningPrefab.transform.GetChild(0).position = closestEnemies[i].transform.position;
-                lightningPrefab.transform.GetChild(1).position = closestEnemies[j].transform.position;
-                Destroy(lightningPrefab, lightningTtl);
-
-                // Deal damage to each enemy hit by the lightning effect
-                closestEnemies[i].GetComponent<EnemyHP>().TakeDamage(Mathf.FloorToInt(damage), "Lightning");
-                closestEnemies[j].GetComponent<EnemyHP>().TakeDamage(damage, "Lightning");
-            }
-        }
-        
+    
         isAbilityOnCooldown = true;
         StartCoroutine(CooldownTimer());
     }
+
 
     private IEnumerator CooldownTimer()
     {

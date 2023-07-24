@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Choose <b>Ice</b> as your elemet, There is a 50% chance that your projectiles
+  m_text: 'Choose <b>Ice</b> as your elemet, There is a 75% chance that your projectiles
     <b>Freeze</b> enemies for 2 seconds.
 
 '

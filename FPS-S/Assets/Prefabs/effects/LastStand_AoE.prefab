@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expansionDuration: 0.5
-  blastDamage: 1000
+  pushDistance: 10
   finalRadius: 50
   affectedTags:
   - Enemy

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ad8d1b3854b404da75dcf0ee479f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusFireRatePercent: 10
+  bonusFireRatePercent: 15
   bonusProjectileSpeedPercent: 50

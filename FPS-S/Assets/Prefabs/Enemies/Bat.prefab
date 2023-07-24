@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3498598608367748381}
-  berserkModeTime: 90
+  berserkModeTime: 180
   icon: {fileID: 4432688056190237552}
   closeToBerserkTexture: {fileID: 2800000, guid: 0361248e9e9ec46459ac56db60a506ae,
     type: 3}
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyIndicatorPrefab: {fileID: 1399588947842546468, guid: 9cd7510b7bbd6b6409305255f9305440,
     type: 3}
-  distanceThreshold: 50
+  distanceThreshold: 40
   angle: 105
 --- !u!114 &-6384450884142537716
 MonoBehaviour:

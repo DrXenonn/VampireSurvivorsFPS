@@ -1398,8 +1398,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\nTrade your power for speed: Boost your <b>Fire Rate</b> significantly,
-    but at the cost of reduced <b>Attack Damage</b>.\n\n\n\u2022 Fire Rate <b>+100%</b>\n\u2022
-    Base Attack Damage <b>-50%</b>"
+    but at the cost of reduced <b>Attack Damage</b>.\n\n\n\u2022 Fire Rate <b>+75%</b>\n\u2022
+    Base Attack Damage <b>-20%</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
   m_sharedMaterial: {fileID: -4763589143147775824, guid: 57da2db92145c3242a36fcb03ed0865a,

@@ -16,11 +16,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public float GetPlayerHealthInPercent()
-    {
-        return currentHealth / maxHealth * 100;
-    }
-
     public void BecomeInvincible(float duration)
     {
         if (!isInvincible)
