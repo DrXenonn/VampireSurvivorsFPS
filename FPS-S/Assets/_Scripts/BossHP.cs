@@ -1,48 +1,34 @@
 using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHP : MonoBehaviour
+public class BossHp : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private GameEvent deathEvent;
     [SerializeField] private Transform dmgPopupPos;
     [SerializeField] private Animator animator;
-    [SerializeField] private BossMovement bossMovement;
-    [SerializeField] private DragonBehaviour dragonBehaviour;
     [SerializeField] private Image healthBar;
+    [SerializeField] private string deathAnimationName;
+    [SerializeField] private MonoBehaviour[] scriptsToDisable;
     private float currentHealth;
-    private int phase;
 
     private void Start()
     {
-        phase = 1;
         currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage, string dmgType)
     {
         currentHealth -= damage;
-        DamagePopupGenerator.instance.RequestDamagePopup(dmgPopupPos.position ,damage, dmgType);
+        DamagePopupGenerator.instance.RequestDamagePopup(dmgPopupPos.position, damage, dmgType);
         HandleDeath();
         UpdateHpBar();
-        CheckChangePhase();
     }
 
-    private void CheckChangePhase()
+    public float GetHpAsPercent()
     {
-        if ((currentHealth / maxHealth) < 0.5f && phase == 1)
-        {
-            dragonBehaviour.ChangePhase();
-            phase = 2;
-        }
-        else if((currentHealth / maxHealth) < 0.25f && phase == 2)
-        {
-            dragonBehaviour.ChangePhase();
-            phase = 3;
-        }
+        return currentHealth / maxHealth * 100;
     }
 
     private void UpdateHpBar()
@@ -60,9 +46,12 @@ public class BossHP : MonoBehaviour
 
     private IEnumerator Death()
     {
-        dragonBehaviour.enabled = false;
-        bossMovement.enabled = false;
-        animator.Play("DragonArmature|Dragon_Death");
+        foreach (var script in scriptsToDisable)
+        {
+            script.enabled = false;
+        }
+
+        animator.Play(deathAnimationName);
         deathEvent.Raise(transform);
         yield return new WaitForSeconds(0.6f);
         Destroy(transform.parent.gameObject);

@@ -274,4 +274,4 @@ MonoBehaviour:
   speed: 6.25
   onCollectXP: {fileID: 11400000, guid: d7305a3d023fb5547a1bdbbf2e6809ef, type: 2}
   trailRenderer: {fileID: 7910322820927992308}
-  xpValue: 500
+  xpValue: 450

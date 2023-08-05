@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 [DefaultExecutionOrder(1)]
 public class EnemySpawner : MonoBehaviour
@@ -13,6 +15,16 @@ public class EnemySpawner : MonoBehaviour
         public float spawnRate;
         public float timeToIncreaseTier;
         public int bonusEnemyHp;
+        public float timeElapsed;
+        public Tier(string tierName, EnemyType enemyType, float spawnRate, float timeToIncreaseTier, int bonusEnemyHp, float timeElapsed)
+        {
+            this.tierName = tierName;
+            this.enemyType = enemyType;
+            this.spawnRate = spawnRate;
+            this.timeToIncreaseTier = timeToIncreaseTier;
+            this.bonusEnemyHp = bonusEnemyHp;
+            this.timeElapsed = timeElapsed;
+        }
     }
 
     [System.Serializable]
@@ -27,11 +39,28 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Tier> tiers;
     [SerializeField] private SphereCollider spawnArea;
     [SerializeField] private GameEvent onSpawn;
-    
+
     private float timeSinceLastSpawn = 0.0f;
     private int currentTier = 1;
     private float timeSinceLastTierIncrease = 0.0f;
     public static ObjectPool<GameObject> pool;
+
+    private void OnValidate()
+    {
+        var totalElapsedTime = 0f;
+
+        for (var i = 0; i < tiers.Count; i++)
+        {
+            var tier = tiers[i];
+            tier.tierName = "Tier " + (i + 1);
+
+            totalElapsedTime += tier.timeToIncreaseTier;
+            tier.timeElapsed = totalElapsedTime;
+
+            tiers[i] = tier;
+        }
+    }
+
 
     private void Start()
     {
@@ -70,25 +99,25 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-private GameObject SpawnEnemy()
-{
-    Tier currentTierData = tiers[currentTier - 1];
-    EnemyType enemyType = currentTierData.enemyType;
-    var spawnPos = GetARandomPosition();
-    var enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
-
-    var enemyHp = enemy.GetComponent<EnemyHP>();
-    if (enemyHp != null)
+    private GameObject SpawnEnemy()
     {
-        var bonusHp = currentTierData.bonusEnemyHp;
+        Tier currentTierData = tiers[currentTier - 1];
+        EnemyType enemyType = currentTierData.enemyType;
+        var spawnPos = GetARandomPosition();
+        var enemy = Instantiate(enemyType.enemyPrefab, spawnPos, Quaternion.identity, enemyType.spawnParent);
 
-        enemyHp.bonusHealth = bonusHp;
+        var enemyHp = enemy.GetComponent<EnemyHP>();
+        if (enemyHp != null)
+        {
+            var bonusHp = currentTierData.bonusEnemyHp;
+
+            enemyHp.bonusHealth = bonusHp;
+        }
+
+        onSpawn.Raise(enemy.transform);
+
+        return enemy;
     }
-
-    onSpawn.Raise(enemy.transform);
-
-    return enemy;
-}
 
 
     private void EnableEnemy()

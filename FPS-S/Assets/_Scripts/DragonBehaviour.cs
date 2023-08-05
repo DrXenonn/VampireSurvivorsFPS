@@ -7,20 +7,22 @@ public class DragonBehaviour : MonoBehaviour
     [SerializeField] private float meleeInterval, rangeInterval;
     [SerializeField] private float distanceThreshold;
     [SerializeField] private float meleeAttackDelay;
-    [SerializeField] private float spawnDelay;
-
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject meleeDamageArea;
     [SerializeField] private GameObject rangeDamageArea;
     [SerializeField] private GameObject rangeProjectile;
     [SerializeField] private Transform firePos;
+    [SerializeField] private BossHp bossHp;
     private Transform playerTransform;
+    private int phase;
 
     private void Start()
     {
+        phase = 1;
         playerTransform = GameObject.FindWithTag("Player").transform;
         InvokeRepeating(nameof(RangeAttack), rangeInterval, rangeInterval);
         InvokeRepeating(nameof(MeleeAttack), meleeInterval, meleeInterval);
+        InvokeRepeating(nameof(CheckChangePhase), 1, 2);
     }
 
     private bool IsCloseToPlayer()
@@ -43,8 +45,8 @@ public class DragonBehaviour : MonoBehaviour
         animator.Play("DragonArmature|Dragon_Attack2");
         StartCoroutine(AttackLate());
     }
-    
-    public void ChangePhase()
+
+    private void ChangePhase()
     {
         rangeInterval /= 1.5f;
         meleeInterval = 1.25f;
@@ -53,7 +55,21 @@ public class DragonBehaviour : MonoBehaviour
         InvokeRepeating(nameof(RangeAttack), 0.5f, rangeInterval);
         InvokeRepeating(nameof(MeleeAttack), 0.5f, meleeInterval);
     }
-    
+
+    private void CheckChangePhase()
+    {
+        if (bossHp.GetHpAsPercent() < 50 && phase == 1)
+        {
+            ChangePhase();
+            phase = 2;
+        }
+        else if (bossHp.GetHpAsPercent() < 25 && phase == 2)
+        {
+            ChangePhase();
+            phase = 3;
+        }
+    }
+
 
     private IEnumerator AttackLate()
     {

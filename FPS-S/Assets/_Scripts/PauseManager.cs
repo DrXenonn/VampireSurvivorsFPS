@@ -34,9 +34,12 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    public void PauseGame(bool stopTime = true)
     {
-        Time.timeScale = 0;
+        if (stopTime)
+        {
+            Time.timeScale = 0;
+        }
         Cursor.lockState = CursorLockMode.None;
         mouseLook.enabled = false;
         shooting.enabled = false;
@@ -46,6 +49,8 @@ public class PauseManager : MonoBehaviour
 
     public void UnPauseGame()
     {
+        if (Death.Instance.isPlayerDead) return;
+
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         mouseLook.enabled = true;

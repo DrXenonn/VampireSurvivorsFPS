@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour
     private void DamageBoss(Collision collision)
     {
         int calculatedDamage = CalculateDamage(PlayerStats.Instance.primaryDamage, randomness, out var dmgType);
-        collision.gameObject.GetComponent<BossHP>().TakeDamage(calculatedDamage, dmgType);
+        collision.gameObject.GetComponent<BossHp>().TakeDamage(calculatedDamage, dmgType);
     }
 
     private int CalculateDamage(int damage, int random, out string dmgType)

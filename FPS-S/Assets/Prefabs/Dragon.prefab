@@ -433,9 +433,11 @@ MonoBehaviour:
   deathEvent: {fileID: 11400000, guid: 5084f7a5ca8e8634c80066879d8a3a49, type: 2}
   dmgPopupPos: {fileID: 2929398136380586802}
   animator: {fileID: 5006998065390375988}
-  bossMovement: {fileID: 5006998065390375990}
-  dragonBehaviour: {fileID: 5006998065390375992}
   healthBar: {fileID: 2929398136144640300}
+  deathAnimationName: DragonArmature|Dragon_Death
+  scriptsToDisable:
+  - {fileID: 5006998065390375992}
+  - {fileID: 5006998065390375990}
 --- !u!1 &2614892446544660892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5636183030735900296
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,7 +1220,7 @@ Transform:
   - {fileID: 2929398136079065733}
   - {fileID: 2929398136335042643}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!95 &5006998065390375988
 Animator:
@@ -1252,7 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4af6405c07f5845b1c2d38cc59ecd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 6
   stoppingDistance: 4
   rotationSpeed: 90
   height: 1.25
@@ -1280,6 +1282,7 @@ MonoBehaviour:
   rangeProjectile: {fileID: 3831477535261900540, guid: 9eb40040cb1e7ec4e847d4f2fa6deb9c,
     type: 3}
   firePos: {fileID: 2929398136079065733}
+  bossHp: {fileID: 8491862262895254262}
 --- !u!1 &5090307200856780117
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
-    [SerializeField] private float speed, stoppingDistance, rotationSpeed, height;
+    [SerializeField] private float speed, stoppingDistance, rotationSpeed;
+    public float height;
     private Transform playerPos;
 
     private void Start()
@@ -28,6 +29,7 @@ public class BossMovement : MonoBehaviour
         var ignoreYPos = new Vector3(position.x, height, position.z);
         transform.position = Vector3.MoveTowards(transform.position, ignoreYPos, speed * Time.deltaTime);
     }
+    
 
     private void LookAtPlayer()
     {

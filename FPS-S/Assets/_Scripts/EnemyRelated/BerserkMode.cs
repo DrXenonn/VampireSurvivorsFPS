@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BerserkMode : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private float berserkModeTime;
+    [SerializeField] private float berserkModeTime, warningTime;
     [SerializeField] private RawImage icon;
     [SerializeField] private Texture closeToBerserkTexture, berserkTexture;
     private float normalSpeed;
@@ -38,7 +38,7 @@ public class BerserkMode : MonoBehaviour
         icon.texture = closeToBerserkTexture;
         icon.enabled = true;
 
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(warningTime);
 
         icon.texture = berserkTexture;
         icon.enabled = true;

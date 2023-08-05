@@ -43,13 +43,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void HandleDeath() 
+    private void HandleDeath()
     {
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            death.Raise();
-        }
+        if (currentHealth > 0) return;
+        currentHealth = 0;
+        death.Raise();
     }
 
     public void OnHeal(Component sender, object data) 

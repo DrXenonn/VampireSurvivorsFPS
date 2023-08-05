@@ -6,7 +6,7 @@ public class TimeManager : MonoBehaviour
     private float timeToWin = 600.0f;
 
 
-    void Update()
+    private void Update()
     {
         timeElapsed += Time.deltaTime;
         timeToWin -= Time.deltaTime;
