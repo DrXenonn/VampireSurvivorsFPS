@@ -32,7 +32,6 @@ public class BoundaryController : MonoBehaviour
             playerRigidbody.AddForce(FindDirectionToPush() * knockbackForce, ForceMode.Impulse);
         }
     }
-    
 
     private Vector3 FindDirectionToPush()
     {

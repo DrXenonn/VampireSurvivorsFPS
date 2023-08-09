@@ -31,7 +31,7 @@ public class XpSystem : MonoBehaviour
 
     private void CheckLevelUp()
     {
-        if (Death.Instance.isPlayerDead) return;
+        if (EndGame.Instance.isGameEnded) return;
         if (currentXP >= xpToNextLevel)
         {
             LevelUp();

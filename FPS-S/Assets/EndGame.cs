@@ -1,22 +1,23 @@
 using System;
 using System.Collections;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Death : MonoBehaviour
+public class EndGame : MonoBehaviour
 {
-    public static Death Instance { get; private set; }
+    public static EndGame Instance { get; private set; }
 
     [SerializeField] private PauseManager pauseManager;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject[] objectsToDisable;
-    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject title;
     [SerializeField] private GameObject stats;
     [SerializeField] private TextMeshProUGUI timeText, killsText, totalCrystalText;
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private EnemyCounter enemyCounter;
-    [HideInInspector] public bool isPlayerDead;
+    [HideInInspector] public bool isGameEnded;
+    [SerializeField] private string loseTitle, winTitle;
 
     private void Awake()
     {
@@ -37,18 +38,33 @@ public class Death : MonoBehaviour
         {
             OnDeath(null, null);
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OnWin(null, null);
+        }
     }
 
     public void OnDeath(Component component, object data)
     {
-        isPlayerDead = true;
+        FinishGame(loseTitle);
+    }
+    
+    public void OnWin(Component component, object data)
+    {
+        FinishGame(winTitle);
+    }
+
+    private void FinishGame(string titleText)
+    {
+        isGameEnded = true;
         foreach (var gObject in objectsToDisable)
         {
             gObject.SetActive(false);
         }
 
         animator.Play("Fade");
-        gameOver.SetActive(true);
+        title.SetActive(true);
+        title.GetComponent<TextMeshProUGUI>().text = titleText;
         StartCoroutine(nameof(SlowDownGameSpeed));
         pauseManager.PauseGame(false);
     }

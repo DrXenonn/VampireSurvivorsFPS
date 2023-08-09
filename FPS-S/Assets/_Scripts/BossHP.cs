@@ -9,6 +9,7 @@ public class BossHp : MonoBehaviour
     [SerializeField] private Transform dmgPopupPos;
     [SerializeField] private Animator animator;
     [SerializeField] private Image healthBar;
+    [SerializeField] private GameEvent win;
     [SerializeField] private string deathAnimationName;
     [SerializeField] private MonoBehaviour[] scriptsToDisable;
     private float currentHealth;
@@ -55,5 +56,6 @@ public class BossHp : MonoBehaviour
         deathEvent.Raise(transform);
         yield return new WaitForSeconds(0.6f);
         Destroy(transform.parent.gameObject);
+        win.Raise();
     }
 }

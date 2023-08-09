@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d3a75cb00ea2f46be899604bdc91b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusBaseDamagePercent: 20
+  bonusBaseDamagePercent: 15

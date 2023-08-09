@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Skeleton
   enemyMovementSpeed: 7
-  enemyHealth: 600
+  enemyHealth: 515
   enemyDamage: 10
   radiusAroundTarget: 2.5
   xpDropPrefab: {fileID: 8600766320286441730, guid: ce792ef976be2bc4bafc8b94b3b0925c,

@@ -13,7 +13,7 @@ public class EnemyIndicator : MonoBehaviour
     private void Awake()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
-        parent = GameObject.FindWithTag("IndicatorCanvas").transform;
+        parent = GameObject.FindWithTag("IndicatorCanvas")?.transform;
 
         instantiatedIndicator = Instantiate(enemyIndicatorPrefab, parent);
         instantiatedIndicator.SetActive(false);

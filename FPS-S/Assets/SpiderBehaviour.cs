@@ -8,6 +8,7 @@ public class SpiderBehaviour : MonoBehaviour
     [SerializeField] private float rushSpeed;
     [SerializeField] private int rushDamage;
     [SerializeField] private float rushChargeTime;
+    [SerializeField] private float rushDelay;
     [SerializeField] private float meleeAttackInterval, meleeAttackDelay, meleeAttackRange;
     [SerializeField] private int meleeAttackDamage;
     [SerializeField] private float spitInterval, spitMinimumDistance;
@@ -37,9 +38,9 @@ public class SpiderBehaviour : MonoBehaviour
     {
         if (rush) return;
         if (!(Vector3.Distance(transform.position, playerTransform.position) >= spitMinimumDistance)) return;
-        
+
         ResetInvokes();
-        Invoke(nameof(RushTowardsPlayerRepeatable),1.75f);
+        Invoke(nameof(RushTowardsPlayerRepeatable), rushDelay);
 
         transform.LookAt(playerTransform);
         animator.Play("SpiderArmature|Spider_Attack");
@@ -49,7 +50,7 @@ public class SpiderBehaviour : MonoBehaviour
     private IEnumerator SpawnWebDelayed()
     {
         yield return new WaitForSeconds(0.35f);
-        Instantiate(web,webFirePos.position, Quaternion.identity);
+        Instantiate(web, webFirePos.position, Quaternion.identity);
     }
 
     private void MeleeAttack()
@@ -99,20 +100,25 @@ public class SpiderBehaviour : MonoBehaviour
     private void Rush()
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, rushSpeed * Time.deltaTime);
+        StopRushOnFinish();
+    }
+
+    private void StopRushOnFinish()
+    {
+        if (!HasFinishedRush()) return;
         StopRush();
     }
 
     private void StopRush()
     {
-        if (!(GetDistanceToDestination() <= 0)) return;
         rush = false;
         bossMovement.enabled = true;
         animator.speed = 1;
     }
 
-    private float GetDistanceToDestination()
+    private bool HasFinishedRush()
     {
-        return Vector3.Distance(transform.position, destination);
+        return Vector3.Distance(transform.position, destination) <= 0;
     }
 
     private void DrawDamageLine()
@@ -133,6 +139,7 @@ public class SpiderBehaviour : MonoBehaviour
         if (other.CompareTag("Player") && rush)
         {
             damagePlayer.Raise(rushDamage);
+            StopRush();
         }
     }
 

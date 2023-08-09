@@ -49,7 +49,7 @@ public class PauseManager : MonoBehaviour
 
     public void UnPauseGame()
     {
-        if (Death.Instance.isPlayerDead) return;
+        if (EndGame.Instance.isGameEnded) return;
 
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;

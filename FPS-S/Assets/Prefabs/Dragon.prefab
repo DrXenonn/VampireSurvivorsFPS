@@ -434,6 +434,7 @@ MonoBehaviour:
   dmgPopupPos: {fileID: 2929398136380586802}
   animator: {fileID: 5006998065390375988}
   healthBar: {fileID: 2929398136144640300}
+  win: {fileID: 0}
   deathAnimationName: DragonArmature|Dragon_Death
   scriptsToDisable:
   - {fileID: 5006998065390375992}
@@ -1200,7 +1201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5636183030735900296
 Transform:
   m_ObjectHideFlags: 0
@@ -1257,6 +1258,7 @@ MonoBehaviour:
   speed: 6
   stoppingDistance: 4
   rotationSpeed: 90
+  pushForce: 0
   height: 1.25
 --- !u!114 &5006998065390375992
 MonoBehaviour:
@@ -1274,7 +1276,6 @@ MonoBehaviour:
   rangeInterval: 5
   distanceThreshold: 8
   meleeAttackDelay: 0.6
-  spawnDelay: 300
   animator: {fileID: 5006998065390375988}
   meleeDamageArea: {fileID: 2929398137226065550}
   rangeDamageArea: {fileID: 7302187349162777363, guid: 8ad226595d1179849becb9ab45f6060a,
