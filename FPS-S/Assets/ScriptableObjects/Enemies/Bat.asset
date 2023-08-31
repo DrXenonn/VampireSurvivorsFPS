@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   enemyName: Bat
-  enemyMovementSpeed: 7
-  enemyHealth: 615
+  enemyMovementSpeed: 8
+  enemyHealth: 819
   enemyDamage: 10
   radiusAroundTarget: 2.5
   xpDropPrefab: {fileID: 8600766320286441730, guid: ce792ef976be2bc4bafc8b94b3b0925c,

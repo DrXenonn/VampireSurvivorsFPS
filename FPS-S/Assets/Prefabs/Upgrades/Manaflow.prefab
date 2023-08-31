@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bded54b30c1891f4781d0112fc1d2486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentReduction: 20
+  percentReduction: 15

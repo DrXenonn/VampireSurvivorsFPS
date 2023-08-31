@@ -5,15 +5,14 @@ public class BoundaryController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private float knockbackForce = 10f;
+    [SerializeField] private float knockBackRepeatRate = 0.05f;
     private bool isPlayerOutside;
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerOutside = true;
-            InvokeRepeating(nameof(PushPlayerInside), 0, 0.05f);
-        }
+        if (!other.CompareTag("Player")) return;
+        isPlayerOutside = true;
+        InvokeRepeating(nameof(PushPlayerInside), 0, knockBackRepeatRate);
     }
     
 
@@ -35,7 +34,7 @@ public class BoundaryController : MonoBehaviour
 
     private Vector3 FindDirectionToPush()
     {
-        Vector3 direction = transform.position - playerTransform.position;
+        var direction = transform.position - playerTransform.position;
         return direction.normalized;
     }
 }

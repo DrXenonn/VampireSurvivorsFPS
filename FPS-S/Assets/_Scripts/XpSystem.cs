@@ -10,6 +10,7 @@ public class XpSystem : MonoBehaviour
     [SerializeField] private UpgradePanelManager upgradePanelManager;
     [SerializeField] private UpgradeManager upgradeManager;
     [SerializeField] private GameEvent updateUI;
+    [SerializeField] private GameEvent levelUp;
     [HideInInspector] public float xpValueMultiplier;
     [SerializeField] private AudioSource levelupSoundEffect;
     [SerializeField] private float pushDistance = 5f;
@@ -19,14 +20,6 @@ public class XpSystem : MonoBehaviour
     private void Start()
     {
         xpValueMultiplier = 1f;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            EarnXP(1000);
-        }
     }
 
     private void CheckLevelUp()
@@ -47,6 +40,7 @@ public class XpSystem : MonoBehaviour
         currentXP -= xpToNextLevel;
         currentLevel++;
         updateUI.Raise();
+        levelUp.Raise(currentLevel);
 
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
         upgradePanelManager.OpenPanel(upgradeManager.shownUpgrades);

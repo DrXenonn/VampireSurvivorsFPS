@@ -37,7 +37,8 @@ public class BerserkMode : MonoBehaviour
 
         icon.texture = closeToBerserkTexture;
         icon.enabled = true;
-
+        agent.speed += 1;
+        
         yield return new WaitForSeconds(warningTime);
 
         icon.texture = berserkTexture;

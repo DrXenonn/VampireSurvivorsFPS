@@ -24,9 +24,4 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
-
-    public void UnloadScene(string sceneName)
-    {
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(sceneName);
-    }
 }

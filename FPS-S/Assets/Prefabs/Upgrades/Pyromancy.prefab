@@ -52,6 +52,7 @@ MonoBehaviour:
   fireParticles: {fileID: 1053144852451064, guid: e04dea75bb0c7244391be733f5355ac4,
     type: 3}
   fireWand: {fileID: 4300172, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
+  onClassChoose: {fileID: 11400000, guid: 5bf5c4d5f40dec44a9679c5e840778d8, type: 2}
   color: {r: 1, g: 0.75686276, b: 0.02745098, a: 0.7176471}
   emissionColor: {r: 23.968628, g: 0.5019608, b: 0, a: 1}
 --- !u!114 &6631633735999740795

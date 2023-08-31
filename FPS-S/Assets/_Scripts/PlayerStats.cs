@@ -74,6 +74,6 @@ public class PlayerStats : MonoBehaviour
         primaryDamage += PlayerPrefs.GetInt("DamageAugment");
         criticalChance += (float)PlayerPrefs.GetInt("CriticalChanceAugment") / 100;
         fireRate += PlayerPrefs.GetInt("FireRateAugment") / 14f;
-        timeToRegenMana -= ((float)PlayerPrefs.GetInt("ManaRegenAugment") / 1000);
+        timeToRegenMana -= ((float)PlayerPrefs.GetInt("ManaRegenAugment") / 1150);
     }
 }

@@ -1430,10 +1430,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The first time your health drops to zero, Last Stand activates, making
+  m_text: The first time your health drops to zero, Last Stand activates, making
     you <b>Invincible</b> for 5 seconds and gain<b> 20 Health</b>. Afterward, you
-    gain a permanent boost of <b>5% Damage</b>, \n<b>5% Movement Speed</b> and <b>15%
-    Fire Rate</b>."
+    gain a permanent boost of <b>5% Damage</b> and <b>15% Fire Rate</b>.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
   m_sharedMaterial: {fileID: -4763589143147775824, guid: 57da2db92145c3242a36fcb03ed0865a,
@@ -1461,8 +1460,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

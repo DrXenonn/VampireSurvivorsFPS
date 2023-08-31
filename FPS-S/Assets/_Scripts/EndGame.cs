@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EndGame : MonoBehaviour
 {
@@ -16,11 +15,15 @@ public class EndGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText, killsText, totalCrystalText;
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private EnemyCounter enemyCounter;
-    [HideInInspector] public bool isGameEnded;
+    [SerializeField] private GameObject winBonusScreen;
     [SerializeField] private string loseTitle, winTitle;
+    [HideInInspector] public bool isGameEnded;
+    private bool hasWon;
+
 
     private void Awake()
     {
+        hasWon = false;
         if (Instance == null)
         {
             Instance = this;
@@ -32,26 +35,17 @@ public class EndGame : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OnDeath(null, null);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            OnWin(null, null);
-        }
-    }
-
     public void OnDeath(Component component, object data)
     {
+        if (GameObject.FindGameObjectWithTag("LastStand") != null) return;
         FinishGame(loseTitle);
     }
-    
+
     public void OnWin(Component component, object data)
     {
+        hasWon = true;
         FinishGame(winTitle);
+        PlayerPrefs.SetInt("Chaos", Math.Min(PlayerPrefs.GetInt("Chaos", 1) + 1, 5));
     }
 
     private void FinishGame(string titleText)
@@ -95,13 +89,21 @@ public class EndGame : MonoBehaviour
 
         var crystals = Mathf.FloorToInt(enemyCounter.killedEnemies + timeManager.GetTimeElapsed());
         totalCrystalText.text = crystals.ToString();
-        
+
         var currentCrystals = PlayerPrefs.GetInt("Crystals");
         PlayerPrefs.SetInt("Crystals", currentCrystals + crystals);
     }
 
     public void OnContinue()
     {
-        SceneManager.Instance.LoadScene("Main Menu");
+        if (hasWon)
+        {
+            winBonusScreen.SetActive(true);
+            stats.SetActive(false);
+        }
+        else
+        {
+            SceneManager.Instance.LoadScene("Main Menu");
+        }
     }
 }

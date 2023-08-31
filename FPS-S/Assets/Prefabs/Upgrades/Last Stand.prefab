@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6639945458519814336}
   m_Layer: 0
   m_Name: Last Stand
-  m_TagString: Untagged
+  m_TagString: LastStand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invincibilityTime: 5
-  lastChanceHealth: 10
+  lastChanceHealth: 20
   bonusDamagePercent: 5
   bonusFireRatePercent: 15
-  bonusMovementSpeedPercent: 5
   onHeal: {fileID: 11400000, guid: ba2a278a548c6b74388f66ebdab08dd3, type: 2}
   aoeEffect: {fileID: 6883764601967933209, guid: 2dd4a00d82d0aa242a81c43cfdb2462d,
     type: 3}
+  onBuffGain: {fileID: 11400000, guid: 4a0a9f3126a4c81458d35e3a307600b4, type: 2}
 --- !u!114 &-6639945458519814336
 MonoBehaviour:
   m_ObjectHideFlags: 0

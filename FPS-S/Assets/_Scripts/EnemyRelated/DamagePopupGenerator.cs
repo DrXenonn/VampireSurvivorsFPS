@@ -134,7 +134,7 @@ public class DamagePopupGenerator : MonoBehaviour
         }
         else if (distance > 13)
         {
-            tmp.fontSize = 12f;
+            tmp.fontSize = 10f;
         }
     }
 }

@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Choose <b>Fire</b> as your elemet, There is a 75% chance that your projectiles
+  m_text: 'Choose <b>Fire</b> as your element, There is a 75% chance that your projectiles
     <b>Burn</b> enemies for 5 seconds (30 DPS).
 
 '

@@ -13,6 +13,7 @@ public class DragonBehaviour : MonoBehaviour
     [SerializeField] private GameObject rangeProjectile;
     [SerializeField] private Transform firePos;
     [SerializeField] private BossHp bossHp;
+    [SerializeField] private AudioSource audioSource;
     private Transform playerTransform;
     private int phase;
 
@@ -43,6 +44,7 @@ public class DragonBehaviour : MonoBehaviour
         if (IsCloseToPlayer()) return;
 
         animator.Play("DragonArmature|Dragon_Attack2");
+        audioSource.Play();
         StartCoroutine(AttackLate());
     }
 
@@ -52,8 +54,8 @@ public class DragonBehaviour : MonoBehaviour
         meleeInterval = 1.25f;
         CancelInvoke(nameof(RangeAttack));
         CancelInvoke(nameof(MeleeAttack));
-        InvokeRepeating(nameof(RangeAttack), 0.5f, rangeInterval);
-        InvokeRepeating(nameof(MeleeAttack), 0.5f, meleeInterval);
+        InvokeRepeating(nameof(RangeAttack), rangeInterval, rangeInterval);
+        InvokeRepeating(nameof(MeleeAttack), meleeInterval, meleeInterval);
     }
 
     private void CheckChangePhase()

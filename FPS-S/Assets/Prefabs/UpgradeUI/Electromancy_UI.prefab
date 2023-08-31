@@ -1142,8 +1142,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Choose <b>Lightning</b> as your elemet, When striking an enemy, a surge
-    of lightning will electrify <b>2</b> nearby foes, that inflicts <b>20 Electric
+  m_text: "Choose <b>Lightning</b> as your element, When striking an enemy, a surge
+    of lightning will electrify <b>2</b> nearby foes, that inflicts <b>25 Electric
     Damage</b>.\n\n\u2022 Cooldown <b> 0.5s</b>\n\u2022 Projectile Speed <b>+200%</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -144.31148, w: -100.06596}
+  m_margin: {x: 0, y: 0, z: -174.94405, w: -100.06596}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

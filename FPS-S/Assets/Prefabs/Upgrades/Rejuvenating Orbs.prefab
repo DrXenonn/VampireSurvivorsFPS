@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1858813200736933095
 MonoBehaviour:
@@ -51,7 +51,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3309412857678052988}
         m_TargetAssemblyTypeName: RejuvenatingOrbs_U, Assembly-CSharp
-        m_MethodName: onAnyXpPickup
+        m_MethodName: OnAnyXpPickup
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -74,4 +74,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onRestoreMana: {fileID: 11400000, guid: 0baec264b2e4b424685ee2363747a197, type: 2}
-  restoreChance: 0.5
+  restoreChance: 0.7
+  manaToFill: 25

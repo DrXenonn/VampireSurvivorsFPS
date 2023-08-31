@@ -10,15 +10,15 @@ public class Shooting : MonoBehaviour
 
     #region variables
 
-    [Header("References")] [SerializeField]
-    public Transform firePos;
-
+    [Header("References")] 
+    [SerializeField] public Transform firePos;
     [SerializeField] protected Mana manaManager;
     [SerializeField] protected Animator staffAnimator;
     [SerializeField] protected Crosshair crosshair;
     [SerializeField] protected AudioSource shootingSound;
 
-    [Header("Variables")] [SerializeField] protected int secondaryFireProjectileCount;
+    [Header("Variables")] 
+    [SerializeField] protected int secondaryFireProjectileCount;
     [SerializeField] protected float secondaryFireRate;
     public bool arc;
     [SerializeField] protected float arcRange;

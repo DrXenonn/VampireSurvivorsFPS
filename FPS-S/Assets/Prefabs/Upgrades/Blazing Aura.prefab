@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f736fbae4563549b763568703a2b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
-  tickDamage: 20
+  radius: 11
+  tickDamage: 40
   tickRate: 1
   fireParticles: {fileID: 1511761380157052, guid: 41da8f6f38128024db42b12a0f75968c,
     type: 3}

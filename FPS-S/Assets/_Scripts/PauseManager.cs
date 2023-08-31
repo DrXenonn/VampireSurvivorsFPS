@@ -66,6 +66,7 @@ public class PauseManager : MonoBehaviour
 
     private void HidePauseMenu()
     {
+        settingsMenu.SetActive(false);
         pauseMenu.SetActive(false);
     }
     
@@ -78,7 +79,6 @@ public class PauseManager : MonoBehaviour
     public void OnGiveUp()
     {
        SceneManager.Instance.LoadScene("Main Menu");
-       //SceneManager.Instance.UnloadScene("Game");
     }
 
     public void OnOpenSettings()

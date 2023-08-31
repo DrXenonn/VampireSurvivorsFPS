@@ -39,13 +39,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckIfShooting()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             SlowDownPlayer();
             isShooting = true;
             timer = 0f;
         }
-        else if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(0))
         {
             isShooting = false;
             SetToNormalSpeed();

@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Cryomancy_U : MonoBehaviour
@@ -12,6 +11,7 @@ public class Cryomancy_U : MonoBehaviour
     [SerializeField] private GameObject stunEffect;
     [SerializeField] private Mesh iceWand;
     [SerializeField] private AudioSource shatter;
+    [SerializeField] private GameEvent onClassChoose;
     [ColorUsage(true,true)]
     [SerializeField] private Color color, emissionColor;
     [HideInInspector] public bool hasFrozenImpact;
@@ -20,6 +20,7 @@ public class Cryomancy_U : MonoBehaviour
 
     private void Start()
     {
+        onClassChoose.Raise("cryomancy");
         var wand = GameObject.FindGameObjectWithTag("Wand").GetComponent<MeshFilter>();
         wand.mesh = iceWand;
         MaterialColorController.instance.SetNewColors(color, emissionColor);
@@ -33,7 +34,7 @@ public class Cryomancy_U : MonoBehaviour
 
         DealFrostDamage(objectToStun);
 
-        if ((Random.value < stunChance))
+        if ((Random.value < stunChance)&& !objectToStun.GetComponent<EnemyHP>().isDeBuffApplied)
         {
             if (enemyNavmesh != null && enemyNavmesh.isOnNavMesh)
             {

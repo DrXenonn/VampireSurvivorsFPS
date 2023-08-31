@@ -927,7 +927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Every 10 enemies defeated, unleash a force that pulls all XP orbs towards
+  m_text: Every 5 enemies defeated, unleash a force that pulls all XP orbs towards
     you, regardless of the distance.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}

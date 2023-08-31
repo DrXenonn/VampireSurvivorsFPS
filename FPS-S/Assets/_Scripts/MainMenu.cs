@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject augmentsMenu;
-    
+    [SerializeField] private GameObject playMenu, settingsMenu, augmentsMenu;
+
     private void OnEnable()
     {
         Time.timeScale = 1;
@@ -13,8 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlay()
     {
-        SceneManager.Instance.LoadScene("Game");
-        //SceneManager.Instance.UnloadScene("Main Menu");
+        playMenu.SetActive(true);
     }
 
     public void OnSettingsOpen()
@@ -22,7 +20,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(true);
         gameObject.SetActive(false);
     }
-    
+
     public void OnAugmentsOpen()
     {
         augmentsMenu.SetActive(true);
@@ -33,5 +31,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
 }

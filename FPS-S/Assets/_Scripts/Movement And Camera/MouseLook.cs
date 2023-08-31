@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
@@ -14,7 +13,7 @@ public class MouseLook : MonoBehaviour
 
     private void OnEnable()
     {
-        mouseSens = PlayerPrefs.GetFloat("MouseSensitivity");
+        mouseSens = PlayerPrefs.GetFloat("MouseSensitivity", 1);
     }
 
     private void Update()

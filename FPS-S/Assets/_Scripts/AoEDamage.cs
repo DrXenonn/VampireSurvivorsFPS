@@ -11,7 +11,7 @@ public class AoEDamage : MonoBehaviour
     private IEnumerator Start()
     {
         var position = transform.position;
-        position = new Vector3(position.x, 0.0001f, position.z);
+        position = new Vector3(position.x, 0.001f, position.z);
         transform.position = position;
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);

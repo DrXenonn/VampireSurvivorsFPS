@@ -10,11 +10,13 @@ public class Pyromancy_U : MonoBehaviour
     [SerializeField] private float burnChance;
     [SerializeField] private GameObject fireParticles;
     [SerializeField] private Mesh fireWand;
+    [SerializeField] private GameEvent onClassChoose;
     [ColorUsage(true,true)]
     [SerializeField] private Color color, emissionColor;
 
     private void Start()
     {
+        onClassChoose.Raise("pyromancy");
         var wand = GameObject.FindGameObjectWithTag("Wand").GetComponent<MeshFilter>();
         wand.mesh = fireWand;
         MaterialColorController.instance.SetNewColors(color, emissionColor);
@@ -35,29 +37,30 @@ public class Pyromancy_U : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator Burn(EnemyHP enemyHp)
     {
         var enemyTransform = enemyHp.gameObject.transform;
-        var enemyPos = enemyTransform.position;
-        enemyPos = new Vector3(enemyPos.x, enemyPos.y + 0.75f, enemyPos.z);
+        var enemyBounds = enemyTransform.GetComponent<Collider>().bounds;
 
-        var fire = Instantiate(fireParticles, enemyPos, Quaternion.identity, enemyTransform.transform);
+        var centerPosition = enemyBounds.center;
+        
+        var fire = Instantiate(fireParticles, centerPosition, Quaternion.identity, enemyTransform);
         Destroy(fire, tickRate * ticks);
 
         for (var i = 0; i < ticks; i++)
         {
-            if (!enemyHp.gameObject.activeSelf) // If enemy died
+            if (!enemyHp.gameObject.activeSelf)
             {
                 enemyHp.isDeBuffApplied = false;
                 Destroy(fire);
-                yield break; // Exit the coroutine
+                yield break;
             }
 
             yield return new WaitForSeconds(tickRate);
             enemyHp.TakeDamage(Mathf.FloorToInt(tickDamage * PlayerStats.Instance.elementalDamageMultiplier), "Burn");
         }
-
-        // Make enemy burnable after the effect is done
+        
         enemyHp.isDeBuffApplied = false;
     }
 }

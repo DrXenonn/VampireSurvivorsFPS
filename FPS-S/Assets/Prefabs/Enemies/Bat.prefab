@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3498598608367748381}
-  berserkModeTime: 240
+  berserkModeTime: 80
   warningTime: 30
   icon: {fileID: 4432688056190237552}
   closeToBerserkTexture: {fileID: 2800000, guid: 0361248e9e9ec46459ac56db60a506ae,
@@ -660,7 +660,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 94276e9c84c68804c92f3eef39659d2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 0.98
   Loop: 1
   Mute: 0

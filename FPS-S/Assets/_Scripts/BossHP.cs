@@ -16,6 +16,8 @@ public class BossHp : MonoBehaviour
 
     private void Start()
     {
+        var chaos = PlayerPrefs.GetInt("Chaos", 1);
+        maxHealth += chaos * 600 - 600;
         currentHealth = maxHealth;
     }
 
@@ -37,10 +39,13 @@ public class BossHp : MonoBehaviour
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 
+    private bool isDead;
+
     private void HandleDeath()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
         {
+            isDead = true;
             StartCoroutine(nameof(Death));
         }
     }
@@ -56,6 +61,10 @@ public class BossHp : MonoBehaviour
         deathEvent.Raise(transform);
         yield return new WaitForSeconds(0.6f);
         Destroy(transform.parent.gameObject);
-        win.Raise();
+
+        if (win != null)
+        {
+            win.Raise();
+        }
     }
 }

@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "While you have<b> 20 Health</b> or less, \nyou will gain a <b>30% Damage</b>
+  m_text: "While you have<b> 30 Health</b> or less, \nyou will gain a <b>20% Damage</b>
     bonus \nand a <b>10% Movement Speed</b> bonus .\n\n\u2022 Max Health <b>+10</b>\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}

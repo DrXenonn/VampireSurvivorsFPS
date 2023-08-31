@@ -10,6 +10,7 @@ public class Electromancy_U : MonoBehaviour
     [SerializeField] private float lightningTtl;
     [SerializeField] private int lightningDamage;
     [SerializeField] private Mesh electroWand;
+    [SerializeField] private GameEvent onClassChoose;
     [ColorUsage(true, true)]
     [SerializeField] private Color color, emissionColor;
     [SerializeField] private int projectileSpeed;
@@ -19,6 +20,7 @@ public class Electromancy_U : MonoBehaviour
 
     private void Start()
     {
+        onClassChoose.Raise("electromancy");
         var wand = GameObject.FindGameObjectWithTag("Wand").GetComponent<MeshFilter>();
         wand.mesh = electroWand;
         Shooting.Instance.arc = false;
@@ -37,16 +39,17 @@ public class Electromancy_U : MonoBehaviour
 
         var closestEnemies = FindClosestEnemies(numberOfClosestEnemies, radius, hitObject);
         var damage = Mathf.FloorToInt(lightningDamage * PlayerStats.Instance.elementalDamageMultiplier);
-
-        // Loop through each pair of closest enemies and create a lightning effect between them
-        for (int i = 0; i < closestEnemies.Count; i++)
+        
+        for (var i = 0; i < closestEnemies.Count; i++)
         {
             var lightningPrefab = Instantiate(lightning);
             lightningPrefab.transform.GetChild(0).position = hitObject.transform.position;
             lightningPrefab.transform.GetChild(1).position = closestEnemies[i].transform.position;
+            var position = lightningPrefab.transform.position;
+            position = new Vector3(position.x,position.y + 0.2f, position.z);
+            lightningPrefab.transform.position = position;
             Destroy(lightningPrefab, lightningTtl);
-
-            // Deal damage to each enemy hit by the lightning effect
+            
             closestEnemies[i].GetComponent<EnemyHP>().TakeDamage(Mathf.FloorToInt(damage), "Lightning");
         }
     
@@ -83,8 +86,7 @@ public class Electromancy_U : MonoBehaviour
             }
 
             closestEnemies.Insert(insertIndex, col.gameObject);
-
-            // If we have found more enemies than required, remove the farthest ones
+            
             if (closestEnemies.Count > numberOfEnemies)
                 closestEnemies.RemoveAt(numberOfEnemies);
         }

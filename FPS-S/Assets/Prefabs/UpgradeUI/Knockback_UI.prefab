@@ -824,7 +824,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Push your enemies away, And gain some <b>Base Damage</b>.\n\n\n\u2022
-    Base Damage<b> +10%</b>"
+    Base Damage<b> +5%</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57da2db92145c3242a36fcb03ed0865a, type: 2}
   m_sharedMaterial: {fileID: -4763589143147775824, guid: 57da2db92145c3242a36fcb03ed0865a,

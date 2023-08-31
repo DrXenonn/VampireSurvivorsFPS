@@ -14,13 +14,10 @@ public class LastStandAoE : MonoBehaviour
     private float currentRadius = 0f;
     private List<Collider> affectedColliders = new List<Collider>();
     private LineRenderer lineRenderer;
-    private SphereCollider xpMagnet;
 
     private void Start()
     {
-        xpMagnet = GameObject.FindGameObjectWithTag("Magnet").GetComponent<SphereCollider>();
         lineRenderer = GetComponent<LineRenderer>();
-        xpMagnet.enabled = false;
         lineRenderer.enabled = false;
         StartCoroutine(Expand());
         CameraShaker.ShakeCamera(shakeAmplitude, shakeFrequency, shakeTime);
@@ -54,7 +51,6 @@ public class LastStandAoE : MonoBehaviour
             yield return null;
         }
         lineRenderer.enabled = false;
-        xpMagnet.enabled = true;
         Destroy(gameObject);
     }
 

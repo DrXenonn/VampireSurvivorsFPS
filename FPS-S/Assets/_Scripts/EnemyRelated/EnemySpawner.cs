@@ -73,6 +73,24 @@ public class EnemySpawner : MonoBehaviour
             defaultCapacity: 75,
             maxSize: 300
         );
+        CalculateChaosSpawnRate();
+    }
+
+    private void CalculateChaosSpawnRate()
+    {
+        var chaos = PlayerPrefs.GetInt("Chaos", 1);
+        chaos = Mathf.Min(chaos, 5);
+        
+        for (var i = 1; i < tiers.Count - 1; i++)
+        {
+            var tier = tiers[i];
+            
+            if (tier.spawnRate > 4)
+            {
+                tier.spawnRate -= chaos * 0.2f - 0.2f;
+            }
+            tiers[i] = tier;
+        }
     }
 
     private void Update()

@@ -14,14 +14,24 @@ public class EnemyHP : MonoBehaviour
 
     private void Start()
     {
-        currentEnemyHp = enemyManager.enemyHealth + bonusHealth;
+        CalculateHealth();
     }
 
     private void OnEnable()
     {
-        currentEnemyHp = enemyManager.enemyHealth;
+        CalculateHealth();
         isDead = false;
         isDeBuffApplied = false;
+    }
+
+    private void CalculateHealth()
+    {
+        var bonusHealthOverTime = enemyManager.enemyHealth + bonusHealth;
+        
+        var chaosLevel = PlayerPrefs.GetInt("Chaos", 1);
+        var chaosBonusHp = Mathf.Min(chaosLevel * 50, 250);
+
+        currentEnemyHp = (bonusHealthOverTime + chaosBonusHp);
     }
 
     public void TakeDamage(int damage, string dmgType = "")

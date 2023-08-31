@@ -7,9 +7,9 @@ public class LastStand_U : MonoBehaviour
     [SerializeField] private int lastChanceHealth = 20;
     [SerializeField] private int bonusDamagePercent = 5;
     [SerializeField] private float bonusFireRatePercent = 15f;
-    [SerializeField] private float bonusMovementSpeedPercent = 5f;
     [SerializeField] private GameEvent onHeal;
     [SerializeField] GameObject aoeEffect;
+    [SerializeField] private GameEvent onBuffGain;
 
 
     void Start()
@@ -20,7 +20,6 @@ public class LastStand_U : MonoBehaviour
     private void GainBonuses()
     {
         PlayerStats.Instance.GainBonus("primaryDamage", bonusDamagePercent);
-        PlayerStats.Instance.GainBonus("movementSpead", bonusMovementSpeedPercent);
         PlayerStats.Instance.GainBonus("fireRate", bonusFireRatePercent);
     }
 
@@ -29,7 +28,8 @@ public class LastStand_U : MonoBehaviour
         playerHealth.BecomeInvincible(invincibilityTime);
         onHeal.Raise(lastChanceHealth);
         Instantiate(aoeEffect, playerHealth.gameObject.transform);
-        Destroy(gameObject, invincibilityTime + 0.1f);
         GainBonuses();
+        onBuffGain.Raise();
+        Destroy(gameObject, invincibilityTime + 0.1f);
     }
 }

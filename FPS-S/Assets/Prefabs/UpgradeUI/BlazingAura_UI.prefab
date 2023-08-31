@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Unleash a <b>Burning Aura</b>, dealing 20 damage per second to nearby
+  m_text: 'Unleash a <b>Burning Aura</b>, dealing 40 damage per second to nearby
     enemies.
 
 '

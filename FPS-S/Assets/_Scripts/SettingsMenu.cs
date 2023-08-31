@@ -13,6 +13,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle fullscreenToggle, vsyncToggle;
     [SerializeField] private Slider sensitivitySlider;
     [SerializeField] private Toggle cameraShake;
+    [SerializeField] private bool shouldDisableOnStart;
     
     private float musicVolume;
     private float soundEffectsVolume;
@@ -26,7 +27,11 @@ public class SettingsMenu : MonoBehaviour
     {
         LoadSettings();
         UpdateUI();
-        gameObject.SetActive(false);
+        
+        if (shouldDisableOnStart)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -67,12 +72,12 @@ public class SettingsMenu : MonoBehaviour
         isVSyncOn = isVSyncEnabled;
     }
 
-    public void SetCameraShake(bool isCameraShakeOn)
+    public void SetCameraShake(bool isCameraShakeOn = true)
     {
         isCameraShakeEnabled = isCameraShakeOn;
     }
 
-    public void SetSens(float sens)
+    public void SetSens(float sens = 1)
     {
         sensitivity = sens;
     }
@@ -108,10 +113,10 @@ public class SettingsMenu : MonoBehaviour
         soundEffectsVolume = PlayerPrefs.GetFloat("SoundEffectsVolume", 0f);
         SetSoundEffectVolume(soundEffectsVolume);
 
-        sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0f);
+        sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 1f);
         SetSens(sensitivity);
 
-        isCameraShakeEnabled = Convert.ToBoolean(PlayerPrefs.GetInt("CameraShake", Convert.ToInt32(isCameraShakeEnabled)));
+        isCameraShakeEnabled = Convert.ToBoolean(PlayerPrefs.GetInt("CameraShake", 1));
         SetCameraShake(isCameraShakeEnabled);
     }
 

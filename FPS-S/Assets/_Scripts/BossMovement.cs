@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -40,7 +38,7 @@ public class BossMovement : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        var directionToPlayer = playerPos.position - transform.position;
+        var directionToPlayer = (playerPos.position - transform.position).normalized;
         directionToPlayer.y = 0f;
 
         if (directionToPlayer == Vector3.zero) return;
