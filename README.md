@@ -15,27 +15,36 @@ A 3D first-person take on *Vampire Survivors*. Play a wizard, survive waves of e
 ## Features
 
 - **Upgrade cards:** every level-up offers three upgrades. Pick one and keep following that path to shape your build.
-- **Three magic classes:** **Pyromancy**, **Electromancy** and **Cryomancy** show up as regular upgrades, but you can only take one. Once you commit, the other two stop appearing.
-- **Different builds, different playstyles:** burning, chaining lightning, freezing, each with its own upgrade tree.
+- **Around 30-35 upgrades in families:** each family (a magic class, XP, HP, attack speed and more) is a path that ends in an **ultimate upgrade**, usually the strongest in the family. Finishing a family pays off more than grabbing random upgrades, but you can still combine families into unique runs.
+- **Three magic classes:** you can only take one, and once you commit, the other two stop appearing. Each class has 2 unique upgrades and an ultimate.
+  - **Pyromancy:** the classic damage-over-time build, with burning enemies
+  - **Electromancy:** chain lightning that jumps between enemies
+  - **Cryomancy:** slows and stuns enemies to control the crowd
+- **XP orbs:** every kill drops one, and you have to pick it up. XP upgrades include a chance to drop extra orbs, or collecting every orb on the map after a number of kills.
+- **Enemies with different behaviors:** and if one chases you for too long it goes mad and speeds up, so stalling and not killing them gets you caught.
 - **Day to night:** the run starts in daylight and moves into night, when new enemies such as bats begin to spawn.
-- **Spider boss:** a multi-mechanic fight (see below).
+- **Bosses:** a flying dragon mini boss and a spider final boss.
 - **Chaos levels:** beat a run and the next chaos level unlocks, with more enemies and a harder fight.
 - **Augments:** permanent upgrades bought with the currency you earn from playing.
 
 ### Level-up screen
 <p align="center">
-  <img src="docs/3.png" width="600">
+  <img src="docs/2.gif" width="600">
 </p>
 
 ### Classes
 <p align="center">
-  <img src="docs/2.gif" width="600">
+  <img src="docs/3.png" width="600">
 </p>
 
-### The Spider Boss
+### Bosses
 
-The final fight has several phases and mechanics:
+**Dragon (mini boss):** a small flying dragon.
+- **Close range:** spins and damages everything nearby
+- **Long range:** shoots a fireball that first marks a circular area, then lands there and hurts you if you're still inside
 
+**Spider (final boss):**
+- **Auto attack:** hits hard at close range
 - **Lunge:** charges forward at you
 - **Spit:** stuns you from range
 - **Spiderlings:** at 50% health the boss shields itself and spawns little spiders. The shield also protects other enemies, and you can only hurt the boss once every spiderling is dead.
